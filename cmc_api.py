@@ -60,7 +60,7 @@ IDString=''
 for id in cmc_id:
     IDString = IDString + str(id) +','
 IDString = IDString[:-1]
-print(IDString)
+#print(IDString)
 
 #testIDString=''
 #for id in testID:
@@ -89,6 +89,36 @@ try:
 except (ConnectionError, Timeout, TooManyRedirects) as e:
   print(e)
 
+# findRepo takes the SourceCode string and strips the domain
+# this can be useful for querying GitHub databases
+def findRepo(string):
+  if string[1:-1]=='':
+    return 'none'
+  if string.find('github') > 0:
+    return string[19:]
+  if string.find('gitlab') > 0:
+    return string[18:]
+  else:
+    return string[8:]
+
+# extract the host from the SourceCode string
+# only really interested in GitHub and GitLab
+def findHost(string):
+  if string[1:-1]=='':
+    return 'none'
+  if string.find('github') > 0:
+    return 'github'
+  if string.find('gitlab') > 0:
+    return 'gitlab'
+  else:
+    return 'other'
+
+# sample test strings
+s1='https://github.com/bitcoin/'
+s2=''
+s3='https://cardanoupdates.com/'
+s4='https://github.com/WrappedBTC/bitcoin-token-smart-contracts'
+
 # access date::<key>::urls::sourcecode field
 # json order is not preserved so build an array containing:
 # [ [id, sourcecode], [id,sourcecode],...,[id,sourcecode]]
@@ -98,11 +128,14 @@ for project in metadata['data']:
   id = project
   sc = metadata['data'][id]['urls']['source_code']
   # turn the sc list into a string and trim the ['']
-  element = [id,str(sc)[2:-2]]
+  #print(sc)
+  host = findHost(str(sc)[2:-2])
+  repo = findRepo(str(sc)[2:-2])
+  element = [id,str(sc)[2:-2],host,repo]
   source.append(element)
 
 # create dataframe from this list so it can be merged 
-dfsource = pd.DataFrame(data=source,columns=['CMC_id','Source_code'])
+dfsource = pd.DataFrame(data=source,columns=['CMC_id','Source_code','Host','Repo'])
 
 df = pd.DataFrame({'CMC_id':cmc_id}) 
 # add columns, probably a more elegant way to do this
@@ -115,7 +148,8 @@ df['ticker']=ticker
 df_out=pd.merge(df.astype(str),dfsource, on=['CMC_id'])
 
 # write to a CSV for doing other stuffs
-# if using COLAB must authenticate first with google drive
+# if using COLAB 
+must authenticate first with google drive
 from google.colab import drive
 drive.mount('drive')
 
