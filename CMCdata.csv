@@ -1,0 +1,201 @@
+	CMC_id	CMC_rank	name	ticker	Source_code
+0	1	1	Bitcoin	BTC	https://github.com/bitcoin/
+1	1027	2	Ethereum	ETH	https://github.com/ethereum
+2	1839	3	Binance Coin	BNB	
+3	825	4	Tether	USDT	
+4	2010	5	Cardano	ADA	https://cardanoupdates.com/
+5	6636	6	Polkadot	DOT	https://github.com/w3f
+6	52	7	XRP	XRP	https://github.com/ripple
+7	7083	8	Uniswap	UNI	
+8	2	9	Litecoin	LTC	https://github.com/litecoin-project/litecoin
+9	1975	10	Chainlink	LINK	https://github.com/smartcontractkit/chainlink
+10	1831	11	Bitcoin Cash	BCH	https://gitlab.com/bitcoin-cash-node/
+11	3408	12	USD Coin	USDC	https://github.com/centrehq/centre-tokens
+12	512	13	Stellar	XLM	https://github.com/stellar
+13	3717	14	Wrapped Bitcoin	WBTC	https://github.com/WrappedBTC/bitcoin-token-smart-contracts
+14	74	15	Dogecoin	DOGE	https://github.com/dogecoin/dogecoin
+15	2416	16	THETA	THETA	https://github.com/thetatoken
+16	4172	17	Terra	LUNA	https://github.com/terra-project
+17	7278	18	Aave	AAVE	https://github.com/aave
+18	3635	19	Crypto.com Coin	CRO	
+19	4066	20	Chiliz	CHZ	
+20	3077	21	VeChain	VET	
+21	328	22	Monero	XMR	https://github.com/monero-project/monero
+22	3794	23	Cosmos	ATOM	https://github.com/cosmos
+23	5426	24	Solana	SOL	https://github.com/solana-labs
+24	1720	25	IOTA	MIOTA	https://github.com/iotaledger
+25	3602	26	Bitcoin SV	BSV	https://github.com/bitcoin-sv/bitcoin-sv
+26	5805	27	Avalanche	AVAX	https://github.com/ava-labs
+27	1765	28	EOS	EOS	https://github.com/eosio
+28	1958	29	TRON	TRX	https://github.com/tronprotocol
+29	4195	30	FTX Token	FTT	
+30	873	31	NEM	XEM	https://github.com/nemtech
+31	4687	32	Binance USD	BUSD	https://github.com/paxosglobal/busd-contract
+32	2011	33	Tezos	XTZ	https://gitlab.com/tezos/tezos
+33	1376	34	Neo	NEO	https://github.com/neo-project
+34	4943	35	Dai	DAI	
+35	2502	36	Huobi Token	HT	
+36	5034	37	Kusama	KSM	https://github.com/kusamanetwork
+37	4030	38	Algorand	ALGO	https://github.com/algorand
+38	6758	39	SushiSwap	SUSHI	https://github.com/sushiswap/sushiswap
+39	2280	40	Filecoin	FIL	
+40	6892	41	Elrond	EGLD	https://github.com/ElrondNetwork
+41	131	42	Dash	DASH	https://github.com/dashpay/dash
+42	3890	43	Polygon	MATIC	https://github.com/maticnetwork/
+43	2586	44	Synthetix	SNX	
+44	6535	45	NEAR Protocol	NEAR	https://github.com/nearprotocol/nearcore
+45	1168	46	Decred	DCR	https://github.com/decred
+46	6719	47	The Graph	GRT	https://github.com/graphprotocol
+47	1518	48	Maker	MKR	
+48	3822	49	Theta Fuel	TFUEL	https://github.com/thetatoken
+49	3957	50	UNUS SED LEO	LEO	
+50	5692	51	Compound	COMP	https://github.com/compound-finance/compound-protocol
+51	4642	52	Hedera Hashgraph	HBAR	https://github.com/hashgraph
+52	2130	53	Enjin Coin	ENJ	https://github.com/enjin/contracts
+53	2469	54	Zilliqa	ZIL	https://github.com/Zilliqa/Zilliqa
+54	1437	55	Zcash	ZEC	https://github.com/zcash/zcash
+55	2577	56	Ravencoin	RVN	https://github.com/RavenProject/Ravencoin
+56	7186	57	PancakeSwap	CAKE	https://github.com/pancakeswap
+57	4023	58	Bitcoin BEP2	BTCB	https://github.com/bitcoin/
+58	4157	59	THORChain	RUNE	https://github.com/thorchain
+59	1321	60	Ethereum Classic	ETC	https://github.com/ethereumclassic
+60	2700	61	Celsius	CEL	https://github.com/CelsiusNetwork
+61	3718	62	BitTorrent	BTT	https://github.com/bittorrent
+62	2694	63	Nexo	NEXO	https://github.com/nexofinance/NEXO-Token/
+63	2499	64	SwissBorg	CHSB	https://github.com/SwissBorg
+64	5864	65	yearn.finance	YFI	https://github.com/iearn-finance
+65	5617	66	UMA	UMA	https://github.com/UMAprotocol
+66	1727	67	Bancor	BNT	https://github.com/bancorprotocol/
+67	1817	68	Voyager Token	VGX	
+68	2539	69	Ren	REN	https://github.com/renproject
+69	1697	70	Basic Attention Token	BAT	
+70	4558	71	Flow	FLOW	https://github.com/onflow
+71	2135	72	Revain	REV	https://github.com/Revain
+72	1966	73	Decentraland	MANA	https://github.com/decentraland
+73	2099	74	ICON	ICX	https://github.com/icon-project
+74	1274	75	Waves	WAVES	https://github.com/wavesplatform/
+75	1896	76	0x	ZRX	https://github.com/0xProject
+76	3513	77	Fantom	FTM	https://github.com/Fantom-Foundation
+77	7129	78	TerraUSD	UST	https://github.com/terra-project
+78	3897	79	OKB	OKB	
+79	4847	80	Stacks	STX	https://github.com/blockstack
+80	3964	81	Reserve Rights	RSR	https://github.com/reserve-protocol
+81	109	82	DigiByte	DGB	https://github.com/DigiByte-Core
+82	2566	83	Ontology	ONT	https://github.com/ontio
+83	3330	84	Paxos Standard	PAX	https://github.com/paxosglobal/pax-contracts
+84	5777	85	renBTC	RENBTC	https://github.com/renproject
+85	1808	86	OMG Network	OMG	https://github.com/omgnetwork
+86	5567	87	Celo	CELO	https://github.com/celo-org/celo-monorepo/
+87	2405	88	IOST	IOST	
+88	1567	89	Nano	NANO	https://github.com/nanocurrency
+89	1934	90	Loopring	LRC	https://github.com/loopring
+90	3945	91	Harmony	ONE	https://github.com/harmony-one
+91	1684	92	Qtum	QTUM	https://github.com/qtumproject/qtum/
+92	3783	93	Ankr	ANKR	https://github.com/Ankr-network
+93	3911	94	Ocean Protocol	OCEAN	https://github.com/oceanprotocol
+94	2603	95	Pundi X	NPXS	
+95	2083	96	Bitcoin Gold	BTG	https://github.com/BTCGPU/BTCGPU
+96	1042	97	Siacoin	SC	https://gitlab.com/NebulousLabs
+97	4779	98	HUSD	HUSD	https://github.com/stcoins/HUSD
+98	8104	99	1inch	1INCH	https://github.com/1inch-exchange/1inch-token/
+99	5691	100	SKALE Network	SKL	https://github.com/skalenetwork
+100	6951	101	Reef	REEF	http://github.com/reef-defi
+101	1698	102	Horizen	ZEN	https://github.com/HorizenOfficial
+102	6538	103	Curve DAO Token	CRV	https://github.com/curvefi/curve-dao-contracts/tree/master/doc
+103	2682	104	Holo	HOT	https://github.com/holochain
+104	1455	105	Golem	GLM	https://github.com/golemfactory/golem
+105	5632	106	Arweave	AR	https://github.com/ArweaveTeam/arweave
+106	8202	107	ZKSwap	ZKS	https://github.com/l2labs
+107	2300	108	WAX	WAXP	https://github.com/worldwide-asset-exchange/
+108	5268	109	Energy Web Token	EWT	https://github.com/energywebfoundation/ewc-system-contracts
+109	1982	110	Kyber Network	KNC	https://github.com/kybernetwork
+110	7288	111	Venus	XVS	https://github.com/SwipeWallet/Venus-Protocol
+111	3155	112	Quant	QNT	https://github.com/quantnetwork/eth-contract-metadata
+112	5665	113	Helium	HNT	https://github.com/helium/
+113	2394	114	Telcoin	TEL	https://github.com/telcoin
+114	3662	115	HedgeTrade	HEDG	https://github.com/rublixdev/hedgtokenmint
+115	693	116	Verge	XVG	https://github.com/vergecurrency
+116	1214	117	Lisk	LSK	https://github.com/LiskHQ/
+117	4948	118	Nervos Network	CKB	https://github.com/nervosnetwork
+118	3773	119	Fetch.ai	FET	https://github.com/fetchai
+119	2087	120	KuCoin Token	KCS	
+120	7232	121	Alpha Finance Lab	ALPHA	https://github.com/AlphaFinanceLab/alpha-lending-smart-contract/blob/master/documents/Alpha%20Lending%20Whitepaper.pdf
+121	7224	122	DODO	DODO	
+122	2777	123	IoTeX	IOTX	https://github.com/iotexproject/
+123	1104	124	Augur	REP	https://github.com/AugurProject
+124	4846	125	Kava.io	KAVA	https://github.com/kava-labs
+125	7859	126	Badger DAO	BADGER	
+126	291	127	MaidSafeCoin	MAID	https://github.com/maidsafe
+127	1759	128	Status	SNT	https://github.com/status-im
+128	3978	129	Chromia	CHR	https://bitbucket.com/chromawallet
+129	5728	130	Balancer	BAL	https://github.com/balancer-labs
+130	2467	131	OriginTrail	TRAC	https://github.com/origintrail
+131	2563	132	TrueUSD	TUSD	https://github.com/trusttoken
+132	1816	133	Civic	CVC	
+133	2496	134	Polymath	POLY	https://github.com/PolymathNetwork
+134	4279	135	Swipe	SXP	https://github.com/SwipeWallet
+135	3814	136	Celer Network	CELR	https://github.com/celer-network
+136	6187	137	Serum	SRM	https://docs.google.com/document/d/1v7NPdmotyetkytr1sVI6cQ1EV4D1ZILs9F6IDO5BkB0/edit
+137	4679	138	Band Protocol	BAND	https://github.com/bandprotocol
+138	4056	139	Ampleforth	AMPL	https://github.com/ampleforth
+139	1886	140	Dent	DENT	
+140	7653	141	Oasis Network	ROSE	https://github.com/oasisprotocol/oasis-core
+141	7208	142	Polkastarter	POLS	
+142	5829	143	TrustSwap	SWAP	
+143	4761	144	NuCypher	NU	https://github.com/nucypher/whitepaper
+144	463	145	BitShares	BTS	https://github.com/bitshares
+145	2320	146	Utrust	UTK	
+146	3801	147	BORA	BORA	https://github.com/boraecosystem/
+147	3701	148	RSK Infrastructure Framework	RIF	https://github.com/riflabs
+148	1680	149	Aragon	ANT	
+149	1320	150	Ardor	ARDR	https://bitbucket.org/Jelurida/ardor/src
+150	3992	151	COTI	COTI	https://github.com/coti-io
+151	1659	152	Gnosis	GNO	
+152	5026	153	Orchid	OXT	https://github.com/OrchidTechnologies/orchid
+153	1757	154	FunFair	FUN	
+154	2424	155	SingularityNET	AGI	https://github.com/singnet/
+155	5117	156	Origin Protocol	OGN	https://github.com/originprotocol
+156	1732	157	Numeraire	NMR	https://github.com/numerai
+157	2222	158	Bitcoin Diamond	BCD	https://github.com/eveybcd/BitcoinDiamond
+158	5604	159	Secret	SCRT	https://github.com/enigmampc/SecretNetwork
+159	1586	160	Ark	ARK	https://github.com/ArkEcosystem
+160	3012	161	VeThor Token	VTHO	https://github.com/vechain/thor
+161	3351	162	ZB Token	ZB	
+162	5802	163	Sora	XOR	https://github.com/soramitsu
+163	1772	164	Storj	STORJ	https://github.com/storj/storj
+164	2776	165	Travala.com	AVA	
+165	4189	166	Ultra	UOS	
+166	1637	167	iExec RLC	RLC	https://github.com/iExecBlockchainComputing
+167	2299	168	aelf	ELF	https://github.com/aelfProject
+168	7226	169	Injective Protocol	INJ	https://github.com/InjectiveLabs
+169	2840	170	QuarkChain	QKC	https://github.com/QuarkChain
+170	2570	171	TomoChain	TOMO	https://github.com/tomochain/
+171	1521	172	Komodo	KMD	https://github.com/KomodoPlatform
+172	2758	173	Unibright	UBT	
+173	1230	174	Steem	STEEM	https://github.com/steemit/steem
+174	8210	175	Bitcoin Standard Hashrate Token	BTCST	https://github.com/Standard-Hashrate-Group
+175	3418	176	Metadium	META	https://github.com/metadium
+176	2606	177	Wanchain	WAN	https://github.com/wanchain
+177	3441	178	Divi	DIVI	https://github.com/Divicoin/Divi
+178	2662	179	Haven Protocol	XHV	https://github.com/haven-protocol-org
+179	1343	180	Stratis	STRAX	https://github.com/stratisproject
+180	6841	181	Phala Network	PHA	https://github.com/Phala-Network
+181	7824	182	Vai	VAI	https://github.com/SwipeWallet/Venus-Protocol
+182	4134	183	Akropolis	AKRO	https://github.com/akropolisio
+183	2642	184	CyberVein	CVT	
+184	4191	185	Syntropy	NOIA	https://github.com/noia-network
+185	2132	186	Power Ledger	POWR	
+186	3874	187	IRISnet	IRIS	https://github.com/irisnet
+187	7617	188	saffron.finance	SFI	https://github.com/saffron-finance/saffron
+188	2896	189	Hifi Finance	MFT	https://github.com/MainframeHQ
+189	1856	190	district0x	DNT	https://github.com/district0x
+190	2982	191	MVL	MVL	https://github.com/mvlchain/mvltoken
+191	2588	192	Loom Network	LOOM	https://github.com/loomnetwork
+192	6833	193	Litentry	LIT	https://github.com/litentry/
+193	1993	194	Kin	KIN	
+194	4705	195	PAX Gold	PAXG	https://github.com/paxosglobal/paxos-gold-contract
+195	3437	196	ABBC Coin	ABBC	https://github.com/ABBCTEAM
+196	541	197	Syscoin	SYS	https://github.com/syscoin/
+197	1789	198	Populous	PPT	https://github.com/bitpopulous
+198	3714	199	LTO Network	LTO	https://github.com/legalthings
+199	5370	200	Hive	HIVE	https://github.com/openhive-network/hive
