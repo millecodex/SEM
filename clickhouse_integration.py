@@ -24,72 +24,16 @@ see https://github-sql.github.io/explorer/#install-clickhouse
 '''
 
 
-# In[3]:
+# In[83]:
 
 
 from sqlalchemy import create_engine
 from clickhouse_driver import Client
-
 # dependencies
 # >ipython-sql
 # install by command prompt:
 # >conda install -yc conda-forge ipython-sql
-
-
-# In[4]:
-
-
 client = Client('localhost')
-
-
-# In[3]:
-
-
-get_ipython().run_line_magic('load_ext', 'sql')
-
-
-# In[ ]:
-
-
-result = client.execute('SELECT now(), version()')
-
-
-# In[ ]:
-
-
-print(result)
-
-
-# In[ ]:
-
-
-result = client.execute('SELECT now(), version()')
-print("RESULT: {0}: {1}".format(type(result), result))
-for t in result:
-    print(" ROW: {0}: {1}".format(type(t), t))
-    for v in t:
-        print("  COLUMN: {0}: {1}".format(type(v), v))
-
-
-# In[ ]:
-
-
-print(client.execute('SHOW TABLES'))
-
-
-# In[ ]:
-
-
-query = '''
-SELECT
-    repo_name,
-    count()
-FROM github_events
-WHERE (event_type = 'WatchEvent') AND (repo_name LIKE '%_/_%')
-GROUP BY repo_name
-ORDER BY length(repo_name) ASC
-LIMIT 11
-'''
 
 
 # In[ ]:
@@ -104,7 +48,7 @@ LIMIT 11
 #   write to dataframe
 
 
-# In[8]:
+# In[ ]:
 
 
 import pandas as pd
@@ -113,7 +57,7 @@ import time
 import math
 
 
-# In[35]:
+# In[ ]:
 
 
 # Read CSV file into DataFrame df
@@ -122,13 +66,13 @@ import math
 dfs = pd.read_csv('200_repos.csv', index_col=0)
 
 
-# In[36]:
+# In[ ]:
 
 
 df = dfs[['repo','forge']].copy()
 
 
-# In[106]:
+# In[ ]:
 
 
 # subset dataframes for testing
@@ -137,7 +81,7 @@ df10 = df.iloc[:10].copy()
 df33 = df.iloc[:33].copy()
 
 
-# In[38]:
+# In[ ]:
 
 
 query_stars_L = '''
@@ -154,21 +98,21 @@ repo = '''
 '''
 
 
-# In[124]:
+# In[203]:
 
 
-query = '''
+query_test_noStars = '''
 SELECT 
     count() 
 FROM github_events 
 WHERE event_type = 'WatchEvent' 
     AND repo_name =
-'binance-chain/bsc'
+'millecodex/SEM'
 GROUP BY action
 '''
 
 
-# In[127]:
+# In[ ]:
 
 
 query2 = '''
@@ -182,30 +126,25 @@ GROUP BY action
 '''
 
 
-# In[125]:
+# In[206]:
 
 
-print(query)
+res=client.execute(query_test_noStars)
+if not res: print('not')
 
 
-# In[130]:
+# In[ ]:
 
 
-res=client.execute(query)
-res2=client.execute(query2)
-print(res)
-print(res2)
-
-
-# In[139]:
-
-
+# test query that returns empty list (no results)
 if not res2: print('not')
 
 
-# In[39]:
+# In[ ]:
 
 
+# Write a function for this
+#
 # initialize new column to null/None
 df['stars']=None
 # iterate the dataframe as follows:
@@ -228,11 +167,11 @@ for row in df.itertuples():
             # query returns a tuple of list elements accessible by [first list][first item]
             # no stars returns an empty list
             if not stars:
-                continue
+                df.at[row.Index, 'stars'] = 0
             else: df.at[row.Index, 'stars'] = stars[0][0]
 
 
-# In[40]:
+# In[ ]:
 
 
 # write update to 200_copy_stars.csv
@@ -241,7 +180,7 @@ df.to_csv('200_stars.csv', encoding='utf-8', index=1)
 df
 
 
-# In[28]:
+# In[ ]:
 
 
 # Read in 200_repos.csv 
@@ -252,7 +191,7 @@ dfr = pd.read_csv('200_repos.csv', index_col=0)
 df = dfr[['repo','forge']].copy()
 
 
-# In[14]:
+# In[ ]:
 
 
 query_forks_L = '''
@@ -268,17 +207,20 @@ query_forks = query_forks_L + query_forks_R
 query_forks
 
 
-# In[15]:
+# In[ ]:
 
 
 result=client.execute(query_forks)
 print(result)
 
 
-# In[30]:
+# In[ ]:
 
 
+# Write a function for this
+#
 # initialize new column to null/None
+# might not be necessary
 df['forks']=None
 # iterate the dataframe as follows:
 '''
@@ -298,13 +240,13 @@ for row in df.itertuples():
             query = query_forks_L + '\''+repo+'\''
             forks = client.execute(query)
             # query returns a tuple of list elements accessible by [first list][first item]
-            # no stars returns an empty list
+            # no forks returns an empty list
             if not forks:
-                continue
+                df.at[row.Index, 'forks'] = 0
             else: df.at[row.Index, 'forks'] = forks[0][0]
 
 
-# In[32]:
+# In[ ]:
 
 
 # write update to 200_forks.csv
@@ -312,7 +254,7 @@ df.to_csv('200_forks.csv', encoding='utf-8', index=1)
 df
 
 
-# In[62]:
+# In[ ]:
 
 
 # merge two csv files into one
@@ -329,16 +271,581 @@ dff = pd.read_csv('200_forks.csv', index_col=0)
 #
 
 
-# In[75]:
+# In[ ]:
 
 
+# 'CMC_id' is the key, however 'repo', and 'forge' are also merged
+# to prevent duplicate columns
+# -> might be uncecessary?
 dfm = pd.merge(dfs,dff,on=['CMC_id','repo','forge'])
 
 
-# In[76]:
+# In[ ]:
 
 
 # write update to 200_merged.csv
+dfm.to_csv('200_merged.csv', encoding='utf-8', index=1)
+
+
+# In[91]:
+
+
+# AUTHORS query:
+# A most-recent three-month average 
+# excluding current month because it is in progress
+# modify for static clickhouse data which stops at 2020-12-07
+# >>created_at >= dateSub(MONTH, 6,toStartOfMonth(now())) AND
+# >>created_at < dateSub(MONTH, 3,toStartOfMonth(now()))
+#
+QUERY_AUTHORS = '''
+SELECT
+    ROUND( SUM(authors) / COUNT(month), 2) AS average
+FROM
+(
+    SELECT 
+        uniq(actor_login) AS authors,
+        toMonth(created_at) AS month,
+        toYear(created_at) AS year
+    FROM github_events
+    WHERE event_type IN ('PullRequestEvent', 'IssuesEvent', 'IssueCommentEvent', 'PullRequestReviewCommentEvent') AND
+        repo_name = 'bitcoin/bitcoin' AND
+        created_at >= dateSub(MONTH, 3,toStartOfMonth(now())) AND
+        created_at < toStartOfMonth(now())
+    GROUP BY month, year
+    ORDER BY year DESC, month DESC
+)'''
+query_authors_L = '''
+SELECT
+    ROUND( SUM(authors) / COUNT(month), 2) AS average
+FROM
+(
+    SELECT 
+        uniq(actor_login) AS authors,
+        toMonth(created_at) AS month,
+        toYear(created_at) AS year
+    FROM github_events
+    WHERE event_type IN ('PullRequestEvent', 'IssuesEvent', 'IssueCommentEvent', 'PullRequestReviewCommentEvent') AND
+        repo_name = 
+'''
+q_repo='bitcoin/bitcoin'
+query_authors_R = '''AND
+        /*created_at >= dateSub(MONTH, 3,toStartOfMonth(now())) AND
+        created_at < toStartOfMonth(now())*/
+        created_at >= dateSub(MONTH, 6,toStartOfMonth(now())) AND
+        created_at < dateSub(MONTH, 3,toStartOfMonth(now()))
+    GROUP BY month, year
+    ORDER BY year DESC, month DESC
+)'''
+query_authors=query_authors_L + '\'' + q_repo + '\'' + query_authors_R
+
+
+# In[99]:
+
+
+# Read in 200_repos.csv
+dfr = pd.read_csv('200_repos.csv', index_col=0)
+# new df with only 2 columns
+# 'CMC_id' as index is maintained
+df = dfr[['repo','forge']].copy()
+#dfs = df[0:20].copy()
+
+
+# In[92]:
+
+
+res=client.execute(QUERY_AUTHORS)
+res
+
+
+# In[ ]:
+
+
+print(QUERY_AUTHORS)
+
+
+# In[93]:
+
+
+print(query_authors)
+
+
+# In[101]:
+
+
+for row in df.itertuples():
+    # only github for now as client is connected to github_events DB
+    if row.forge == 'github':
+        #forks = 0
+        repo = row.repo
+        # skip the NaN repos
+        if type(repo) == str:
+            query = query_authors_L + '\'' + repo + '\'' + query_authors_R
+            authors = client.execute(query)
+            # query returns a tuple of list elements accessible by [first list][first item]
+            # average of no authors returns a nan
+            if math.isnan(result[0][0]):
+                df.at[row.Index, 'authors'] = 0
+            else: df.at[row.Index, 'authors'] = authors[0][0]
+
+
+# In[ ]:
+
+
+
+
+
+# In[104]:
+
+
+# write update to 200_authors.csv
+df.to_csv('200_authors.csv', encoding='utf-8', index=1)
+
+
+# In[105]:
+
+
+# update MERGED sheet with new data
+# 'CMC_id' is the key, however 'repo', and 'forge' are also merged
+# to prevent duplicate columns
+df_temp = pd.read_csv('200_merged.csv', index_col=0)
+dfm = pd.merge(df_temp,df,on=['CMC_id','repo','forge'])
+dfm.to_csv('200_merged.csv', encoding='utf-8', index=1)
+
+
+# In[106]:
+
+
+print(client.execute('SELECT created_at FROM github_events ORDER by created_at DESC LIMIT 10'))
+
+
+# In[161]:
+
+
+# COMMITS query:
+# A most-recent three-month average 
+# excluding current month because it is in progress
+#
+# modify for static clickhouse data which stops at 2020-12-07:
+# >>created_at >= dateSub(MONTH, 6,toStartOfMonth(now())) AND
+# >>created_at < dateSub(MONTH, 3,toStartOfMonth(now()))
+# 
+# note: there will be moderate timezone discrepancies, especially 
+#       when calculating near the first of the month
+#
+QUERY_COMMITS = '''
+SELECT ROUND( SUM(sum_push_distinct) / COUNT(month), 2) AS average
+FROM
+(
+    SELECT SUM(push_distinct_size) AS sum_push_distinct, 
+        toMonth(created_at) AS month,
+        toYear(created_at) AS year
+    FROM github_events
+    WHERE repo_name = 'bitcoin/bitcoin' AND 
+        event_type = 'PushEvent' AND
+        /*created_at >= dateSub(MONTH, 3,toStartOfMonth(now())) AND
+        created_at < toStartOfMonth(now())*/
+        created_at >= dateSub(MONTH, 7,toStartOfMonth(now())) AND
+        created_at < dateSub(MONTH, 4,toStartOfMonth(now()))
+    GROUP BY month, year
+    ORDER BY year DESC, month DESC
+)
+'''
+query_commits_L ='''
+SELECT ROUND( SUM(sum_push_distinct) / COUNT(month), 2) AS average
+FROM
+(
+    SELECT SUM(push_distinct_size) AS sum_push_distinct, 
+        toMonth(created_at) AS month,
+        toYear(created_at) AS year
+    FROM github_events
+    WHERE repo_name = 
+'''
+q_repo='bitcoin/bitcoin'
+query_commits_R = '''
+AND 
+        event_type = 'PushEvent' AND
+        /*created_at >= dateSub(MONTH, 3,toStartOfMonth(now())) AND
+        created_at < toStartOfMonth(now())*/
+        created_at >= dateSub(MONTH, 7,toStartOfMonth(now())) AND
+        created_at < dateSub(MONTH, 4,toStartOfMonth(now()))
+    GROUP BY month, year
+    ORDER BY year DESC, month DESC
+)
+'''
+query_commits=query_commits_L + '\'' + q_repo + '\'' + query_commits_R
+
+
+# In[163]:
+
+
+res=client.execute(query_commits)
+res
+
+
+# In[199]:
+
+
+# Read in 200_repos.csv
+dfr = pd.read_csv('200_repos.csv', index_col=0)
+# new df with only 2 columns
+# 'CMC_id' as index is maintained
+df = dfr[['repo','forge']].copy()
+
+
+# In[181]:
+
+
+query_test_zero='''
+SELECT ROUND( SUM(sum_push_distinct) / COUNT(month), 2) AS average
+FROM
+(
+    SELECT SUM(push_distinct_size) AS sum_push_distinct, 
+        toMonth(created_at) AS month,
+        toYear(created_at) AS year
+    FROM github_events
+    WHERE repo_name = 'Uniswap/uniswap-v2-core' AND 
+        event_type = 'PushEvent' AND
+        /*created_at >= dateSub(MONTH, 3,toStartOfMonth(now())) AND
+        created_at < toStartOfMonth(now())*/
+        created_at >= dateSub(MONTH, 6,toStartOfMonth(now())) AND
+        created_at < dateSub(MONTH, 3,toStartOfMonth(now()))
+    GROUP BY month, year
+    ORDER BY year DESC, month DESC
+)'''
+res=client.execute(query_test_zero)
+res
+
+
+# In[ ]:
+
+
+import math
+if math.isnan(res[0][0]): print('not')
+else: print('dunno')
+
+
+# In[200]:
+
+
+for row in df.itertuples():
+    # only github for now as client is connected to github_events DB
+    if row.forge == 'github':
+        #forks = 0
+        repo = row.repo
+        # skip the NaN repos
+        if type(repo) == str:
+            query = query_commits_L + '\'' + repo + '\'' + query_commits_R
+            result = client.execute(query)
+            # query returns a tuple of list elements accessible by [first list][first item]
+            # average of no commits returns a nan
+            if math.isnan(result[0][0]):
+                df.at[row.Index, 'commits'] = 0
+            else: df.at[row.Index, 'commits'] = result[0][0]
+
+
+# In[202]:
+
+
+# write update to 200_commits.csv
+df.to_csv('200_commits.csv', encoding='utf-8', index=1)
+
+
+# In[168]:
+
+
+# update MERGED sheet with new data
+# 'CMC_id' is the key, however 'repo', and 'forge' are also merged
+# to prevent duplicate columns
+df_temp = pd.read_csv('200_merged.csv', index_col=0)
+dfm = pd.merge(df_temp,df,on=['CMC_id','repo','forge'])
+dfm.to_csv('200_merged.csv', encoding='utf-8', index=1)
+
+
+# In[207]:
+
+
+# total COMMENTS includes all commenting activity
+# any comments counts as activity and increase engagement
+# there are 3 event_type comment events:
+# >CommitCommentEvent
+# >IssueCommentEvent
+# >CommitCommentEvent
+#
+'''
+/* View distribution of comments*/
+SELECT 
+    uniq(comment_id) AS total_comments,
+    uniqIf(comment_id, event_type = 'PullRequestReviewCommentEvent') AS pr_comments,
+    uniqIf(comment_id, event_type = 'IssueCommentEvent') AS issue_comments,
+    uniqIf(comment_id, event_type = 'CommitCommentEvent') AS commit_comments,
+    toMonth(created_at) AS month,
+    toYear(created_at) AS year
+FROM github_events
+WHERE 
+   repo_name = 'bitcoin/bitcoin' AND
+   toYear(created_at) >= 2020
+GROUP BY month, year
+ORDER BY year DESC, month DESC
+'''
+# only Sept/Oct/Nov 2020 #
+QUERY_COMMENTS='''
+SELECT ROUND( SUM(total) / COUNT(month), 2) AS average
+FROM
+(
+SELECT 
+    (
+        uniqIf(comment_id, event_type = 'PullRequestReviewCommentEvent')+
+        uniqIf(comment_id, event_type = 'IssueCommentEvent')+
+        uniqIf(comment_id, event_type = 'CommitCommentEvent') ) AS total,
+    toMonth(created_at) AS month,
+    toYear(created_at) AS year
+FROM github_events
+WHERE 
+   repo_name = 'bitcoin/bitcoin' AND
+   /*created_at >= dateSub(MONTH, 3,toStartOfMonth(now())) AND
+   created_at < toStartOfMonth(now())*/
+   created_at >= dateSub(MONTH, 7,toStartOfMonth(now())) AND
+   created_at < dateSub(MONTH, 4,toStartOfMonth(now()))
+GROUP BY month, year
+ORDER BY year DESC, month DESC
+)
+'''
+query_L='''
+SELECT ROUND( SUM(total) / COUNT(month), 2) AS average
+FROM
+(
+SELECT 
+    (
+        uniqIf(comment_id, event_type = 'PullRequestReviewCommentEvent')+
+        uniqIf(comment_id, event_type = 'IssueCommentEvent')+
+        uniqIf(comment_id, event_type = 'CommitCommentEvent') ) AS total,
+    toMonth(created_at) AS month,
+    toYear(created_at) AS year
+FROM github_events
+WHERE 
+   repo_name = 
+'''
+query_R='''
+AND
+   /*created_at >= dateSub(MONTH, 3,toStartOfMonth(now())) AND
+   created_at < toStartOfMonth(now())*/
+   created_at >= dateSub(MONTH, 7,toStartOfMonth(now())) AND
+   created_at < dateSub(MONTH, 4,toStartOfMonth(now()))
+GROUP BY month, year
+ORDER BY year DESC, month DESC
+)
+'''
+
+
+# In[209]:
+
+
+res=client.execute(QUERY_COMMENTS)
+res
+
+
+# In[212]:
+
+
+#
+query_L='''
+SELECT ROUND( SUM(total) / COUNT(month), 2) AS average
+FROM
+(
+SELECT 
+    (
+        uniqIf(comment_id, event_type = 'PullRequestReviewCommentEvent')+
+        uniqIf(comment_id, event_type = 'IssueCommentEvent')+
+        uniqIf(comment_id, event_type = 'CommitCommentEvent') ) AS total,
+    toMonth(created_at) AS month,
+    toYear(created_at) AS year
+FROM github_events
+WHERE 
+   repo_name = 
+'''
+query_R='''
+AND
+   /*created_at >= dateSub(MONTH, 3,toStartOfMonth(now())) AND
+   created_at < toStartOfMonth(now())*/
+   created_at >= dateSub(MONTH, 7,toStartOfMonth(now())) AND
+   created_at < dateSub(MONTH, 4,toStartOfMonth(now()))
+GROUP BY month, year
+ORDER BY year DESC, month DESC
+)
+'''
+'''
+@column name of the column to be added to the dataframe
+@query_L
+@query_R
+@df dataframe
+'''
+def runQuery(column_name, query_L, query_R, df):
+    for row in df.itertuples():
+        # only github for now as client is connected to github_events DB
+        if row.forge == 'github':
+            repo = row.repo
+            # skip the NaN repos
+            if type(repo) == str:
+                query = query_L + '\'' + repo + '\'' + query_R
+                result = client.execute(query)
+                # query returns a tuple of list elements accessible by [first list][first item]
+                # average of zero returns a nan
+                if math.isnan(result[0][0]):
+                    df.at[row.Index, column_name] = 0
+                else: df.at[row.Index, column_name] = result[0][0]
+    return 'dataframe updated'
+
+
+# In[213]:
+
+
+# Read in 200_repos.csv
+dfr = pd.read_csv('200_repos.csv', index_col=0)
+# new df with only 2 columns
+# 'CMC_id' as index is maintained
+df = dfr[['repo','forge']].copy()
+
+
+# In[217]:
+
+
+runQuery('comments',query_L,query_R,df)
+
+
+# In[220]:
+
+
+# update MERGED sheet with new data
+# 'CMC_id' is the key, however 'repo', and 'forge' are also merged
+# to prevent duplicate columns
+df_temp = pd.read_csv('200_merged.csv', index_col=0)
+dfm = pd.merge(df_temp,df,on=['CMC_id','repo','forge'])
+dfm.to_csv('200_merged.csv', encoding='utf-8', index=1)
+
+
+# In[224]:
+
+
+# view all PR activity sorted into: opened, closed, reopened
+'''
+SELECT  COUNT() AS total,
+    SUM(action = 'opened') AS opened,
+    SUM(action = 'closed') AS closed,
+    SUM(action = 'reopened') AS reopened,
+    toYear(created_at) AS year, 
+    toMonth(created_at) AS month
+FROM github_events
+WHERE repo_name = 'bitcoin/bitcoin' AND 
+    toYear(created_at) >= '2019' AND 
+    event_type = 'PullRequestEvent'
+GROUP BY month, year
+ORDER BY year DESC, month DESC
+'''
+'''
+SELECT
+    ROUND( SUM(opened) / COUNT(month), 2) AS average
+FROM
+(
+    SELECT  
+        SUM(action = 'opened') AS opened,
+        toYear(created_at) AS year, 
+        toMonth(created_at) AS month
+    FROM github_events
+    WHERE repo_name = 'bitcoin/bitcoin' AND 
+        event_type = 'PullRequestEvent' AND 
+        created_at >= dateSub(MONTH, 7,toStartOfMonth(now())) AND
+        created_at < dateSub(MONTH, 4,toStartOfMonth(now()))
+    GROUP BY month, year
+    ORDER BY year DESC, month DESC
+)
+'''
+query_L='''
+SELECT
+    ROUND( SUM(opened) / COUNT(month), 2) AS average
+FROM
+(
+    SELECT  
+        SUM(action = 'opened') AS opened,
+        toYear(created_at) AS year, 
+        toMonth(created_at) AS month
+    FROM github_events
+    WHERE repo_name = 
+'''
+query_R='''
+AND 
+        event_type = 'PullRequestEvent' AND 
+        created_at >= dateSub(MONTH, 7,toStartOfMonth(now())) AND
+        created_at < dateSub(MONTH, 4,toStartOfMonth(now()))
+    GROUP BY month, year
+    ORDER BY year DESC, month DESC
+)
+'''
+
+
+# In[225]:
+
+
+# Read in 200_repos.csv
+dfr = pd.read_csv('200_repos.csv', index_col=0)
+# new df with only 2 columns
+# 'CMC_id' as index is maintained
+df = dfr[['repo','forge']].copy()
+runQuery('PR_open',query_L,query_R,df)
+
+
+# In[226]:
+
+
+# update MERGED sheet with new data
+# 'CMC_id' is the key, however 'repo', and 'forge' are also merged
+# to prevent duplicate columns
+df_temp = pd.read_csv('200_merged.csv', index_col=0)
+dfm = pd.merge(df_temp,df,on=['CMC_id','repo','forge'])
+dfm.to_csv('200_merged.csv', encoding='utf-8', index=1)
+
+
+# In[227]:
+
+
+dfm
+
+
+# In[234]:
+
+
+import sys,time
+#criticality (again)
+# >>>>!!!!
+# minor problem here with ETC double-IDs...
+# !!!!>>>>
+# Read in 200_repos.csv
+dfr = pd.read_csv('200_repos.csv', index_col=0)
+# new df with only 2 columns
+# 'CMC_id' as index is maintained
+df = dfr[['source_code','forge']].copy()
+dfc = pd.read_csv('Project_Criticality_all.csv')
+for row in df.itertuples():
+  # only search for strings; floats (NaN) are skipped
+  if isinstance(row.source_code, str):
+    url = str(row.source_code)
+    # loop through df2 (criticality) looking for source code url
+    for row2 in dfc.itertuples():
+      if url == row2.url:
+        df.at[row.Index, 'citicality'] = row2.criticality_score
+        break
+    sys.stdout.write(".")
+    sys.stdout.flush()
+
+
+# In[246]:
+
+
+# update MERGED sheet with new data
+# 'CMC_id' is the key, however 'repo', and 'forge' are also merged
+# to prevent duplicate columns
+df.drop(columns=['source_code'], inplace=True)
+df_temp = pd.read_csv('200_merged.csv', index_col=0)
+dfm = pd.merge(df_temp,df,on=['CMC_id','forge'])
 dfm.to_csv('200_merged.csv', encoding='utf-8', index=1)
 
 
