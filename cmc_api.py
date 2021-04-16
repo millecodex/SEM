@@ -1,3 +1,25 @@
+"""
+----------------------------------------------
+I.  Update CMC info from the API
+----------------------------------------------
+ 1. get top 200 info from CMC
+         [CMC_id, name, rank, ticker, Source_code]
+ 2. get top 200 website info
+         [primary_web, secondary_web]
+ 3. merge the two dataframes as 'dfnew'
+ 4. write 'cmc_top_200.csv'
+----------------------------------------------
+II. Merge with manually updated Source Code info
+----------------------------------------------
+ 4. read 'cmc_data_200_man.csv'
+ 5. merge together new ['Source_code'] with 
+    manually updated ['source_code']
+ 6. write 'cmc_data_200_man_update.csv'
+ 7. <future work> check for duplicates?
+----------------------------------------------
+III. Send to prepare_repos.py to get forge & repo
+---------------------------------------------- 
+"""
 # This script will contact CoinMarketCap's API to gather info about cryptocurrency projects
 # 
 # It will merge two calls to create a dataframe/csv listing project's:
@@ -16,47 +38,44 @@ import json
 # this will fetch 200 at a time
 url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
 parameters = {
-  'start':'1',
-  'limit':'200',
-  'convert':'USD'
+    'start':'1',
+    'limit':'200',
+    'convert':'USD'
 }
 headers = {
-  'Accepts': 'application/json',
-  'X-CMC_PRO_API_KEY': 'xxx',
+    'Accepts': 'application/json',
+    'X-CMC_PRO_API_KEY': 'xxx',
 }
 
 session = Session()
 session.headers.update(headers)
 
 try:
-  response = session.get(url, params=parameters)
-  data_listing = json.loads(response.text)
+    response = session.get(url, params=parameters)
+    data_listing = json.loads(response.text)
 except (ConnectionError, Timeout, TooManyRedirects) as e:
-  print(e)
+    print(e)
+
+
 
 # extract data fields; could be more efficient
 # access CMC_ID field 
 # access NAME field 
 # access SYMBOL (ticker) field 
 # access RANK field 
-cmc_id=[]
-name=[]
-ticker=[]
-cmc_rank=[]
+cmc_id = []
+name = []
+ticker = []
+cmc_rank = []
 for project in data_listing['data']:
-  cmc_id.append(project['id'])  
-  name.append(project['name'])
-  ticker.append(project['symbol'])
-  cmc_rank.append(project['cmc_rank'])
+    cmc_id.append(project['id'])  
+    name.append(project['name'])
+    ticker.append(project['symbol'])
+    cmc_rank.append(project['cmc_rank'])
 
-# trim the lists for testing
-testID=cmc_id[0:15]
-testName=name[0:15]
-testTicker=ticker[0:15]
-testRank=cmc_rank[0:15]
 
 # create a string of IDs to pass to the API
-IDString=''
+IDString = ''
 for id in cmc_id:
     IDString = IDString + str(id) +','
 IDString = IDString[:-1]
@@ -68,91 +87,135 @@ IDString = IDString[:-1]
 #testIDString = testIDString[:-1]
 #print(testIDString)
 
+
 # get JSON listing of metadata
 # see: https://coinmarketcap.com/api/documentation/v1/#operation/getV2CryptocurrencyInfo
 # 1 credit per 100 cryptocurrencies (rounded up)
 # pass a string of IDs, slugs, or symbols (tickers)
 url = 'https://pro-api.coinmarketcap.com/v2/cryptocurrency/info'
 parameters = {
-  'id':IDString,
+    'id':IDString,
 }
 headers = {
-  'Accepts': 'application/json',
-  'X-CMC_PRO_API_KEY': 'xxx',
+    'Accepts': 'application/json',
+    'X-CMC_PRO_API_KEY': 'xxx',
 }
 session = Session()
 session.headers.update(headers)
 
 try:
-  response = session.get(url, params=parameters)
-  metadata = json.loads(response.text)
+    response = session.get(url, params=parameters)
+    metadata = json.loads(response.text)
 except (ConnectionError, Timeout, TooManyRedirects) as e:
-  print(e)
+    print(e)
 
-# findRepo takes the SourceCode string and strips the domain
-# this can be useful for querying GitHub databases
-def findRepo(string):
-  if string[1:-1]=='':
-    return 'none'
-  if string.find('github') > 0:
-    return string[19:]
-  if string.find('gitlab') > 0:
-    return string[18:]
-  else:
-    return string[8:]
 
-# extract the host from the SourceCode string
-# only really interested in GitHub and GitLab
-def findHost(string):
-  if string[1:-1]=='':
-    return 'none'
-  if string.find('github') > 0:
-    return 'github'
-  if string.find('gitlab') > 0:
-    return 'gitlab'
-  else:
-    return 'other'
-
-# sample test strings
-s1='https://github.com/bitcoin/'
-s2=''
-s3='https://cardanoupdates.com/'
-s4='https://github.com/WrappedBTC/bitcoin-token-smart-contracts'
-
+# ----S O U R C E   C O D E-------------------------------
 # access date::<key>::urls::sourcecode field
 # json order is not preserved so build an array containing:
 # [ [id, sourcecode], [id,sourcecode],...,[id,sourcecode]]
 # where id is CMC unique id
-source=[]
+source = []
 for project in metadata['data']:
-  id = project
-  sc = metadata['data'][id]['urls']['source_code']
-  # turn the sc list into a string and trim the ['']
-  #print(sc)
-  host = findHost(str(sc)[2:-2])
-  repo = findRepo(str(sc)[2:-2])
-  element = [id,str(sc)[2:-2],host,repo]
-  source.append(element)
+    id = project
+    sc = metadata['data'][id]['urls']['source_code']
+    # turn the sc list into a string and trim the ['']
+    element = [id,str(sc)[2:-2]]
+    source.append(element)
 
 # create dataframe from this list so it can be merged 
-dfsource = pd.DataFrame(data=source,columns=['CMC_id','Source_code','Host','Repo'])
+dfsource = pd.DataFrame(data=source,columns=['CMC_id','Source_code'])
 
 df = pd.DataFrame({'CMC_id':cmc_id}) 
 # add columns, probably a more elegant way to do this
-df['CMC_rank']=cmc_rank
-df['name']=name
-df['ticker']=ticker
+df['CMC_rank'] = cmc_rank
+df['name'] = name
+df['ticker'] = ticker
 
 # DF is an INT type and DFSOURCE is a STRING type, cast df as string to merge
 # df.astype(str)
-df_out=pd.merge(df.astype(str),dfsource, on=['CMC_id'])
+dfout = pd.merge(df.astype(str),dfsource, on=['CMC_id'])
+
 
 # write to a CSV for doing other stuffs
 # if using COLAB 
+'''
 must authenticate first with google drive
 from google.colab import drive
 drive.mount('drive')
+'''
 
 # write the dataframe to CSV and copy to drive/directory
-df_out.to_csv('CMCdata.csv', sep='\t', encoding='utf-8')
-!cp CMCdata.csv "drive/My Drive/PhDstuffs"
+# >dfout.to_csv('CMCdata.csv', sep='\t', encoding='utf-8')
+# >!cp CMCdata.csv "drive/My Drive/PhDstuffs"
+
+# ----W E B S I T E--------------------------------------
+# access date::<key>::urls::sourcecode field
+# json order is not preserved so build an array containing:
+# [ [id, website],...,[id, website]]
+# where id is CMC unique id
+site = []
+for project in metadata['data']:
+    id = project
+    web = metadata['data'][id]['urls']['website']
+    # turn the list into a string and trim the ['']
+    #print(sc)
+    element = [id,str(web)[1:-1]]
+    site.append(element)
+
+# create dataframe from this list so it can be merged 
+dfweb = pd.DataFrame(data = site, columns = ['CMC_id','website'])
+
+
+# some listings have muliple sites
+# split into primary and secondary sites
+# first instance is web_primary
+# if second is web_secondary
+dfweb = pd.concat([dfweb[['CMC_id']], dfweb['website'].str.split(', ', expand=True)], axis=1)
+dfweb.rename(columns = {0:'web_primary',1:'web_secondary'}, inplace = True)
+# remove single quotes
+dfweb['web_primary'].replace("[\']", "", inplace=True, regex=True)
+dfweb['web_secondary'].replace("[\']", "", inplace=True, regex=True)
+
+
+# output to '200_websites.csv'; key is 'CMC_id'
+dfweb.to_csv('200_websites.csv', encoding='utf-8', index=False)
+
+
+# Read in cmc_data_200_man.csv if not running notebook from beginning
+#dfman = pd.read_csv('cmc_data_200_man.csv')
+# Read in 200_websites.csv if not running notebook from beginning
+#dfweb = pd.read_csv('200_websites.csv', index_col=0)
+
+#dfout=pd.merge(df.astype(str),dfsource, on=['CMC_id'])
+dfnew = pd.merge(dfout,dfweb, on=['CMC_id'], how = 'outer')
+
+# output to 'cmc_top_200.csv'; key is 'CMC_id'
+dfnew.to_csv('cmc_top_200.csv', encoding='utf-8', index=False)
+
+# update the types; makes for easier comparison
+dfnew['CMC_id'] = dfnew['CMC_id'].astype('int')
+dfnew['CMC_rank'] = dfnew['CMC_rank'].astype('int')
+#dfnew.info()
+
+dfman = pd.read_csv('cmc_data_200_man.csv')
+dfman.drop(['CMC_rank'], axis = 1, inplace = True)
+
+# merge the two together; keep common columns
+dfm = pd.merge(dfnew,dfman, on = ['CMC_id','name','ticker','web_primary','web_secondary'], how = 'outer')
+
+# update source_code (lowercase)
+for row in dfm.itertuples():
+    if row.check_source != 'y':
+        
+        # copy new repo location to 'source_code'
+        dfm.at[row.Index, 'source_code'] = row.Source_code
+        
+        # update the 'check_source' entry for manual verification
+        dfm.at[row.Index, 'check_source'] = 'n'
+
+dfm.drop(['Source_code'], axis = 1, inplace = True)
+
+# output to 'cmc_data_200_man_update.csv';
+dfm.to_csv('cmc_data_200_man_update.csv', encoding='utf-8', index=False)
+
