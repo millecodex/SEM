@@ -43,22 +43,30 @@ headers = {
 request_url = 'https://awis.api.alexa.com/api'
 
 # Read in '200_websites.csv'
+#
+# may want to double-check some of the urls for 
+# top-level sites (no sub branches); also
+# could assess primary and secondary and keep highest ranking (future work)
+#
 df = pd.read_csv('200_websites.csv', index_col=0)
 
-# getRank takes a dataframe with a column: 'web_primary' as the url
-# and queries awis for rank information
-#
+
+# getRank takes a dataframe with a column: 'web_primary' and queries awis 
+# for rank info
 # can also query for traffic info via Action=TrafficHistory
 #                & incoming links via Action=SitesLinkingIn
 # @return a new column at df.Alexa_rank[rank]
 #
-def getRank(df):    
+def getRank(df):
+    num = 0
     for row in df.itertuples():
         # sites that don't respond could be dropped 
         # for restart so Alexa_rank doesn't get overwritten
         # and to save api calls
-        if row.Alexa_rank > 0:
-            continue
+        #if 'alexa_rank' in df.columns:
+        #    if row.alexa_rank > 0:
+        #        continue
+        #    continue
             
         url = row.web_primary
         params = (
@@ -66,6 +74,10 @@ def getRank(df):
             ('ResponseGroup', 'Rank'),
             ('Url', url),
         )
+        
+        session = Session()
+        session.headers.update(headers)
+        
         try:
             response = session.get(request_url, headers = headers, params = params)
         except (ConnectionError, Timeout, TooManyRedirects) as e:
@@ -82,19 +94,25 @@ def getRank(df):
         rank = json_data['Awis']['Results']['Result']['Alexa']['TrafficData']['Rank']
         
         # update datafram
-        df.at[row.Index, 'Alexa_rank'] = rank
+        df.at[row.Index, 'alexa_rank'] = rank
+        num += 1
         sys.stdout.write(".")
         sys.stdout.flush()
-    return 'Alexa rank updated'
+    result = str(num)+' Alexa rankings updated'
+    return result
 
 # main call
 getRank(df)               
         
 # write out Alexa rankings
-df.to_csv('200_alexa.csv', encoding='utf-8', index=1)
+df.to_csv('200_alexa.csv', encoding='utf-8')
     
 # update MERGED sheet with new data
 # 'CMC_id' is the key
 df_temp = pd.read_csv('200_merged.csv', index_col=0)
+# the columns ['web_primary', 'web_secondary'] may have been manually updated, so drop them
+df_temp.drop(['web_primary', 'web_secondary'], axis = 1, inplace = True)
 dfm = pd.merge(df_temp, df, on=['CMC_id'], how = 'outer')
-dfm.to_csv('200_merged.csv', encoding='utf-8', index=1)
+
+# write out merged data
+dfm.to_csv('200_merged.csv', encoding='utf-8', index=0)
