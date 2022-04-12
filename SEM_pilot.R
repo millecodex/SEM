@@ -41,7 +41,7 @@ attach(data)
 names(data)
 
 # simple plot of 2 variables
-plot(data$criticality_score., data$commit_frequency.)
+plot(data$criticality_score., log(data$commits_ma3))
 plot(data$criticality_score., data$contributor_count.)
 
 # simple histogram
@@ -73,20 +73,35 @@ print(kurtosis(data$comment_frequency.))   #11.9
 print(kurtosis(data$contributor_count.))   #10.7
 print(kurtosis(data$closed_issues_count.)) #95.2
 
+# scale data for [0,1], e.g. a beta distribution needs this scaling
+library(scales)
+scaled_commits_ma3 <- rescale(data$commits_ma3)
+scaled_comments <- rescale(data$comments_ma3)
+
 library(fitdistrplus)
-f1 <- fitdist(contributor_count.,"lnorm")
+f1 <- fitdist(scaled_authors,"beta",method="mme")
 print(f1)
 plot(f1)
 summary(f1)
 
 # graph of distribution neighborhood
 # Cullen and Frey
-descdist(contributor_count., discrete=FALSE, boot = 1000)
+descdist(data$commits_ma3, discrete=FALSE, boot = 1000)
+descdist(scaled_commits_ma3, discrete=FALSE, boot = 1000)
+descdist(scaled_comments, discrete=FALSE, boot = 1000)
+descdist(data$comments_ma3, discrete=FALSE, boot = 1000)
+descdist(scaled_authors, discrete=F, boot = 1000)
 
 # investigate later
 # library(fitur)
 # library(actuar)
 # fitur::fit_dist_addin()
+
+# correlation plots
+# see https://r-coder.com/correlation-plot-r/
+library(PerformanceAnalytics)
+scaledData <- cbind(scaled_authors, scaled_comments, scaled_commits_ma3, scaled_PR)
+chart.Correlation(scaledData, histogram = TRUE, method = "pearson")
 
 # lm is linear models (regression)
 stars.regression <- lm(invAlexa ~ logStars, data=data)
