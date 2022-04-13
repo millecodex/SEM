@@ -79,10 +79,15 @@ scaled_commits_ma3 <- rescale(data$commits_ma3)
 scaled_comments <- rescale(data$comments_ma3)
 
 library(fitdistrplus)
-f1 <- fitdist(scaled_authors,"beta",method="mme")
+f1 <- fitdist(data$alexa_rank,"beta",method="mme")
+f1 <- fitdist(data$alexa_rank, "norm")
 print(f1)
 plot(f1)
 summary(f1)
+
+data$alexa_rank[64] <- 5000000
+data$alexa_rank[64]
+data$alexa_rank[123] <- 5000000
 
 # graph of distribution neighborhood
 # Cullen and Frey
@@ -91,6 +96,7 @@ descdist(scaled_commits_ma3, discrete=FALSE, boot = 1000)
 descdist(scaled_comments, discrete=FALSE, boot = 1000)
 descdist(data$comments_ma3, discrete=FALSE, boot = 1000)
 descdist(scaled_authors, discrete=F, boot = 1000)
+descdist(data$alexa_rank, discrete=F, boot = 1000)
 
 # investigate later
 # library(fitur)
@@ -101,54 +107,87 @@ descdist(scaled_authors, discrete=F, boot = 1000)
 # see https://r-coder.com/correlation-plot-r/
 library(PerformanceAnalytics)
 scaledData <- cbind(scaled_authors, scaled_comments, scaled_commits_ma3, scaled_PR)
+# method can be pearson, spearman, or kendall
 chart.Correlation(scaledData, histogram = TRUE, method = "pearson")
 
-# lm is linear models (regression)
-stars.regression <- lm(invAlexa ~ logStars, data=data)
-summary(stars.regression)
-abline(stars.regression, col="blue")
+# install.packages("psych")
+library(psych)
+invRank <- 1/data[,c(7)]
+logInvRank <- log(1/data[,c(7)])
+dataEngagement <- data[,c(10:13)]
+dataInterest   <- data[,c(8:9)]
+dataInterest <- cbind(dataInterest, invRank, logInvRank, logRank)
+dataInterest <- cbind(dataInterest, invRank)
+dataRobustness <- data[,c(6,15:16)]
 
-# tests for normality
-shapiro.test(data$logPR)
-ks.test(data$logRank, "pnorm")
-
-# scale a column, use center=FALSE to keep positive
-data$alexaScaled <- scale(data[23], center = FALSE)
-alexaScaled
-# convert to inverse (for rank with lower=better)
-data$invAlexa <- 1/(data$alexa_rank)
-# convert to Log (best for analysis)
-data$logStars <- log(data$stars)
-# convert to SquareRoot
-data$sqAlexa <- sqrt(data$Alexa_rank)
-# convert to CubeRoot
-data$cubeAlexa <- (data$Alexa_rank)^(1/3)
-
-# plot QQ (Quartiles)
-qqnorm(data$logPR, pch = 1, frame = FALSE)
-qqline(data$logPR, col = "steelblue", lwd = 2)
-
-#create histogram  
-hist(data$logPR, col='coral2', main='-')
-shapiro.test(data$avg_longevity_days)
-
-## Scale the whole data.frame
-pilot_data <- apply(pilot_data,  2, scale)
+# corr matrix with histogram, scatter, etc.
+pairs.panels(dataRobustness,
+             smooth = TRUE,      # If TRUE, draws loess smooths
+             scale = FALSE,      # If TRUE, scales the correlation text font
+             density = TRUE,     # If TRUE, adds density plots and histograms
+             ellipses = TRUE,    # If TRUE, draws ellipses
+             method = "pearson", # Correlation method (also "spearman" or "kendall")
+             pch = 21,           # pch symbol
+             bg=c("yellow"),
+             lm = FALSE,         # If TRUE, plots linear fit rather than the LOESS (smoothed) fit
+             cor = TRUE,         # If TRUE, reports correlations
+             jiggle = FALSE,     # If TRUE, data points are jittered
+             factor = 2,         # Jittering factor
+             hist.col = 4,       # Histograms color
+             stars = TRUE,       # If TRUE, adds significance level with stars
+             ci = TRUE)          # If TRUE, adds confidence intervals
 
 
+# corr matrix COLOR coded
+corPlot(data[,c(5:16)], scale=F,numbers=TRUE, upper=FALSE, diag=T, xlas=2,main="All variables correlation matrix")
+
+# # lm is linear models (regression)
+# stars.regression <- lm(invAlexa ~ logStars, data=data)
+# summary(stars.regression)
+# abline(stars.regression, col="blue")
+# 
+# # tests for normality
+# shapiro.test(data$logPR)
+# ks.test(data$logRank, "pnorm")
+# 
+# # scale a column, use center=FALSE to keep positive
+# data$alexaScaled <- scale(data[23], center = FALSE)
+# alexaScaled
+# # convert to inverse (for rank with lower=better)
+# data$invAlexa <- 1/(data$alexa_rank)
+# # convert to Log (best for analysis)
+# data$logStars <- log(data$stars)
+# # convert to SquareRoot
+# data$sqAlexa <- sqrt(data$Alexa_rank)
+# # convert to CubeRoot
+# data$cubeAlexa <- (data$Alexa_rank)^(1/3)
+# 
+# # plot QQ (Quantiles)
+# qqnorm(data$logPR, pch = 1, frame = FALSE)
+# qqline(data$logPR, col = "steelblue", lwd = 2)
+# 
+# #create histogram  
+# hist(data$logPR, col='coral2', main='-')
+# shapiro.test(data$avg_longevity_days)
+# 
+# ## Scale the whole data.frame
+# pilot_data <- apply(pilot_data,  2, scale)
+
+# create single dataframe for lavaan
+github <- cbind.data.frame(dataInterest, dataEngagement, dataRobustness)
 # Model 1: Regression model with manifest variables only
 #------------------------------------
 # Model specification (using lavaan syntax)
 model1 <- '
     # structural relations
-    engagement =~ logCommits + logPR + logComments
-    interest =~ logStars + logRank + logForks
-    robustness =~ logART + logAuthors + avg_longevity_days
+    engagement =~ authors_ma3 + commits_ma3 + comments_ma3 + PR_open_ma3 
+    interest =~ stars + forks + invRank
+    robustness =~ criticality_score + med_resp_time_days + avg_longevity_days
 '
 # model estimate
 # least convergence issues from SEM functions
 fit <- cfa(model1,
-          data = data
+          data = github
 )
 varTable(fit)
 lavInspect(fit, "cov.lv")
