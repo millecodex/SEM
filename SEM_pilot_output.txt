@@ -1,0 +1,111 @@
+> # set rsquare = TRUE to answer how much variation is explained by the two other variables
+> # standardized = TRUE
+> # does this model really fit? fit.measures = TRUE
+> summary(fit,
++         rsquare = TRUE,
++         standardized = TRUE,
++         fit.measures = TRUE)
+lavaan 0.6-8 ended normally after 44 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        23
+                                                      
+                                                  Used       Total
+  Number of observations                           220         222
+                                                                  
+Model Test User Model:
+                                                      
+  Test statistic                               324.571
+  Degrees of freedom                                32
+  P-value (Chi-square)                           0.000
+
+Model Test Baseline Model:
+
+  Test statistic                              1980.512
+  Degrees of freedom                                45
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.849
+  Tucker-Lewis Index (TLI)                       0.787
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)              -2289.550
+  Loglikelihood unrestricted model (H1)      -2127.264
+                                                      
+  Akaike (AIC)                                4625.099
+  Bayesian (BIC)                              4703.152
+  Sample-size adjusted Bayesian (BIC)         4630.265
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.204
+  90 Percent confidence interval - lower         0.184
+  90 Percent confidence interval - upper         0.224
+  P-value RMSEA <= 0.05                          0.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.084
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
+  engagement =~                                                         
+    authors_ma3       1.000                               0.878    0.876
+    commits_ma3       0.758    0.065   11.626    0.000    0.666    0.665
+    comments_ma3      1.111    0.048   23.317    0.000    0.975    0.974
+    PR_open_ma3       1.040    0.051   20.335    0.000    0.913    0.911
+  interest =~                                                           
+    stars             1.000                               1.027    1.025
+    forks             0.934    0.023   39.832    0.000    0.960    0.958
+    invRank           0.013    0.062    0.210    0.834    0.013    0.013
+  robustness =~                                                         
+    criticlty_scr.    1.000                               0.983    0.983
+    med_rsp_tm_dys   -0.086    0.076   -1.132    0.258   -0.084   -0.086
+    avg_lngvty_dys    0.254    0.121    2.100    0.036    0.249    0.250
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
+  engagement ~~                                                         
+    interest          0.505    0.072    7.043    0.000    0.560    0.560
+    robustness        0.458    0.070    6.568    0.000    0.531    0.531
+  interest ~~                                                           
+    robustness        0.347    0.070    4.933    0.000    0.344    0.344
+
+Variances:
+                   Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
+   .authors_ma3       0.233    0.026    8.934    0.000    0.233    0.232
+   .commits_ma3       0.560    0.055   10.175    0.000    0.560    0.558
+   .comments_ma3      0.052    0.016    3.269    0.001    0.052    0.052
+   .PR_open_ma3       0.170    0.021    7.944    0.000    0.170    0.170
+   .stars            -0.051    0.022   -2.293    0.022   -0.051   -0.050
+   .forks             0.083    0.020    4.083    0.000    0.083    0.083
+   .invRank           0.995    0.095   10.488    0.000    0.995    1.000
+   .criticlty_scr.    0.034    0.386    0.087    0.931    0.034    0.034
+   .med_rsp_tm_dys    0.941    0.090   10.480    0.000    0.941    0.993
+   .avg_lngvty_dys    0.937    0.093   10.101    0.000    0.937    0.938
+    engagement        0.771    0.094    8.193    0.000    1.000    1.000
+    interest          1.055    0.098   10.761    0.000    1.000    1.000
+    robustness        0.965    0.398    2.426    0.015    1.000    1.000
+
+R-Square:
+                   Estimate
+    authors_ma3       0.768
+    commits_ma3       0.442
+    comments_ma3      0.948
+    PR_open_ma3       0.830
+    stars                NA
+    forks             0.917
+    invRank           0.000
+    criticlty_scr.    0.966
+    med_rsp_tm_dys    0.007
+    avg_lngvty_dys    0.062
