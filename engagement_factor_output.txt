@@ -1,0 +1,62 @@
+#
+# two factors not as good as the 2nd indicator only accounts for 6% Cum.Var.
+#
+Factor Analysis using method =  minres
+Call: fa(r = dataEngagement, nfactors = 2, rotate = "none")
+Standardized loadings (pattern matrix) based upon correlation matrix
+              MR1   MR2   h2    u2 com
+authors_ma3  0.86 -0.29 0.82 0.182 1.2
+commits_ma3  0.71  0.33 0.62 0.383 1.4 -> lowest h2 (least significant)
+comments_ma3 0.95 -0.13 0.92 0.082 1.0
+PR_open_ma3  0.96  0.13 0.93 0.068 1.0 -> highes h2 (most significant)
+
+                       MR1  MR2
+SS loadings           3.06 0.23 -> sum of squared loadings
+Proportion Var        0.76 0.06 -> proportion each one has
+Cumulative Var        0.76 0.82 -> only a modest 6% increase by adding second component
+Proportion Explained  0.93 0.07
+Cumulative Proportion 0.93 1.00
+
+h2: the amount of variance in the item/variable explained by the (retained) components. It is the sum of the squared loadings, a.k.a. communality. For example, population is almost completely explained by the three components
+
+u2: 1 - h2
+
+com: A measure of complexity. A value of 1 might be seen for something that loaded on only one component, and zero otherwise (a.k.a. perfect simple structure).
+
+#
+# single factor is sufficient for these 4 indicators
+#
+Factor Analysis using method =  minres
+Call: fa(r = dataEngagement, nfactors = 1, rotate = "none")
+Standardized loadings (pattern matrix) based upon correlation matrix
+              MR1   h2    u2 com
+authors_ma3  0.83 0.69 0.312   1
+commits_ma3  0.68 0.47 0.532   1
+comments_ma3 0.96 0.92 0.081   1
+PR_open_ma3  0.96 0.93 0.073   1
+
+                MR1
+SS loadings    3.00
+Proportion Var 0.75
+
+Mean item complexity =  1
+Test of the hypothesis that 1 factor is sufficient.
+
+The degrees of freedom for the null model are  6  and the objective function was  3.64 with Chi Square of  795.63
+The degrees of freedom for the model are 2  and the objective function was  0.28 
+
+The root mean square of the residuals (RMSR) is  0.04 
+The df corrected root mean square of the residuals is  0.08 
+
+The harmonic number of observations is  222 with the empirical chi square  5.3  with prob <  0.07 
+The total number of observations was  222  with Likelihood Chi Square =  60.26  with prob <  8.2e-14 
+
+Tucker Lewis Index of factoring reliability =  0.778
+RMSEA index =  0.362  and the 90 % confidence intervals are  0.288 0.445
+BIC =  49.46
+Fit based upon off diagonal values = 1
+Measures of factor score adequacy             
+                                                   MR1
+Correlation of (regression) scores with factors   0.99
+Multiple R square of scores with factors          0.98
+Minimum correlation of possible factor scores     0.95
