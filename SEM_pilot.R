@@ -141,6 +141,13 @@ pairs.panels(dataRobustness,
 # corr matrix COLOR coded
 corPlot(data[,c(5:16)], scale=F,numbers=TRUE, upper=FALSE, diag=T, xlas=2,main="All variables correlation matrix")
 
+# factor analysis using the psyche package
+# see https://m-clark.github.io/sem/latent-variables.html
+
+fac = fa(dataInterest, nfactors=1, rotate='none')
+fac
+
+
 # # lm is linear models (regression)
 # stars.regression <- lm(invAlexa ~ logStars, data=data)
 # summary(stars.regression)
@@ -175,6 +182,15 @@ corPlot(data[,c(5:16)], scale=F,numbers=TRUE, upper=FALSE, diag=T, xlas=2,main="
 
 # create single dataframe for lavaan
 github <- cbind.data.frame(dataInterest, dataEngagement, dataRobustness)
+
+# Scale the whole data.frame
+github_scaled <- apply(github,  2, scale)
+
+# model syntax
+# Regression: Y ~ X
+# Covariance: Y ~~ X
+# Latent variable: eta =~ x1+x2+x3
+
 # Model 1: Regression model with manifest variables only
 #------------------------------------
 # Model specification (using lavaan syntax)
@@ -182,13 +198,16 @@ model1 <- '
     # structural relations
     engagement =~ authors_ma3 + commits_ma3 + comments_ma3 + PR_open_ma3 
     interest =~ stars + forks + invRank
-    robustness =~ criticality_score + med_resp_time_days + avg_longevity_days
+    robustness =~ criticality_score. + med_resp_time_days + avg_longevity_days
 '
 # model estimate
 # least convergence issues from SEM functions
-fit <- cfa(model1,
-          data = github
-)
+fit <- cfa(model1, data = github_scaled, estimator = "MLM")
+# Ill conditioning
+# Parameter estimation can be hampered when the variances of variables in the model differ substantially (orders of magnitude)
+# We can rescale variables in this case by multiplying by a constant. This has no effect on the fit or interpretation of the model - we just have to recall what the new units represent.
+# SOURCE: https://psu-psychology.github.io/r-bootcamp-2018/talks/lavaan_tutorial.html
+
 varTable(fit)
 lavInspect(fit, "cov.lv")
 # set rsquare = TRUE to answer how much variation is explained by the two other variables
@@ -201,7 +220,9 @@ summary(fit,
 
 # residuals to check the discrepancy between the two covariance matrices
 # residuals of zero show the model is perfectly identified
-resid(fit, type = "raw")
+resDat <- resid(fit, type = "raw")
+corPlot(resDat, scale=F, upper=FALSE, diag=T, main="Residuals Data")
+resDat
 
 # model-implied covariance matrix
 fitted(fit)
