@@ -1,2 +1,4 @@
 # SEM
-Structural Equation Modelling
+Structural Equation Modelling stuffs
+
+Full markdown coming sometime in the future
