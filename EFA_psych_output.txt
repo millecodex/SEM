@@ -1,0 +1,97 @@
+#---------------------------------------------------------
+# PSYCH
+# 1 FACTOR
+#
+#---------------------------------------------------------
+#
+> fa_model = fa(df,1)
+Warning message:
+In fa.stats(r = r, f = f, phi = phi, n.obs = n.obs, np.obs = np.obs,  :
+  The estimated weights for the factor scores are probably incorrect.  Try a different factor score estimation method.
+> fa_model
+Factor Analysis using method =  minres
+Call: fa(r = df, nfactors = 1)
+Standardized loadings (pattern matrix) based upon correlation matrix
+               MR1    h2    u2 com
+commits       0.62 0.390 0.610   1
+comments      0.99 0.986 0.014   1
+PR            0.89 0.784 0.216   1
+authors       0.91 0.820 0.180   1
+contributors  0.26 0.068 0.932   1
+updated      -0.25 0.063 0.937   1
+forks         0.49 0.242 0.758   1
+
+                MR1
+SS loadings    3.35
+Proportion Var 0.48
+
+Mean item complexity =  1
+Test of the hypothesis that 1 factor is sufficient.
+
+The degrees of freedom for the null model are  21  and the objective function was  5.01 with Chi Square of  1091.12
+The degrees of freedom for the model are 14  and the objective function was  1.23 
+
+The root mean square of the residuals (RMSR) is  0.11 
+The df corrected root mean square of the residuals is  0.14 
+
+The harmonic number of observations is  222 with the empirical chi square  117.98  with prob <  1.6e-18 
+The total number of observations was  222  with Likelihood Chi Square =  267.44  with prob <  7e-49 
+
+Tucker Lewis Index of factoring reliability =  0.644
+RMSEA index =  0.286  and the 90 % confidence intervals are  0.257 0.317
+BIC =  191.8
+Fit based upon off diagonal values = 0.94
+
+#---------------------------------------------------------
+# PSYCH
+# 2 FACTOR
+# >> this one looks good....
+#---------------------------------------------------------
+#
+> fa_model = fa(df,2)
+> fa_model
+Factor Analysis using method =  minres
+Call: fa(r = df, nfactors = 2)
+Standardized loadings (pattern matrix) based upon correlation matrix
+               MR1   MR2    h2    u2 com
+commits       0.84 -0.25 0.614 0.386 1.2
+comments      0.82  0.29 0.932 0.068 1.3
+PR            0.99 -0.06 0.933 0.067 1.0
+authors       0.67  0.40 0.817 0.183 1.6
+contributors -0.01  0.45 0.203 0.797 1.0
+updated      -0.28  0.04 0.073 0.927 1.0
+forks         0.03  0.88 0.800 0.200 1.0
+
+                       MR1  MR2
+SS loadings           2.97 1.40
+Proportion Var        0.42 0.20
+Cumulative Var        0.42 0.62
+Proportion Explained  0.68 0.32
+Cumulative Proportion 0.68 1.00
+
+ With factor correlations of 
+     MR1  MR2
+MR1 1.00 0.38
+MR2 0.38 1.00
+
+Mean item complexity =  1.2
+Test of the hypothesis that 2 factors are sufficient.
+
+The degrees of freedom for the null model are  21  and the objective function was  5.01 with Chi Square of  1091.12
+The degrees of freedom for the model are 8  and the objective function was  0.16 
+
+The root mean square of the residuals (RMSR) is  0.02 
+The df corrected root mean square of the residuals is  0.04 
+
+The harmonic number of observations is  222 with the empirical chi square  4.43  with prob <  0.82 
+The total number of observations was  222  with Likelihood Chi Square =  34.93  with prob <  2.8e-05 
+
+Tucker Lewis Index of factoring reliability =  0.934
+RMSEA index =  0.123  and the 90 % confidence intervals are  0.083 0.167
+BIC =  -8.29
+Fit based upon off diagonal values = 1
+Measures of factor score adequacy             
+                                                   MR1  MR2
+Correlation of (regression) scores with factors   0.98 0.93
+Multiple R square of scores with factors          0.96 0.87
+Minimum correlation of possible factor scores     0.92 0.73
