@@ -22,6 +22,17 @@ df = rename(df, commits = data.commits_ma3,
             updated = data.updated_since.,
             forks = data.forks)
 
+df_eng <- data.frame(data$commits_ma3,
+                 data$comments_ma3,
+                 data$PR_open_ma3,
+                 data$authors_ma3
+                 )
+
+df_eng = rename(df_NF, commits = data.commits_ma3,
+            comments = data.comments_ma3,
+            PR = data.PR_open_ma3,
+            authors = data.authors_ma3)
+
 # -----------------------------------------------
 # correlation matrix plot
 # -----------------------------------------------
@@ -146,7 +157,11 @@ library(psych)
 # install.packages(c("GPArotation"))
 library(GPArotation)
 fa_model = fa(df,2,fm="ml",rotate="quartimax")
-fa_model = fa(df,2,fm="pa")
+fa_model = fa(df_NF,2,fm="ml",rotate="quartimax")
+fa_model = fa(df_NF,1,fm="ml")
+fa_model = fa(df_eng,2,fm="ml",rotate="quartimax")
+fa_model = fa(df_eng,1,fm="mr")
+
 print(fa_model,cut=0,digits=3)
 fa_model
 
