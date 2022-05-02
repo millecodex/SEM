@@ -12,7 +12,8 @@ df <- data.frame(data$commits_ma3,
                  data$authors_ma3,
                  data$contributor_count.,
                  data$updated_since.,
-                 data$forks)
+                 data$forks,
+                 data$stars)
 
 df = rename(df, commits = data.commits_ma3,
             comments = data.comments_ma3,
@@ -20,7 +21,12 @@ df = rename(df, commits = data.commits_ma3,
             authors = data.authors_ma3,
             contributors = data.contributor_count.,
             updated = data.updated_since.,
-            forks = data.forks)
+            forks = data.forks,
+            stars = data.stars)
+
+df_noUpdated = subset(df, select=-c(updated))
+df_noContributors = subset(df, select=-c(contributors))
+df_noSF = subset(df, select=-c(stars,forks))
 
 df_eng <- data.frame(data$commits_ma3,
                  data$comments_ma3,
@@ -156,14 +162,51 @@ summary(efa_f3, fit.measures = TRUE)
 library(psych)
 # install.packages(c("GPArotation"))
 library(GPArotation)
-fa_model = fa(df,2,fm="ml",rotate="quartimax")
-fa_model = fa(df_NF,2,fm="ml",rotate="quartimax")
-fa_model = fa(df_NF,1,fm="ml")
-fa_model = fa(df_eng,2,fm="ml",rotate="quartimax")
+fa_model = fa(df,2,fm="ml",rotate="varimax")
+fa_model = fa(df_noUpdated,2,fm="ml",rotate="quartimax")
+fa_model = fa(df_noSF,2,fm="pa",rotate="oblimin")
+fa_model = fa(df2,2,fm="pa",rotate="oblimin")
+fa_model = fa(df_noContributors,2,fm="ml")
+fa_model = fa(df_eng,1,fm="pa",rotate="oblimin")
 fa_model = fa(df_eng,1,fm="mr")
 
 print(fa_model,cut=0,digits=3)
 fa_model
+
+df2 <- data.frame(data$commits_ma3,
+                 data$comments_ma3,
+                 data$PR_open_ma3,
+                 data$authors_ma3,
+                 data$contributor_count.,
+                 data$updated_since.,
+                 data$forks,
+                 data$stars,
+                 data$criticality_score.,
+                 data$alexa_rank,
+                 data$med_resp_time_days,
+                 data$avg_longevity_days)
+
+df2 = rename(df2, commits = data.commits_ma3,
+            comments = data.comments_ma3,
+            PR = data.PR_open_ma3,
+            authors = data.authors_ma3,
+            contributors = data.contributor_count.,
+            updated = data.updated_since.,
+            forks = data.forks,
+            stars = data.stars,
+            crit = data.criticality_score.,
+            rank = data.alexa_rank,
+            resp = data.med_resp_time_days,
+            long = data.avg_longevity_days)
+
+
+
+
+# to report on the structural coefficients (for oblique rotation methods)
+# if the factor correlation matrix is close to 0, then
+# pattern coefficients (standard loadings) ~= structure coefficients
+fa_model$Structure
+
 
 # factor methods
 # fm="pa" -> principal axis
@@ -208,5 +251,58 @@ dstudy(updated_r)
 df$updated <- updated_r
 dstudy(df$updated)
 
+# -----------------------------------------------
+# CFA on df_noUpdated:
+# -----------------------------------------------
+# df <- data.frame(data$commits_ma3,  F1
+#                  data$comments_ma3, F1
+#                  data$PR_open_ma3,  F1
+#                  data$authors_ma3,  F1
+#                  data$contributor_count., F2
+#                  data$forks,        F2
+#                  data$stars)        F2  
+# -----------------------------------------------
 
+# Scale the whole data.frame
+df_scale_nu <- apply(df_noUpdated,  2, scale)
 
+# step 1: model specification
+cfa1 <- '
+      # measurement models
+      ENG =~ commits + comments + PR + authors
+      POP =~ contributors + forks + stars
+     
+      # residual covariance
+      # authors ~~ contributors
+      
+      # covariance structure
+      # AG ~~ OP+PR
+      # OP ~~ PR
+      # AG ~~ AG
+      # OP ~~ OP
+      # PR ~~ PR
+'
+# STEP 2: model estimate
+#
+cfa1.fit <- sem(  cfa1,
+                  data = df_scale_nu,
+                  estimator = "MLM",
+                  meanstructure = FALSE)
+
+#step 3: evaluate the model
+summary(cfa1.fit,
+        rsquare = TRUE,
+        standardized = TRUE,
+        fit.measures = TRUE)
+
+# visualize the model
+library(semPlot)
+semPaths(cfa1.fit,
+         rotation=2,
+         layout="tree2",
+         what="std",
+         posCol="black",
+         edge.width=0.5,
+         style="Lisrel",
+         fade=T,
+         edge.label.position=0.55)
