@@ -2,7 +2,7 @@ CMC_id,CMC_rank,name,ticker,web_primary,web_secondary,source_code,check_source,n
 1,1,Bitcoin,BTC,https://bitcoin.org/,,https://github.com/bitcoin/bitcoin,y,,bitcoin/bitcoin,github
 1027,2,Ethereum,ETH,https://www.ethereum.org/,https://en.wikipedia.org/wiki/Ethereum,https://github.com/ethereum/go-ethereum,y,,ethereum/go-ethereum,github
 825,3,Tether,USDT,https://tether.to,,private,y,,,
-1839,4,BNB,BNB,https://www.binance.com/,,https://github.com/binance-chain/bsc,y,fork of go-ethereum,binance-chain/bsc,github
+1839,4,BNB,BNB,https://www.binance.com/,,https://github.com/bnb-chain/bsc,y,fork of go-ethereum; updated repo to bnb-chain mar.2022,bnb-chain/bsc,github
 3408,5,USD Coin,USDC,https://www.centre.io/usdc,,https://github.com/centrehq/centre-tokens,y,SC,centrehq/centre-tokens,github
 52,6,XRP,XRP,https://xrpl.org/,,https://github.com/ripple/rippled,y,,ripple/rippled,github
 4172,7,Terra,LUNA,https://terra.money/,,https://github.com/terra-project/core,y,,terra-project/core,github
@@ -22,7 +22,7 @@ CMC_id,CMC_rank,name,ticker,web_primary,web_secondary,source_code,check_source,n
 3794,21,Cosmos,ATOM,https://cosmos.network/,,https://github.com/cosmos/cosmos-sdk,y,,cosmos/cosmos-sdk,github
 6535,22,NEAR Protocol,NEAR,https://near.org/,,https://github.com/nearprotocol/nearcore,y,,nearprotocol/nearcore,github
 1975,23,Chainlink,LINK,https://chain.link/,https://smartcontract.com/,https://github.com/smartcontractkit/chainlink,y,,smartcontractkit/chainlink,github
-7083,24,Uniswap,UNI,https://uniswap.org/blog/uni/,https://uniswap.org/,https://github.com/Uniswap/uniswap-v3-core,y,recently upgraded to v3,Uniswap/uniswap-v3-core,github
+7083,24,Uniswap,UNI,https://uniswap.org/blog/uni/,https://uniswap.org/,https://github.com/Uniswap/v3-core,y,recently upgraded to v3; repo changed from 'uniswap-v3-core' to 'v3-core',Uniswap/v3-core,github
 1831,25,Bitcoin Cash,BCH,http://bch.info,,https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node,y,,bitcoin-cash-node/bitcoin-cash-node,gitlab
 1958,26,TRON,TRX,https://tron.network/,,https://github.com/tronprotocol/java-tron,y,,tronprotocol/java-tron,github
 4195,27,FTX Token,FTT,https://ftx.com/,https://help.ftx.com/hc/en-us/sections/360004460952-FTX-Token-FTT,private,y,,,
@@ -35,12 +35,12 @@ CMC_id,CMC_rank,name,ticker,web_primary,web_secondary,source_code,check_source,n
 4642,34,Hedera,HBAR,https://www.hedera.com/,,https://github.com/hashgraph/hedera-sdk-java,y,,hashgraph/hedera-sdk-java,github
 6892,35,Elrond,EGLD,https://elrond.com/,https://elrond.com/blog,https://github.com/ElrondNetwork/elrond-go,y,,ElrondNetwork/elrond-go,github
 8916,36,Internet Computer,ICP,https://dfinity.org,,https://github.com/dfinity/ic,y,,dfinity/ic,github
-6210,38,The Sandbox,SAND,https://www.sandbox.game/en/,,private,y,,,
 1274,37,Waves,WAVES,https://waves.tech/,https://medium.com/wavesprotocol,https://github.com/wavesplatform/Waves,y,,wavesplatform/Waves,github
+6210,38,The Sandbox,SAND,https://www.sandbox.game/en/,,private,y,,,
 328,39,Monero,XMR,https://www.getmonero.org/,,https://github.com/monero-project/monero,y,,monero-project/monero,github
 3077,40,VeChain,VET,https://www.vechain.org/,https://www.vechain.com/,https://github.com/vechain/thor,y,,vechain/thor,github
 2280,41,Filecoin,FIL,https://filecoin.io/,,https://github.com/filecoin-project/lotus,y,,filecoin-project/lotus,github
-3513,42,Fantom,FTM,https://fantom.foundation/,,https://github.com/Fantom-foundation/go-lachesis,y,,Fantom-foundation/go-lachesis,github
+3513,42,Fantom,FTM,https://fantom.foundation/,,https://github.com/Fantom-foundation/go-opera,y,moved to go-opera repo,Fantom-foundation/go-opera,github
 6783,43,Axie Infinity,AXS,https://axieinfinity.com/,,private,y,,,
 4256,44,Klaytn,KLAY,https://www.klaytn.foundation/,https://www.klaytn.foundation/,https://github.com/klaytn/klaytn,y,,klaytn/klaytn,github
 2416,45,Theta Network,THETA,https://www.thetatoken.org/,,https://github.com/thetatoken/theta-protocol-ledger,y,,thetatoken/theta-protocol-ledger,github
@@ -63,7 +63,7 @@ CMC_id,CMC_rank,name,ticker,web_primary,web_secondary,source_code,check_source,n
 3602,62,Bitcoin SV,BSV,https://bitcoinsv.com/,https://bitcoinsv.io/,https://github.com/bitcoin-sv/bitcoin-sv,y,,bitcoin-sv/bitcoin-sv,github
 1376,63,Neo,NEO,https://neo.org/,,https://github.com/neo-project/neo,y,,neo-project/neo,github
 10791,64,eCash,XEC,https://e.cash/,,https://github.com/Bitcoin-ABC/bitcoin-abc,y,,Bitcoin-ABC/bitcoin-abc,github
-2087,65,KuCoin Token,KCS,https://www.kucoin.com/,,na,y,exchange token,,
+2087,65,KuCoin Token,KCS,https://www.kucoin.com/,,private,y,exchange token,,
 3155,66,Quant,QNT,https://quant.network/,,https://github.com/quantnetwork/overledger-sdk-javascript,y,,quantnetwork/overledger-sdk-javascript,github
 2502,67,Huobi Token,HT,https://www.huobiwallet.com,https://www.hbg.com/,https://github.com/HuobiGroup/huobi-eco-chain,y,,HuobiGroup/huobi-eco-chain,github
 2563,68,TrueUSD,TUSD,https://www.trueusd.com/,,https://github.com/trusttoken/smart-contracts,y,,trusttoken/smart-contracts,github
@@ -83,15 +83,15 @@ CMC_id,CMC_rank,name,ticker,web_primary,web_secondary,source_code,check_source,n
 6538,82,Curve DAO Token,CRV,https://guides.curve.fi/everything-you-need-to-know-about-crv/,https://www.curve.fi/,https://github.com/curvefi/curve-contract,y,,curvefi/curve-contract,github
 873,83,NEM,XEM,http://nem.io,,https://github.com/nemtech/catapult-server,y,,nemtech/catapult-server,github
 3330,84,Pax Dollar,USDP,https://www.paxos.com/usdp/,,https://github.com/paxosglobal/pax-contracts,y,SC,paxosglobal/pax-contracts,github
-3822,86,Theta Fuel,TFUEL,https://www.thetatoken.org,,excluded,y,"token, see also: THETA, id:2416",,
 8646,85,Mina,MINA,https://minaprotocol.com/,,https://github.com/MinaProtocol/mina,y,,MinaProtocol/mina,github
+3822,86,Theta Fuel,TFUEL,https://www.thetatoken.org,,exclude,y,"token, see also: THETA, id:2416",,
 7653,87,Oasis Network,ROSE,https://oasisprotocol.org/,,https://github.com/oasisprotocol/oasis-core,y,,oasisprotocol/oasis-core,github
 1168,88,Decred,DCR,https://decred.org/,https://proposals.decred.org/,https://github.com/decred/dcrd,y,,decred/dcrd,github
 2700,89,Celsius,CEL,https://celsius.network/,,https://github.com/CelsiusNetwork/celsius-js-sdk,y,,CelsiusNetwork/celsius-js-sdk,github
 8677,90,Symbol,XYM,https://www.symbol.dev,https://github.com/symbol,https://github.com/symbol/symbol,y,,symbol/symbol,github
 5692,91,Compound,COMP,https://compound.finance/governance/comp,,https://github.com/compound-finance/compound-protocol,y,,compound-finance/compound-protocol,github
-5604,93,Secret,SCRT,https://scrt.network,,https://github.com/enigmampc/SecretNetwork,y,,enigmampc/SecretNetwork,github
 2682,92,Holo,HOT,https://holochain.org/,https://holo.host,https://github.com/holochain/holochain,y,prev: https://github.com/holochain/holochain-rust,holochain/holochain,github
+5604,93,Secret,SCRT,https://scrt.network,,https://github.com/enigmampc/SecretNetwork,y,,enigmampc/SecretNetwork,github
 5864,94,yearn.finance,YFI,https://yearn.finance/,,https://github.com/yearn/yearn-protocol,y,,yearn/yearn-protocol,github
 5068,95,Neutrino USD,USDN,https://neutrino.at/,,https://github.com/waves-exchange/neutrino-contract,y,,waves-exchange/neutrino-contract,github
 2777,96,IoTeX,IOTX,https://www.iotex.io/,,https://github.com/iotexproject/iotex-core,y,,iotexproject/iotex-core,github
@@ -124,12 +124,12 @@ CMC_id,CMC_rank,name,ticker,web_primary,web_secondary,source_code,check_source,n
 8075,123,Rally,RLY,https://vaults.rally.io/vaults,https://rally.io/,https://github.com/starcard-org/yield-delegation,y,,starcard-org/yield-delegation,github
 1817,124,Voyager Token,VGX,https://www.investvoyager.com/,https://www.ethos.io/,private,y,formerly ETHOS,,
 10603,125,Immutable X,IMX,https://www.immutable.com/,,private,y,,,
-4269,127,GateToken,GT,https://gatechain.io/,,https://github.com/gatechain/node-binary,y,,gatechain/node-binary,github
 5617,126,UMA,UMA,https://umaproject.org/,,https://github.com/UMAprotocol/protocol,y,,UMAprotocol/protocol,github
+4269,127,GateToken,GT,https://gatechain.io/,,https://github.com/gatechain/node-binary,y,,gatechain/node-binary,github
 4747,128,Velas,VLX,https://velas.com,,https://github.com/velas/velas-chain,y,,velas/velas-chain,github
+18069,129,Green Metaverse Token,GMT,https://www.stepn.com/,,private,y,,,
 1042,130,Siacoin,SC,https://sia.tech/,,https://gitlab.com/NebulousLabs/Sia,y,,NebulousLabs/Sia,gitlab
 1455,131,Golem,GLM,https://golem.network/,,https://github.com/golemfactory/yagna,y,,golemfactory/yagna,github
-18069,129,Green Metaverse Token,GMT,https://www.stepn.com/,,private,y,,,
 4566,132,DigitalBits,XDB,http://www.digitalbits.io/,,https://github.com/xdbfoundation/DigitalBits,y,,xdbfoundation/DigitalBits,github
 1896,133,0x,ZRX,https://0x.org/,,https://github.com/0xProject/0x-monorepo,y,,0xProject/0x-monorepo,github
 2405,134,IOST,IOST,http://iost.io/,,https://github.com/iost-official/go-iost,y,,iost-official/go-iost,github
@@ -162,7 +162,7 @@ CMC_id,CMC_rank,name,ticker,web_primary,web_secondary,source_code,check_source,n
 5964,161,Trust Wallet Token,TWT,https://trustwallet.com/,,https://github.com/trustwallet/wallet-core,y,,trustwallet/wallet-core,github
 13855,162,Ethereum Name Service,ENS,https://ens.domains/,,https://github.com/ensdomains/ens,y,,ensdomains/ens,github
 2856,163,CEEK VR,CEEK,https://www.ceek.io/,,private,y,,,
-14806,164,ConstitutionDAO,PEOPLE,https://www.constitutiondao.com/,,na,y,,,
+14806,164,ConstitutionDAO,PEOPLE,https://www.constitutiondao.com/,,private,y,,,
 6950,165,Perpetual Protocol,PERP,https://perp.com,https://app.perp.com/,https://github.com/perpetual-protocol/perpetual-protocol,y,,perpetual-protocol/perpetual-protocol,github
 4761,166,NuCypher,NU,https://nucypher.com,,https://github.com/nucypher/nucypher,y,,nucypher/nucypher,github
 1567,167,Nano,XNO,http://nano.org/en,,https://github.com/nanocurrency/nano-node,y,,nanocurrency/nano-node,github
@@ -183,7 +183,7 @@ CMC_id,CMC_rank,name,ticker,web_primary,web_secondary,source_code,check_source,n
 1886,182,Dent,DENT,https://www.dentwireless.com/,,private,y,,,
 3773,183,Fetch.ai,FET,https://fetch.ai/,https://community.fetch.ai/,https://github.com/fetchai/agents-aea,y,,fetchai/agents-aea,github
 3628,184,MXC,MXC,https://www.mxc.org/,,https://github.com/mxc-foundation/node-prod-firmware,y,,mxc-foundation/node-prod-firmware,github
-9025,185,Tribe,TRIBE,https://fei.money/,,na,y,,,
+9025,185,Tribe,TRIBE,https://fei.money/,,private,y,,,
 8526,186,Raydium,RAY,https://raydium.io/#/,,private,y,,,
 2132,187,Powerledger,POWR,https://powerledger.io/,,private,y,,,
 2765,188,XYO,XYO,https://xyo.network/,,https://github.com/XYOracleNetwork/xyo-foundation,y,,XYOracleNetwork/xyo-foundation,github
@@ -196,406 +196,406 @@ CMC_id,CMC_rank,name,ticker,web_primary,web_secondary,source_code,check_source,n
 3884,195,Function X,FX,https://functionx.io/,,https://github.com/FunctionX/fx-core,y,,FunctionX/fx-core,github
 2071,196,Request,REQ,https://request.network/,,https://github.com/RequestNetwork/requestNetwork,y,,RequestNetwork/requestNetwork,github
 9285,197,Moonriver,MOVR,https://moonbeam.network/networks/moonriver/,https://moonbeam.foundation/,https://github.com/PureStake/moonbeam,y,,PureStake/moonbeam,github
-5161,198,WazirX,WRX,https://wazirx.com/,,na,y,,,
+5161,198,WazirX,WRX,https://wazirx.com/,,private,y,,,
 3835,199,Orbs,ORBS,https://www.orbs.com/,,https://github.com/orbs-network/orbs-network-go,y,,orbs-network/orbs-network-go,github
-8335,242,Mdex,MDX,https://mdex.co,,na,y,,,
+9040,200,Pundi X (New),PUNDIX,https://pundix.com/,,private,y,,,
 5015,201,HEX,HEX,https://hex.com/,https://go.hex.win/,https://github.com/BitcoinHEX/contract,y,,BitcoinHEX/contract,github
 18579,202,Wrapped TRON,WTRX,https://tron.network/,,https://github.com/tronprotocol/java-tron,y,,tronprotocol/java-tron,github
 8085,203,Lido stETH,STETH,https://lido.fi/,,https://github.com/lidofinance/lido-dao,y,,lidofinance/lido-dao,github
 6952,204,Frax,FRAX,https://frax.finance/#welcome,,https://github.com/FraxFinance/frax-solidity,y,,FraxFinance/frax-solidity,github
 12220,205,Osmosis,OSMO,https://osmosis.zone/,,https://github.com/osmosis-labs/osmosis,y,,osmosis-labs/osmosis,github
 11419,206,Toncoin,TON,https://ton.org/,,https://github.com/newton-blockchain/ton,y,,newton-blockchain/ton,github
-7192,207,Wrapped BNB,WBNB,https://www.binance.org/,,na,y,,,
-3718,208,BitTorrent,BTTOLD,https://www.bittorrent.com/btt/,,https://github.com/bittorrent,y,token on TRON,bittorrent,github
+7192,207,Wrapped BNB,WBNB,https://www.binance.org/,,private,y,,,
+3718,208,BitTorrent,BTTOLD,https://www.bittorrent.com/btt/,,https://github.com/bittorrent/go-btfs,y,token on TRON,bittorrent/go-btfs,github
+6941,209,Huobi BTC,HBTC,https://www.hbtc.finance/en-us/,https://www.hbtc.finance/en-us/assets,private,y,,,
 11498,210,Chainbing,CBG,https://www.chainbing.io,,https://github.com/chainbing/node,y,,chainbing/node,github
-6941,209,Huobi BTC,HBTC,https://www.hbtc.finance/en-us/,https://www.hbtc.finance/en-us/assets,na,y,,,
 5804,211,DeFiChain,DFI,https://defichain.com/,,https://github.com/DeFiCh/ain,y,,DeFiCh/ain,github
 4512,212,LINK,LN,https://blockchain.line.me/,,private,y,,,
 7321,213,yOUcash,YOUC,https://youengine.io,,https://github.com/YOUengine/ReadMe,y,,YOUengine/ReadMe,github
 7961,214,Venus BNB,vBNB,https://app.venus.io/dashboard,,https://github.com/VenusProtocol/venus-protocol,y,,VenusProtocol/venus-protocol,github
-9566,215,Liquity USD,LUSD,https://www.liquity.org/,,https://www.liquity.org,y,,www.liquity.org,
+9566,215,Liquity USD,LUSD,https://www.liquity.org/,,https://github.com/liquity/dev,y,,liquity/dev,github
 11221,216,BitDAO,BIT,https://www.bitdao.io/,,https://github.com/bitdao-io/bitdao-interface,y,,bitdao-io/bitdao-interface,github
-5830,217,NXM,NXM,https://nexusmutual.io/,,https://github.com/NexusMutual,n,,NexusMutual,github
-5482,218,Counos X,CCXX,https://www.counos.io/CounosX,https://www.counos.io/counos-x-roadmap,https://github.com/counos-platform/counos-X,n,,counos-platform/counos-X,github
-7548,219,WEMIX,WEMIX,https://wemixnetwork.com/,,https://github.com/wemade-tree/contract-reference,n,,wemade-tree/contract-reference,github
-5185,220,KOK,KOK,http://kok-chain.io,,https://github.com/KOK-Foundation,n,,KOK-Foundation,github
-6432,221,ECOMI,OMI,https://www.ecomi.com/,,,n,,,
+5830,217,NXM,NXM,https://nexusmutual.io/,,https://github.com/NexusMutual/smart-contracts,y,,NexusMutual/smart-contracts,github
+5482,218,Counos X,CCXX,https://www.counos.io/CounosX,https://www.counos.io/counos-x-roadmap,https://github.com/counos-platform/counos-X,y,,counos-platform/counos-X,github
+7548,219,WEMIX,WEMIX,https://wemixnetwork.com/,,https://github.com/wemade-tree/contract-reference,y,,wemade-tree/contract-reference,github
+5185,220,KOK,KOK,http://kok-chain.io,,https://github.com/KOK-Foundation/ERC-20,y,,KOK-Foundation/ERC-20,github
+6432,221,ECOMI,OMI,https://www.ecomi.com/,,private,y,,,
 4779,222,HUSD,HUSD,http://www.stcoins.com/,,private,y,stable coin; no github,,
-9640,223,MetisDAO,METIS,https://www.metis.io,,https://github.com/MetisProtocol,n,,MetisProtocol,github
-5514,224,The Transfer Token,TTT,https://www.atom-solutions.jp/en/xecttt/,https://www.atom-solutions.jp/en/,https://github.com/atom-solutions/TheTransferToken,n,,atom-solutions/TheTransferToken,github
-268,225,WhiteCoin,XWC,http://whitecoin.info/,http://xwc.com/,,n,,,
-7878,226,MobileCoin,MOB,https://mobilecoin.foundation/,https://www.mobilecoin.com/,https://github.com/mobilecoinfoundation/mobilecoin,n,,mobilecoinfoundation/mobilecoin,github
-8000,227,Lido DAO Token,LDO,https://lido.fi/,,https://github.com/lidofinance,n,,lidofinance,github
-2943,228,Rocket Pool,RPL,https://www.rocketpool.net/,,https://github.com/rocket-pool/rocketpool,n,,rocket-pool/rocketpool,github
-3951,229,Pirate Chain,ARRR,https://pirate.black/,,https://github.com/PirateNetwork,n,,PirateNetwork,github
-4121,230,Sapphire,SAPP,https://sappcoin.com/,,https://github.com/sappcoin-com,n,,sappcoin-com,github
-8757,231,SafeMoon,SAFEMOON,https://safemoon.net/,,https://github.com/safemoonprotocol/Safemoon.sol/tree/main,n,,safemoonprotocol/Safemoon.sol/tree/main,github
-11346,232,Radio Caca,RACA,https://www.radiocaca.com/,,https://github.com/radiocaca/radio-caca,n,,radiocaca/radio-caca,github
-10442,233,Decentralized Social,DESO,https://deso.org,,https://github.com/deso-protocol,n,,deso-protocol,github
-4361,234,Bitpanda Ecosystem Token,BEST,https://www.bitpanda.com/en/best,,,n,,,
-2758,235,Unibright,UBT,https://unibright.io/,,,n,,,
-3918,236,Safe,SAFE,https://www.anwang.com/,,https://github.com/bankledger,n,,bankledger,github
-14519,237,VVS Finance,VVS,https://vvs.finance/,,,n,,,
-10778,238,Metahero,HERO,https://metahero.io,,https://github.com/metahero-io,n,,metahero-io,github
-4660,239,Telos,TLOS,https://telos.net/,,https://github.com/telosnetwork,n,,telosnetwork,github
-12885,240,Astar,ASTR,https://astar.network/,,https://github.com/AstarNetwork/Astar,n,,AstarNetwork/Astar,github
-5326,241,Orbit Chain,ORC,https://orbitchain.io/,,,n,,,
-9040,200,Pundi X (New),PUNDIX,https://pundix.com/,,,n,,,
-5625,243,LUKSO,LYXe,https://lukso.network,,https://github.com/lukso-network,n,,lukso-network,github
+9640,223,MetisDAO,METIS,https://www.metis.io,,https://github.com/MetisProtocol/metis,y,,MetisProtocol/metis,github
+5514,224,The Transfer Token,TTT,https://www.atom-solutions.jp/en/xecttt/,https://www.atom-solutions.jp/en/,https://github.com/atom-solutions/TheTransferToken,y,,atom-solutions/TheTransferToken,github
+268,225,WhiteCoin,XWC,http://whitecoin.info/,http://xwc.com/,https://github.com/Whitecoin-XWC/Whitecoin-core,y,,Whitecoin-XWC/Whitecoin-core,github
+7878,226,MobileCoin,MOB,https://mobilecoin.foundation/,https://www.mobilecoin.com/,https://github.com/mobilecoinfoundation/mobilecoin,y,,mobilecoinfoundation/mobilecoin,github
+8000,227,Lido DAO Token,LDO,https://lido.fi/,,https://github.com/lidofinance/lido-dao,y,,lidofinance/lido-dao,github
+2943,228,Rocket Pool,RPL,https://www.rocketpool.net/,,https://github.com/rocket-pool/rocketpool,y,,rocket-pool/rocketpool,github
+3951,229,Pirate Chain,ARRR,https://pirate.black/,,https://github.com/PirateNetwork/pirate,y,,PirateNetwork/pirate,github
+4121,230,Sapphire,SAPP,https://sappcoin.com/,,https://github.com/sappcoin-com/SAPP,y,,sappcoin-com/SAPP,github
+8757,231,SafeMoon,SAFEMOON,https://safemoon.net/,,https://github.com/safemoonprotocol/Safemoon.sol/tree/main,y,,safemoonprotocol/Safemoon.sol/tree/main,github
+11346,232,Radio Caca,RACA,https://www.radiocaca.com/,,https://github.com/radiocaca/radio-caca,y,,radiocaca/radio-caca,github
+10442,233,Decentralized Social,DESO,https://deso.org,,https://github.com/deso-protocol/core,y,,deso-protocol/core,github
+4361,234,Bitpanda Ecosystem Token,BEST,https://www.bitpanda.com/en/best,,private,y,,,
+2758,235,Unibright,UBT,https://unibright.io/,,private,y,,,
+3918,236,Safe,SAFE,https://www.anwang.com/,,https://github.com/safe-anwang/safe,y,,safe-anwang/safe,github
+14519,237,VVS Finance,VVS,https://vvs.finance/,,private,y,,,
+10778,238,Metahero,HERO,https://metahero.io,,https://github.com/metahero-io/metahero-contracts,y,,metahero-io/metahero-contracts,github
+4660,239,Telos,TLOS,https://telos.net/,,https://github.com/telosnetwork/telos-decide,y,,telosnetwork/telos-decide,github
+12885,240,Astar,ASTR,https://astar.network/,,https://github.com/AstarNetwork/Astar,y,,AstarNetwork/Astar,github
+5326,241,Orbit Chain,ORC,https://orbitchain.io/,,private,y,,,
+8335,242,Mdex,MDX,https://mdex.co,,private,y,,,
+5625,243,LUKSO,LYXe,https://lukso.network,,https://github.com/lukso-network/rICO-smart-contracts,y,,lukso-network/rICO-smart-contracts,github
 14556,244,Boba Network,BOBA,https://boba.network/,,https://github.com/bobanetwork/boba,y,,bobanetwork/boba,github
+5176,245,Tether Gold,XAUT,https://tether.to/,,private,y,,,
 2467,246,OriginTrail,TRAC,https://origintrail.io/,,https://github.com/OriginTrail/ot-node,y,,OriginTrail/ot-node,github
-5176,245,Tether Gold,XAUT,https://tether.to/,,,n,,,
 3964,247,Reserve Rights,RSR,https://reserve.org/,,https://github.com/reserve-protocol/smart-contracts,y,fork of Kyber Network,reserve-protocol/smart-contracts,github
-7505,249,Everscale,EVER,https://everscale.network,https://flatqube.io/swap,https://github.com/tonlabs,n,,tonlabs,github
 1759,248,Status,SNT,http://status.im/,,https://github.com/status-im/status-go,y,,status-im/status-go,github
+7505,249,Everscale,EVER,https://everscale.network,https://flatqube.io/swap,https://github.com/tonlabs/TON-SDK,y,,tonlabs/TON-SDK,github
 1320,250,Ardor,ARDR,https://www.jelurida.com/ardor,,https://bitbucket.org/Jelurida/ardor/src,y,,Jelurida/ardor/src,bitbucket
-10729,251,UFO Gaming,UFO,https://www.ufogaming.io/,,https://etherscan.io/address/0x249e38ea4102d0cf8264d3701f1a0e39c4f2dc3b#code,n,,etherscan.io/address/0x249e38ea4102d0cf8264d3701f1a0e39c4f2dc3b#code,
-7334,252,Conflux,CFX,https://confluxnetwork.org/,,https://github.com/Conflux-Chain,n,,Conflux-Chain,github
+10729,251,UFO Gaming,UFO,https://www.ufogaming.io/,,private,y,,,
+7334,252,Conflux,CFX,https://confluxnetwork.org/,,https://github.com/Conflux-Chain/conflux-rust,y,,Conflux-Chain/conflux-rust,github
 1816,253,Civic,CVC,https://www.civic.com/,,https://github.com/civicteam/npm-civic-sip-api,y,,civicteam/npm-civic-sip-api,github
-2982,254,MVL,MVL,http://mvlchain.io,,https://github.com/mvlchain/mvltoken,n,,mvlchain/mvltoken,github
-8766,255,MyNeighborAlice,ALICE,https://www.myneighboralice.com/,,,n,,,
-3600,256,Humanscape,HUM,https://humanscape.io/,,https://github.com/humanscape,n,,humanscape,github
-2868,257,Constellation,DAG,https://www.constellationnetwork.io,,https://github.com/Constellation-Labs/constellation,n,,Constellation-Labs/constellation,github
+2982,254,MVL,MVL,http://mvlchain.io,,https://github.com/mvlchain/mvltoken,y,,mvlchain/mvltoken,github
+8766,255,MyNeighborAlice,ALICE,https://www.myneighboralice.com/,,private,y,,,
+3600,256,Humanscape,HUM,https://humanscape.io/,,https://github.com/humanscape/eslint-config,y,,humanscape/eslint-config,github
+2868,257,Constellation,DAG,https://www.constellationnetwork.io,,https://github.com/Constellation-Labs/constellation,y,,Constellation-Labs/constellation,github
 1680,258,Aragon,ANT,https://aragon.org/,,https://github.com/aragon/govern,y,,aragon/govern,github
-4041,259,MX TOKEN,MX,https://www.mexc.com,https://www.mexc.cc,,n,,,
-11396,260,JOE,JOE,https://www.traderjoexyz.com/#/home,,https://github.com/traderjoe-xyz,n,,traderjoe-xyz,github
-7486,261,Rari Governance Token,RGT,http://rari.capital/,,https://github.com/Rari-Capital,n,,Rari-Capital,github
+4041,259,MX TOKEN,MX,https://www.mexc.com,https://www.mexc.cc,private,y,,,
+11396,260,JOE,JOE,https://www.traderjoexyz.com/#/home,,https://github.com/traderjoe-xyz/joe-core,y,,traderjoe-xyz/joe-core,github
+7486,261,Rari Governance Token,RGT,http://rari.capital/,,https://github.com/Rari-Capital/solmate,y,,Rari-Capital/solmate,github
+9543,262,Biconomy,BICO,https://biconomy.io,,https://github.com/bcnmy/metatx-standard,y,,bcnmy/metatx-standard,github
 2299,263,aelf,ELF,http://aelf.com/,,https://github.com/AElfProject/AElf,y,,AElfProject/AElf,github
-9543,262,Biconomy,BICO,https://biconomy.io,,https://github.com/bcnmy,n,,bcnmy,github
 5268,264,Energy Web Token,EWT,https://www.energyweb.org/,,https://github.com/energywebfoundation/origin,y,,energywebfoundation/origin,github
-5892,265,Anyswap,ANY,https://anyswap.exchange/dashboard,,https://github.com/anyswap,n,,anyswap,github
-8891,266,Bitcoin Standard Hashrate Token,BTCST,https://www.btcst.finance/,,,n,,,
-7737,268,API3,API3,https://api3.org/,,https://github.com/api3dao,n,,api3dao,github
-5444,267,Cartesi,CTSI,https://cartesi.io/,,https://github.com/cartesi,n,,cartesi,github
-3441,269,Divi,DIVI,https://www.diviproject.org/,,https://github.com/Divicoin/Divi,n,,Divicoin/Divi,github
+5892,265,Anyswap,ANY,https://anyswap.exchange/dashboard,,https://github.com/anyswap/CrossChain-Bridge,y,,anyswap/CrossChain-Bridge,github
+8891,266,Bitcoin Standard Hashrate Token,BTCST,https://www.btcst.finance/,,private,y,,,
+5444,267,Cartesi,CTSI,https://cartesi.io/,,https://github.com/cartesi/machine-solidity-step,y,,cartesi/machine-solidity-step,github
+7737,268,API3,API3,https://api3.org/,,https://github.com/api3dao/airnode,y,,api3dao/airnode,github
+3441,269,Divi,DIVI,https://www.diviproject.org/,,https://github.com/Divicoin/Divi,y,,Divicoin/Divi,github
 5026,270,Orchid,OXT,https://www.orchid.com/,,https://github.com/OrchidTechnologies/orchid,y,,OrchidTechnologies/orchid,github
 1732,271,Numeraire,NMR,https://numer.ai/,,https://github.com/numerai/numerapi,y,,numerai/numerapi,github
-9175,272,MOBOX,MBOX,https://www.mobox.io/#/,,,n,,,
-1710,273,Veritaseum,VERI,http://veritas.veritaseum.com/,,https://github.com/veritaseum,n,,veritaseum,github
-8425,274,JasmyCoin,JASMY,https://www.jasmy.co.jp/en_company.html,,,n,,,
-6958,275,Alchemy Pay,ACH,https://alchemypay.org/,,https://github.com/Alchemy-GPS,n,,Alchemy-GPS,github
-7817,276,Bifrost (BFC),BFC,https://thebifrost.io/,,,n,,,
-14803,277,Aurora,AURORA,https://aurora.dev/,,https://github.com/aurora-is-near/aurora-engine,n,,aurora-is-near/aurora-engine,github
-5031,278,MimbleWimbleCoin,MWC,https://www.mwc.mw/,,https://github.com/mwcproject,n,,mwcproject,github
-16463,279,OpenDAO,SOS,https://www.theopendao.com/,,,n,,,
+9175,272,MOBOX,MBOX,https://www.mobox.io/#/,,private,y,,,
+1710,273,Veritaseum,VERI,http://veritas.veritaseum.com/,,https://github.com/veritaseum/Veritaseum,y,,veritaseum/Veritaseum,github
+8425,274,JasmyCoin,JASMY,https://www.jasmy.co.jp/en_company.html,,private,y,,,
+6958,275,Alchemy Pay,ACH,https://alchemypay.org/,,https://github.com/Alchemy-GPS/cryptocurrency-cashier-android,y,,Alchemy-GPS/cryptocurrency-cashier-android,github
+7817,276,Bifrost (BFC),BFC,https://thebifrost.io/,,private,y,,,
+14803,277,Aurora,AURORA,https://aurora.dev/,,https://github.com/aurora-is-near/aurora-engine,y,,aurora-is-near/aurora-engine,github
+5031,278,MimbleWimbleCoin,MWC,https://www.mwc.mw/,,https://github.com/mwcproject/mwc-node,y,,mwcproject/mwc-node,github
+16463,279,OpenDAO,SOS,https://www.theopendao.com/,,https://github.com/The-OpenDAO/theopendao-interface,y,,The-OpenDAO/theopendao-interface,github
 6951,280,Reef,REEF,https://reef.io/,,https://github.com/reef-defi/reef-client,y,runs on polkadot,reef-defi/reef-client,github
-3866,281,CONUN,CON,https://conun.io,,https://blog.naver.com/conuncs,n,,blog.naver.com/conuncs,
+3866,281,CONUN,CON,https://conun.io,,private,y,,,
 693,282,Verge,XVG,http://vergecurrency.com/,,https://github.com/vergecurrency/verge,y,,vergecurrency/verge,github
-5113,283,inSure DeFi,SURE,https://insuretoken.net/,,https://github.com/inSureToken/SmartContract/blob/master/inSure.sol,n,,inSureToken/SmartContract/blob/master/inSure.sol,github
-10746,284,Biswap,BSW,https://biswap.org/,,https://github.com/biswap-org,n,,biswap-org,github
-9417,285,Maple,MPL,https://maple.finance/,,https://github.com/maple-labs,n,,maple-labs,github
-8489,286,XSGD,XSGD,https://www.straitsx.com/,,https://github.com/Xfers/StraitsX-tokens,n,,Xfers/StraitsX-tokens,github
+5113,283,inSure DeFi,SURE,https://insuretoken.net/,,https://github.com/inSureToken/SmartContract/blob/master/inSure.sol,y,,inSureToken/SmartContract/blob/master/inSure.sol,github
+10746,284,Biswap,BSW,https://biswap.org/,,https://github.com/biswap-org/core,y,,biswap-org/core,github
+9417,285,Maple,MPL,https://maple.finance/,,https://github.com/maple-labs/maple-core,y,,maple-labs/maple-core,github
+8489,286,XSGD,XSGD,https://www.straitsx.com/,,https://github.com/Xfers/StraitsX-tokens,y,,Xfers/StraitsX-tokens,github
 3662,287,HedgeTrade,HEDG,https://hedgetrade.com/,,https://github.com/rublixdev/hedgtokenmint,y,,rublixdev/hedgtokenmint,github
-10750,288,Qredo,QRDO,https://www.qredo.com/,,,n,,,
-11171,290,Mango,MNGO,https://mango.markets/,,https://github.com/blockworks-foundation/mango,n,,blockworks-foundation/mango,github
-15478,289,Decentral Games,DG,https://decentral.games,,https://github.com/decentralgames,n,,decentralgames,github
+10750,288,Qredo,QRDO,https://www.qredo.com/,,https://github.com/qredo/partner-api-sign,y,,qredo/partner-api-sign,github
+15478,289,Decentral Games,DG,https://decentral.games,,https://github.com/decentralgames/games,y,,decentralgames/games,github
+11171,290,Mango,MNGO,https://mango.markets/,,https://github.com/blockworks-foundation/mango,y,,blockworks-foundation/mango,github
 1104,291,Augur,REP,http://www.augur.net/,,https://github.com/AugurProject/augur,y,,AugurProject/augur,github
-12999,292,ssv.network,SSV,https://ssv.network/,,https://github.com/bloxapp/ssv-web,n,,bloxapp/ssv-web,github
-1637,293,iExec RLC,RLC,https://iex.ec/,https://docs.iex.ec/,https://github.com/iExecBlockchainComputing,n,,iExecBlockchainComputing,github
+12999,292,ssv.network,SSV,https://ssv.network/,,https://github.com/bloxapp/ssv-web,y,,bloxapp/ssv-web,github
+1637,293,iExec RLC,RLC,https://iex.ec/,https://docs.iex.ec/,https://github.com/iExecBlockchainComputing/iexec-sdk,y,,iExecBlockchainComputing/iexec-sdk,github
 3012,294,VeThor Token,VTHO,https://www.vechain.org/,,https://github.com/vechain/thor,y,,vechain/thor,github
-16604,296,1eco,1ECO,https://www.1eco.io,,,n,,,
-11307,295,Beta Finance,BETA,https://betafinance.org/,https://app.betafinance.org/,https://betafinance.org/BetaWhitepaperAndDisclaimer.pdf,n,,betafinance.org/BetaWhitepaperAndDisclaimer.pdf,
-8420,297,DAO Maker,DAO,https://daomaker.com/,,https://github.com/daomaker,n,,daomaker,github
-6651,298,USDX [Kava],USDX,https://kava.io,,https://github.com/kava-labs,n,,kava-labs,github
-3437,299,ABBC Coin,ABBC,https://abbccoin.com/,,,n,,,
-2297,300,StormX,STMX,https://stormx.io/,,https://github.com/StormX-Inc/crowdsale,n,,StormX-Inc/crowdsale,github
-7189,301,Origin Dollar,OUSD,https://www.ousd.com,,,n,,,
-10821,302,Starlink,STARL,https://www.starltoken.com/,,https://github.com/StarlinkMeta,n,,StarlinkMeta,github
-2780,303,NKN,NKN,https://nkn.org/,,https://github.com/nknorg,n,,nknorg,github
-6843,304,Radicle,RAD,https://radicle.xyz/,,https://github.com/radicle-dev,n,,radicle-dev,github
-4120,305,Prometeus,PROM,https://prometeus.io/,,,n,,,
-7726,306,ICHI,ICHI,https://ichi.farm/#/swap,https://www.ichi.org/,,n,,,
-3673,307,ASD,ASD,https://ascendex.com/,,,n,,,
+11307,295,Beta Finance,BETA,https://betafinance.org/,https://app.betafinance.org/,private,y,,,
+16604,296,1eco,1ECO,https://www.1eco.io,,private,y,,,
+8420,297,DAO Maker,DAO,https://daomaker.com/,,https://github.com/daomaker/tokens-vesting-contract,y,,daomaker/tokens-vesting-contract,github
+6651,298,USDX [Kava],USDX,https://kava.io,,https://github.com/Kava-Labs/kava,y,,Kava-Labs/kava,github
+3437,299,ABBC Coin,ABBC,https://abbccoin.com/,,private,y,,,
+2297,300,StormX,STMX,https://stormx.io/,,private,y,,,
+7189,301,Origin Dollar,OUSD,https://www.ousd.com,,https://github.com/OriginProtocol/origin-dollar,y,,OriginProtocol/origin-dollar,github
+10821,302,Starlink,STARL,https://www.starltoken.com/,,https://github.com/StarlinkMeta/ipfs-pinata,y,,StarlinkMeta/ipfs-pinata,github
+2780,303,NKN,NKN,https://nkn.org/,,https://github.com/nknorg/nkn,y,,nknorg/nkn,github
+6843,304,Radicle,RAD,https://radicle.xyz/,,https://github.com/radicle-dev/radicle-upstream,y,,radicle-dev/radicle-upstream,github
+4120,305,Prometeus,PROM,https://prometeus.io/,,private,y,,,
+7726,306,ICHI,ICHI,https://ichi.farm/#/swap,https://www.ichi.org/,https://github.com/ichifarm/ichi-oneToken,y,,ichifarm/ichi-oneToken,github
+3673,307,ASD,ASD,https://ascendex.com/,,private,y,,,
 291,308,MaidSafeCoin,MAID,https://safenetwork.tech/,http://maidsafe.net,https://github.com/maidsafe/sn_node,y,,maidsafe/sn_node,github
-4092,309,Dusk Network,DUSK,https://www.dusk.network,,https://github.com/dusk-network,n,,dusk-network,github
-2989,310,STASIS EURO,EURS,https://stasis.net,,https://github.com/STASISNET,n,,STASISNET,github
-2585,311,CENNZnet,CENNZ,https://cennz.net/,,https://github.com/cennznet,n,,cennznet,github
-7431,312,Akash Network,AKT,https://akash.network,,,n,,,
-10529,313,Sun (New),SUN,https://sun.io/,,,n,,,
-1343,314,Stratis,STRAX,http://stratisplatform.com/,,https://github.com/stratisproject,n,,stratisproject,github
-1230,315,Steem,STEEM,https://steem.com/,https://steemit.com/,https://github.com/steemit/steem,n,,steemit/steem,github
-12140,316,RMRK,RMRK,https://rmrk.app/,,https://github.com/rmrk-team/rmrk-tools,n,,rmrk-team/rmrk-tools,github
-6715,317,Sperax,SPA,https://sperax.io/,,https://github.com/Sperax,n,,Sperax,github
-3418,319,Metadium,META,https://www.metadium.com/,,https://github.com/metadium,n,,metadium,github
-5631,318,Orion Protocol,ORN,https://www.orionprotocol.io/orn,,https://github.com/orionprotocol,n,,orionprotocol,github
-10897,323,Alitas,ALT,https://alitas.tech/,,https://github.com/AlitasTech,n,,AlitasTech,github
-3089,320,AVINOC,AVINOC,https://avinoc.com/,,https://github.com/AVINOCICO,n,,AVINOCICO,github
+4092,309,Dusk Network,DUSK,https://www.dusk.network,,https://github.com/dusk-network/dusk-blockchain,y,,dusk-network/dusk-blockchain,github
+2989,310,STASIS EURO,EURS,https://stasis.net,,https://github.com/STASISNET/STASIS-EURS-token-smart-contract,y,,STASISNET/STASIS-EURS-token-smart-contract,github
+2585,311,CENNZnet,CENNZ,https://cennz.net/,,https://github.com/cennznet/cennznet,y,,cennznet/cennznet,github
+7431,312,Akash Network,AKT,https://akash.network,,private,y,,,
+10529,313,Sun (New),SUN,https://sun.io/,,private,y,,,
+1343,314,Stratis,STRAX,http://stratisplatform.com/,,https://github.com/stratisproject/StratisFullNode,y,,stratisproject/StratisFullNode,github
+1230,315,Steem,STEEM,https://steem.com/,https://steemit.com/,https://github.com/steemit/steem,y,,steemit/steem,github
+12140,316,RMRK,RMRK,https://rmrk.app/,,https://github.com/rmrk-team/rmrk-tools,y,,rmrk-team/rmrk-tools,github
+6715,317,Sperax,SPA,https://sperax.io/,,https://github.com/Sperax/SperaxChain,y,,Sperax/SperaxChain,github
+5631,318,Orion Protocol,ORN,https://www.orionprotocol.io/orn,,https://github.com/orionprotocol/orion-holochain,y,,orionprotocol/orion-holochain,github
+3418,319,Metadium,META,https://www.metadium.com/,,https://github.com/METADIUM/go-metadium,y,,METADIUM/go-metadium,github
+3089,320,AVINOC,AVINOC,https://avinoc.com/,,private,y,,,
+2444,321,CRYPTO20,C20,https://invictuscapital.com/en/crypto20,,https://github.com/cryptotwenty/smartcontracts,y,,cryptotwenty/smartcontracts,github
 4679,322,Band Protocol,BAND,https://bandprotocol.com/,,https://github.com/bandprotocol/chain,y,,bandprotocol/chain,github
-2444,321,CRYPTO20,C20,https://invictuscapital.com/en/crypto20,,https://github.com/cryptotwenty,n,,cryptotwenty,github
-4006,324,Standard Tokenization Protocol,STPT,https://stp.network/,,,n,,,
-5618,325,Dawn Protocol,DAWN,https://dawn.org,https://firstblood.io,https://github.com/Dawn-Protocol,n,,Dawn-Protocol,github
-5552,326,Hathor,HTR,https://hathor.network,,https://github.com/HathorNetwork,n,,HathorNetwork,github
-11206,327,Bloktopia,BLOK,https://www.bloktopia.com/,,,n,,,
+10897,323,Alitas,ALT,https://alitas.tech/,,https://github.com/AlitasTech/Alitas,y,,AlitasTech/Alitas,github
+4006,324,Standard Tokenization Protocol,STPT,https://stp.network/,,private,y,,,
+5618,325,Dawn Protocol,DAWN,https://dawn.org,https://firstblood.io,https://github.com/Dawn-Protocol/dawn-erc20-erc777,y,,Dawn-Protocol/dawn-erc20-erc777,github
+5552,326,Hathor,HTR,https://hathor.network,,https://github.com/HathorNetwork/hathor-core,y,,HathorNetwork/hathor-core,github
+11206,327,Bloktopia,BLOK,https://www.bloktopia.com/,,private,y,,,
 3701,328,RSK Infrastructure Framework,RIF,https://www.rifos.org/,,https://github.com/riflabs/rif-faucet-client,y,,riflabs/rif-faucet-client,github
-8536,329,Mask Network,MASK,https://www.mask.io,,https://github.com/DimensionDev/Maskbook,n,,DimensionDev/Maskbook,github
-5072,330,Rakon,RKN,https://rkntoken.io,,,n,,,
+8536,329,Mask Network,MASK,https://www.mask.io,,https://github.com/DimensionDev/Maskbook,y,,DimensionDev/Maskbook,github
+5072,330,Rakon,RKN,https://rkntoken.io,,private,y,,,
 7232,331,Alpha Finance Lab,ALPHA,https://alphafinance.io/,,https://github.com/AlphaFinanceLab/alphahomora,y,,AlphaFinanceLab/alphahomora,github
-3748,332,Hxro,HXRO,https://hxro.io/,,,n,,,
-7857,333,Mirror Protocol,MIR,https://mirror.finance,,https://github.com/Mirror-Protocol/eth-web-app,n,,Mirror-Protocol/eth-web-app,github
-8911,334,Strike,STRK,https://strike.org,,https://github.com/StrikeFinance,n,,StrikeFinance,github
+3748,332,Hxro,HXRO,https://hxro.io/,,private,y,,,
+7857,333,Mirror Protocol,MIR,https://mirror.finance,,https://github.com/Mirror-Protocol/eth-web-app,y,,Mirror-Protocol/eth-web-app,github
+8911,334,Strike,STRK,https://strike.org,,https://github.com/StrikeFinance/strike-protocol,y,,StrikeFinance/strike-protocol,github
 7208,335,Polkastarter,POLS,https://www.polkastarter.com/,,https://github.com/polkastarter/polkastarter-js,y,polkadot kickstarter,polkastarter/polkastarter-js,github
-8613,336,Alchemix,ALCX,https://alchemix.fi/,,https://github.com/alchemix-finance,n,,alchemix-finance,github
-2665,337,Dero,DERO,https://dero.io,,https://github.com/deroproject/derosuite,n,,deroproject/derosuite,github
-10759,338,DeversiFi,DVF,https://www.deversifi.com/,,https://github.com/DeversiFi,n,,DeversiFi,github
+8613,336,Alchemix,ALCX,https://alchemix.fi/,,https://github.com/alchemix-finance/alchemix-protocol,y,,alchemix-finance/alchemix-protocol,github
+2665,337,Dero,DERO,https://dero.io,,https://github.com/deroproject/derosuite,y,,deroproject/derosuite,github
+10759,338,DeversiFi,DVF,https://www.deversifi.com/,,https://github.com/DeversiFi/dvf-client-js,y,,DeversiFi/dvf-client-js,github
 7046,339,Aavegotchi,GHST,https://aavegotchi.com/,,,n,,,
-1552,341,Enzyme,MLN,https://enzyme.finance/,,https://github.com/enzymefinance,n,,enzymefinance,github
-7590,342,Dvision Network,DVI,https://dvision.network/,,https://github.com/Dvision-Network,n,,Dvision-Network,github
 1974,340,Propy,PRO,https://propy.com/,,,n,,,
-1750,343,GXChain,GXC,https://gxs.gxb.io/en/,,https://github.com/gxchain,n,,gxchain,github
+1552,341,Enzyme,MLN,https://enzyme.finance/,,https://github.com/enzymefinance/protocol,y,,enzymefinance/protocol,github
+7590,342,Dvision Network,DVI,https://dvision.network/,,https://github.com/Dvision-Network/DVIWorld,y,,Dvision-Network/DVIWorld,github
+1750,343,GXChain,GXC,https://gxs.gxb.io/en/,,https://github.com/gxchain/gxips,y,,gxchain/gxips,github
 7963,344,Venus ETH,vETH,https://app.venus.io/dashboard,,,n,,,
 1586,345,Ark,ARK,http://ark.io/,,https://github.com/ArkEcosystem/core,y,,ArkEcosystem/core,github
-12064,347,Cratos,CRTS,https://www.cratostoken.com,,https://github.com/CratosTokenOfficial,n,,CratosTokenOfficial,github
-9720,346,PlatON,LAT,https://platon.network/,,https://github.com/PlatONnetwork,n,,PlatONnetwork,github
+9720,346,PlatON,LAT,https://platon.network/,,https://github.com/PlatONnetwork/PlatON-Go,y,,PlatONnetwork/PlatON-Go,github
+12064,347,Cratos,CRTS,https://www.cratostoken.com,,https://github.com/CratosTokenOfficial/Cratos,y,,CratosTokenOfficial/Cratos,github
 1757,348,FUNToken,FUN,https://funtoken.io/,,https://github.com/funfair-tech/funfair-trulioo-client,y,,funfair-tech/funfair-trulioo-client,github
-2827,349,Phantasma,SOUL,https://phantasma.io/,,https://github.com/phantasma-io,n,,phantasma-io,github
-5350,350,Proton,XPR,https://www.protonchain.com,,https://github.com/ProtonProtocol,n,,ProtonProtocol,github
-8938,351,Ellipsis,EPS,https://www.ellipsis.finance/,,https://github.com/ellipsis-finance,n,,ellipsis-finance,github
+2827,349,Phantasma,SOUL,https://phantasma.io/,,https://github.com/phantasma-io/PhantasmaChain,y,,phantasma-io/PhantasmaChain,github
+5350,350,Proton,XPR,https://www.protonchain.com,,https://github.com/ProtonProtocol/proton-web-sdk,y,,ProtonProtocol/proton-web-sdk,github
+8938,351,Ellipsis,EPS,https://www.ellipsis.finance/,,https://github.com/ellipsis-finance/ellipsis-v2,y,,ellipsis-finance/ellipsis-v2,github
 7288,352,Venus,XVS,https://venus.io/,,https://github.com/SwipeWallet/Venus-Protocol,y,,SwipeWallet/Venus-Protocol,github
 8972,353,Seedify.fund,SFUND,https://launchpad.seedify.fund/,https://staking.seedify.fund/,,n,,,
 5612,354,SOMESING,SSX,https://somesing.io,,,n,,,
-7064,355,BakeryToken,BAKE,https://www.bakeryswap.org/,,https://github.com/BakeryProject,n,,BakeryProject,github
+7064,355,BakeryToken,BAKE,https://www.bakeryswap.org/,,https://github.com/BakeryProject/bakery-swap-core,y,,BakeryProject/bakery-swap-core,github
 7543,356,Hoo Token,HOO,https://hoo.com/,,,n,,,
 3977,357,Sport and Leisure,SNL,https://www.snltoken.io/,,,n,,,
-9892,358,YooShi,YOOSHI,https://www.yooshi.io/,,https://github.com/Yooshi-io,n,,Yooshi-io,github
-5453,359,KardiaChain,KAI,https://www.kardiachain.io/,,https://github.com/kardiachain/go-kardia,n,,kardiachain/go-kardia,github
+9892,358,YooShi,YOOSHI,https://www.yooshi.io/,,https://github.com/Yooshi-io/yooshi-contract,y,,Yooshi-io/yooshi-contract,github
+5453,359,KardiaChain,KAI,https://www.kardiachain.io/,,https://github.com/kardiachain/go-kardia,y,,kardiachain/go-kardia,github
 14822,360,Victoria VR,VR,https://victoriavr.com/,,,n,,,
-5429,361,DEAPcoin,DEP,https://dea.sg/,,https://github.com/Digita-Entertainment-Asset/DEP,n,,Digita-Entertainment-Asset/DEP,github
-8894,362,Deeper Network,DPR,https://www.deeper.network,https://www.shop.deeper.network,https://github.com/e2chain-dev/deeper-chain,n,,e2chain-dev/deeper-chain,github
+5429,361,DEAPcoin,DEP,https://dea.sg/,,https://github.com/Digita-Entertainment-Asset/DEP,y,,Digita-Entertainment-Asset/DEP,github
+8894,362,Deeper Network,DPR,https://www.deeper.network,https://www.shop.deeper.network,https://github.com/e2chain-dev/deeper-chain,y,,e2chain-dev/deeper-chain,github
 2320,363,Utrust,UTK,https://utrust.com/,,https://github.com/utrustdev/utrust-ts-library,y,,utrustdev/utrust-ts-library,github
-2570,364,TomoChain,TOMO,https://tomochain.com/,,https://github.com/tomochain,n,,tomochain,github
-7725,365,TrueFi,TRU,https://truefi.io/,https://www.trusttoken.com/,https://github.com/trusttoken/truefi-spec,n,,trusttoken/truefi-spec,github
-1762,367,Ergo,ERG,https://ergoplatform.org/,,https://github.com/ergoplatform,n,,ergoplatform,github
+2570,364,TomoChain,TOMO,https://tomochain.com/,,https://github.com/tomochain/tomochain,y,,tomochain/tomochain,github
+7725,365,TrueFi,TRU,https://truefi.io/,https://www.trusttoken.com/,https://github.com/trusttoken/truefi-spec,y,,trusttoken/truefi-spec,github
 1788,366,Metal,MTL,https://www.metalpay.com/,,,n,,,
-9104,368,AIOZ Network,AIOZ,https://aioz.network/,,https://github.com/AIOZNetwork,n,,AIOZNetwork,github
+1762,367,Ergo,ERG,https://ergoplatform.org/,,https://github.com/ergoplatform/ergo,y,,ergoplatform/ergo,github
+9104,368,AIOZ Network,AIOZ,https://aioz.network/,,https://github.com/AIOZNetwork/mainnet,y,,AIOZNetwork/mainnet,github
 11568,369,Adventure Gold,AGLD,https://www.lootproject.com/,,,n,,,
-2137,371,Electroneum,ETN,http://electroneum.com/,,https://github.com/electroneum,n,,electroneum,github
-11926,372,Thetan Arena,THG,https://thetanarena.com,https://kardiachain.io,https://github.com/thetanarena/thetan-token,n,,thetanarena/thetan-token,github
-2840,373,QuarkChain,QKC,https://quarkchain.io/,,https://github.com/QuarkChain,n,,QuarkChain,github
-7311,374,Beefy Finance,BIFI,https://beefy.finance/,,https://github.com/beefyfinance,n,,beefyfinance,github
 13655,370,Crabada,CRA,https://www.crabada.com/,,,n,,,
-7958,376,Venus USDC,vUSDC,https://app.venus.io/dashboard,,,n,,,
+2137,371,Electroneum,ETN,http://electroneum.com/,,https://github.com/electroneum/electroneum,y,,electroneum/electroneum,github
+11926,372,Thetan Arena,THG,https://thetanarena.com,https://kardiachain.io,https://github.com/thetanarena/thetan-token,y,,thetanarena/thetan-token,github
+2840,373,QuarkChain,QKC,https://quarkchain.io/,,https://github.com/QuarkChain/pyquarkchain,y,,QuarkChain/pyquarkchain,github
+7311,374,Beefy Finance,BIFI,https://beefy.finance/,,https://github.com/beefyfinance/beefy-app,y,,beefyfinance/beefy-app,github
 9674,375,Wilder World,WILD,https://www.wilderworld.com/,,,n,,,
+7958,376,Venus USDC,vUSDC,https://app.venus.io/dashboard,,,n,,,
 18112,377,Alpine F1 Team Fan Token,ALPINE,https://www.binance.com/en/fan-token/team-profile/alpine,,,n,,,
-1883,378,Adshares,ADS,https://adshares.net/,,https://github.com/adshares,n,,adshares,github
-2927,379,sUSD,SUSD,https://www.synthetix.io/,,https://github.com/Synthetixio,n,,Synthetixio,github
+1883,378,Adshares,ADS,https://adshares.net/,,https://github.com/adshares/adserver,y,,adshares/adserver,github
+2927,379,sUSD,SUSD,https://www.synthetix.io/,,https://github.com/Synthetixio/synthetix,y,,Synthetixio/synthetix,github
 9891,380,BinaryX,BNX,https://www.binaryx.pro/#/,,,n,,,
-2662,381,Haven Protocol,XHV,https://havenprotocol.org/,,https://github.com/haven-protocol-org,n,,haven-protocol-org,github
-3626,382,RSK Smart Bitcoin,RBTC,https://rsk.co,,https://github.com/rsksmart,n,,rsksmart,github
-9119,383,Alien Worlds,TLM,https://alienworlds.io,https://play.alienworlds.io,https://github.com/Alien-Worlds,n,,Alien-Worlds,github
+2662,381,Haven Protocol,XHV,https://havenprotocol.org/,,https://github.com/haven-protocol-org/haven-main,y,,haven-protocol-org/haven-main,github
+3626,382,RSK Smart Bitcoin,RBTC,https://rsk.co,,https://github.com/rsksmart/rskj,y,,rsksmart/rskj,github
+9119,383,Alien Worlds,TLM,https://alienworlds.io,https://play.alienworlds.io,https://github.com/Alien-Worlds/alienteleport,y,,Alien-Worlds/alienteleport,github
 7859,384,Badger DAO,BADGER,https://app.badger.finance/,,https://github.com/Badger-Finance/badger-system,y,,Badger-Finance/badger-system,github
 13523,385,Merit Circle,MC,https://www.meritcircle.io/,,,n,,,
 2222,386,Bitcoin Diamond,BCD,https://www.bitcoindiamond.org/,,https://github.com/eveybcd/BitcoinDiamond,y,,eveybcd/BitcoinDiamond,github
 5908,387,dKargo,DKA,https://dkargo.io/main_en.html,,,n,,,
 11150,388,DeFine,DFA,https://www.define.one/,,,n,,,
 11374,389,Mines of Dalarnia,DAR,https://www.minesofdalarnia.com/,,,n,,,
-2606,390,Wanchain,WAN,https://wanchain.org/,,https://github.com/wanchain,n,,wanchain,github
-7055,391,DeFi Pulse Index,DPI,https://www.indexcoop.com/dpi,,https://github.com/SetProtocol/set-v2,n,,SetProtocol/set-v2,github
-3928,392,IDEX,IDEX,https://idex.io/,,https://github.com/idexio/IDEX,n,,idexio/IDEX,github
-7692,393,e-Radix,EXRD,https://www.radixdlt.com/,https://radixtokens.com/,https://github.com/radixdlt,n,,radixdlt,github
-6748,394,Centrifuge,CFG,https://centrifuge.io/,,https://github.com/centrifuge,n,,centrifuge,github
-10052,395,Gitcoin,GTC,https://gitcoin.co/,,,n,,,
-3816,396,Verasity,VRA,https://www.verasity.io/,https://verasity.tv,https://github.com/verasitytech,n,,verasitytech,github
+2606,390,Wanchain,WAN,https://wanchain.org/,,https://github.com/wanchain/go-wanchain,y,,wanchain/go-wanchain,github
+7055,391,DeFi Pulse Index,DPI,https://www.indexcoop.com/dpi,,https://github.com/SetProtocol/set-v2,y,,SetProtocol/set-v2,github
+3928,392,IDEX,IDEX,https://idex.io/,,https://github.com/idexio/idex-sdk-js,y,,idexio/idex-sdk-js,github
+7692,393,e-Radix,EXRD,https://www.radixdlt.com/,https://radixtokens.com/,https://github.com/radixdlt/radixdlt,y,,radixdlt/radixdlt,github
+6748,394,Centrifuge,CFG,https://centrifuge.io/,,https://github.com/centrifuge/centrifuge-chain,y,,centrifuge/centrifuge-chain,github
+10052,395,Gitcoin,GTC,https://gitcoin.co/,,https://github.com/gitcoinco/gitcoinco,y,,gitcoinco/gitcoinco,github
+3816,396,Verasity,VRA,https://www.verasity.io/,https://verasity.tv,https://github.com/verasitytech/SmartContracts,y,,verasitytech/SmartContracts,github
 5824,397,Smooth Love Potion,SLP,https://axieinfinity.com/,,,n,,,
-2930,398,Everipedia,IQ,https://everipedia.org/,,https://github.com/EveripediaNetwork,n,,EveripediaNetwork,github
-8384,399,Clover Finance,CLV,https://clover.finance/,,https://github.com/clover-network,n,,clover-network,github
-5810,400,bZx Protocol,BZRX,https://bzx.network/,,https://github.com/bZxNetwork,n,,bZxNetwork,github
+2930,398,Everipedia,IQ,https://everipedia.org/,,https://github.com/EveripediaNetwork/Everipedia,y,,EveripediaNetwork/Everipedia,github
+8384,399,Clover Finance,CLV,https://clover.finance/,,https://github.com/clover-network/clover,y,,clover-network/clover,github
+5810,400,bZx Protocol,BZRX,https://bzx.network/,,exclude,y,,,
 4039,401,ARPA Chain,ARPA,https://arpachain.io/,,,n,,,
-5380,402,HUNT,HUNT,https://token.hunt.town/,https://review.hunt.town/,https://github.com/Steemhunt,n,,Steemhunt,github
-6756,404,Acala Token,ACA,https://acala.network/,,https://github.com/AcalaNetwork,n,,AcalaNetwork,github
-4807,405,CertiK,CTK,https://www.shentu.technology/,,https://github.com/ShentuChain,n,,ShentuChain,github
+5380,402,HUNT,HUNT,https://token.hunt.town/,https://review.hunt.town/,https://github.com/Steemhunt/mint.club-contract,y,,Steemhunt/mint.club-contract,github
+7320,403,Neutrino Token,NSBT,https://neutrino.at/,,https://github.com/waves-exchange/neutrino-contract,y,,waves-exchange/neutrino-contract,github
+6756,404,Acala Token,ACA,https://acala.network/,,https://github.com/AcalaNetwork/Acala,y,,AcalaNetwork/Acala,github
+4807,405,CertiK,CTK,https://www.shentu.technology/,,https://github.com/ShentuChain/shentu,y,,ShentuChain/shentu,github
 2424,406,SingularityNET,AGIX,https://singularitynet.io/,,https://github.com/singnet/snet-dapp,y,,singnet/snet-dapp,github
-5601,407,STAKE,STAKE,http://xdaichain.com/,,https://github.com/xdaichain,n,,xdaichain,github
-7320,403,Neutrino Token,NSBT,https://neutrino.at/,,https://github.com/waves-exchange/neutrino-contract,n,,waves-exchange/neutrino-contract,github
-8037,408,Terra Virtua Kolect,TVK,https://terravirtua.io/,,https://etherscan.io/token/0xd084b83c305dafd76ae3e1b4e1f1fe2ecccb3988#code,n,,etherscan.io/token/0xd084b83c305dafd76ae3e1b4e1f1fe2ecccb3988#code,
+5601,407,STAKE,STAKE,http://xdaichain.com/,,https://github.com/xdaichain/easy-staking-contracts,y,,xdaichain/easy-staking-contracts,github
+8037,408,Terra Virtua Kolect,TVK,https://terravirtua.io/,,exclude,y,,,
 7585,409,Freeway Token,FWT,https://freeway.io/,,,n,,,
-8119,410,SafePal,SFP,https://www.safepal.io,,https://github.com/SafePalWallet,n,,SafePalWallet,github
-8245,411,Hydra,HYDRA,https://hydrachain.org/,,https://github.com/Hydra-Chain,n,,Hydra-Chain,github
-7411,412,Covalent,CQT,https://www.covalenthq.com/,,https://github.com/covalenthq,n,,covalenthq,github
-11222,413,Wrapped NCG (Nine Chronicles Gold),WNCG,https://nine-chronicles.com/,,https://github.com/planetarium/NineChronicles,n,,planetarium/NineChronicles,github
-3637,414,Aergo,AERGO,https://www.aergo.io/,,https://github.com/aergoio,n,,aergoio,github
+8119,410,SafePal,SFP,https://www.safepal.io,,exclude,y,,,
+8245,411,Hydra,HYDRA,https://hydrachain.org/,,https://github.com/Hydra-Chain/node,y,,Hydra-Chain/node,github
+7411,412,Covalent,CQT,https://www.covalenthq.com/,,https://github.com/covalenthq/bsp-agent,y,,covalenthq/bsp-agent,github
+11222,413,Wrapped NCG (Nine Chronicles Gold),WNCG,https://nine-chronicles.com/,,https://github.com/planetarium/NineChronicles,y,,planetarium/NineChronicles,github
+3637,414,Aergo,AERGO,https://www.aergo.io/,,https://github.com/aergoio/aergo,y,,aergoio/aergo,github
 5728,415,Balancer,BAL,https://balancer.finance/,http://balancer.exchange/,https://github.com/balancer-labs/balancer-core,y,,balancer-labs/balancer-core,github
-2896,416,Hifi Finance,MFT,https://hifi.finance/,,https://github.com/MainframeHQ,n,,MainframeHQ,github
-7236,417,Celo Dollar,CUSD,https://celo.org/,https://thecelo.com/,https://github.com/celo-org,n,,celo-org,github
-2588,418,Loom Network,LOOM,https://loomx.io/,,https://github.com/loomnetwork,n,,loomnetwork,github
+2896,416,Hifi Finance,MFT,https://hifi.finance/,,https://github.com/hifi-finance/hifi,y,,hifi-finance/hifi,github
+7236,417,Celo Dollar,CUSD,https://celo.org/,https://thecelo.com/,https://github.com/celo-org/celo-blockchain,y,,celo-org/celo-blockchain,github
+2588,418,Loom Network,LOOM,https://loomx.io/,,https://github.com/loomnetwork/loom-js,y,,loomnetwork/loom-js,github
 3351,419,ZB Token,ZB,https://www.zb.com/,,private,y,,,
 5957,420,DFI.Money,YFII,https://dfi.money/#/,,,n,,,
 4056,421,Ampleforth,AMPL,https://www.ampleforth.org/,,https://github.com/ampleforth/uFragments,y,,ampleforth/uFragments,github
 5007,422,TROY,TROY,https://troytrade.com/,,,n,,,
 5338,423,Somnium Space Cubes,CUBE,https://somniumspace.com/,,,n,,,
 11367,424,Aurory,AURY,https://aurory.io/,,,n,,,
-7535,425,Keep3rV1,KP3R,https://keep3r.network/,,https://github.com/keep3r-network/keep3r.network,n,,keep3r-network/keep3r.network,github
-9421,426,Ampleforth Governance Token,FORTH,https://www.ampleforth.org/,,https://github.com/ampleforth/Forth,n,,ampleforth/Forth,github
+7535,425,Keep3rV1,KP3R,https://keep3r.network/,,https://github.com/keep3r-network/keep3r.network,y,,keep3r-network/keep3r.network,github
+9421,426,Ampleforth Governance Token,FORTH,https://www.ampleforth.org/,,https://github.com/ampleforth/ampleforth-contracts,y,,ampleforth/ampleforth-contracts,github
 3742,427,Chimpion,BNANA,https://www.chimpion.io,,,n,,,
 2776,428,Travala.com,AVA,https://www.travala.com/,https://book.travala.com/,https://github.com/travala/Booking-SC,y,,travala/Booking-SC,github
-7978,429,Bonfida,FIDA,https://bonfida.com,https://solible.com,https://github.com/dr497,n,,dr497,github
-5221,430,Handshake,HNS,https://handshake.org/,,https://github.com/handshake-org,n,,handshake-org,github
-3874,431,IRISnet,IRIS,https://www.irisnet.org/,,https://github.com/irisnet,n,,irisnet,github
-8200,432,Shapeshift FOX Token,FOX,https://shapeshift.com/,,,n,,,
-2245,433,Presearch,PRE,https://www.presearch.io/,https://www.presearch.org/,https://github.com/presearchofficial,n,,presearchofficial,github
-8985,434,Efinity Token,EFI,https://enjin.io/products/efinity,https://enjin.io,https://github.com/enjin/contracts-efi,n,,enjin/contracts-efi,github
-7678,436,KeeperDAO,ROOK,https://app.keeperdao.com/,,,n,,,
+7978,429,Bonfida,FIDA,https://bonfida.com,https://solible.com,https://github.com/Bonfida/agnostic-orderbook,y,,Bonfida/agnostic-orderbook,github
+5221,430,Handshake,HNS,https://handshake.org/,,https://github.com/handshake-org/hsd,y,,handshake-org/hsd,github
+3874,431,IRISnet,IRIS,https://www.irisnet.org/,,https://github.com/irisnet/irishub,y,,irisnet/irishub,github
+8200,432,Shapeshift FOX Token,FOX,https://shapeshift.com/,,private,y,,,
+2245,433,Presearch,PRE,https://www.presearch.io/,https://www.presearch.org/,https://github.com/PresearchOfficial/presearch-packages,y,,PresearchOfficial/presearch-packages,github
+8985,434,Efinity Token,EFI,https://enjin.io/products/efinity,https://enjin.io,private,y,,,
 15678,435,Voxies,VOXEL,https://voxies.io/,,,n,,,
+7678,436,KeeperDAO,ROOK,https://app.keeperdao.com/,,,n,,,
 15585,437,GuildFi,GF,https://guildfi.com/,,,n,,,
 2441,438,Molecular Future,MOF,http://www.molecular.cc/,,,n,,,
-8541,439,SifChain,erowan,https://sifchain.finance/,,https://github.com/Sifchain,n,,Sifchain,github
-8100,440,ankrETH,aEth,https://stkr.io/,,https://github.com/Ankr-network/stkr-smartcontract-public,n,,Ankr-network/stkr-smartcontract-public,github
+8541,439,SifChain,erowan,https://sifchain.finance/,,https://github.com/Sifchain/sifnode,y,,Sifchain/sifnode,github
+8100,440,ankrETH,aEth,https://stkr.io/,,https://github.com/Ankr-network/ankr-chain,y,,Ankr-network/ankr-chain,github
 788,441,Circuits of Value,COVAL,https://circuitsofvalue.com/,https://www.emblem.pro,,n,,,
-6859,442,Harvest Finance,FARM,https://harvest.finance/,,https://github.com/harvest-finance,n,,harvest-finance,github
-11232,443,Highstreet,HIGH,https://highstreet.market,,https://github.com/TravisBuilds/HighStreet,n,,TravisBuilds/HighStreet,github
+6859,442,Harvest Finance,FARM,https://harvest.finance/,,https://github.com/harvest-finance/harvest,y,,harvest-finance/harvest,github
+11232,443,Highstreet,HIGH,https://highstreet.market,,https://github.com/TravisBuilds/HighStreet,y,,TravisBuilds/HighStreet,github
 9020,444,Toko Token,TKO,https://www.tokocrypto.com/,,,n,,,
+8044,445,Adappter Token,ADP,https://adappter.io/eng.html,,https://github.com/sinestcorp/Adappter,y,,sinestcorp/Adappter,github
 4467,446,Nestree,EGG,https://www.nestree.io/,https://blog.naver.com/nestree_io,,n,,,
-8525,447,Rai Reflex Index,RAI,https://reflexer.finance/,,https://github.com/reflexer-labs,n,,reflexer-labs,github
-8044,445,Adappter Token,ADP,https://adappter.io/eng.html,,https://github.com/sinestcorp/Adappter,n,,sinestcorp/Adappter,github
-8615,448,Ethernity Chain,ERN,https://ethernity.io/,https://ethernity.co/,,n,,,
+8525,447,Rai Reflex Index,RAI,https://reflexer.finance/,,https://github.com/reflexer-labs/auction-keeper,y,,reflexer-labs/auction-keeper,github
+8615,448,Ethernity Chain,ERN,https://ethernity.io/,https://ethernity.co/,private,y,,,
+15261,449,ONUS,ONUS,https://goonus.io/en,,https://github.com/ONUS-APP/smart-contract,y,,ONUS-APP/smart-contract,github
+6724,450,Klever,KLV,https://www.klever.io/,,private,y,,,
 3946,451,Carry,CRE,https://carryprotocol.io/,,,n,,,
-15261,449,ONUS,ONUS,https://goonus.io/en,,https://github.com/ONUS-APP/smart-contract,n,,ONUS-APP/smart-contract,github
-8206,452,QuickSwap,QUICK,https://quickswap.exchange/,https://info.quickswap.exchange/#/home,https://github.com/QuickSwap,n,,QuickSwap,github
-6724,450,Klever,KLV,https://www.klever.io/,,https://github.com/klever-app,n,,klever-app,github
-12387,453,Ribbon Finance,RBN,https://www.ribbon.finance/,,https://github.com/ribbon-finance,n,,ribbon-finance,github
-3930,454,ThunderCore,TT,https://www.thundercore.com,,https://github.com/thundercore,n,,thundercore,github
-8827,455,Boson Protocol,BOSON,http://bosonprotocol.io,,https://github.com/bosonprotocol,n,,bosonprotocol,github
-7102,456,Linear,LINA,https://linear.finance,,https://github.com/Linear-finance,n,,Linear-finance,github
-5354,457,PEAKDEFI,PEAK,http://peakdefi.com/,https://app.peakdefi.com/,https://github.com/peakdefi,n,,peakdefi,github
-6841,459,Phala Network,PHA,https://phala.network/,,https://github.com/Phala-Network,n,,Phala-Network,github
-5279,460,Sologenic,SOLO,https://www.sologenic.com/,,https://github.com/sologenic,n,,sologenic,github
-1993,458,Kin,KIN,https://www.kin.org/,,https://github.com/kinecosystem,n,,kinecosystem,github
-2610,461,PECULIUM (old),PCL,http://peculium.io,https://saieve.io/,https://github.com/Peculium-Dev/PCLToken,n,,Peculium-Dev/PCLToken,github
-4036,463,Contentos,COS,https://www.contentos.io/,,https://github.com/coschain,n,,coschain,github
-11294,462,SuperRare,RARE,https://superrare.com/,,,n,,,
+8206,452,QuickSwap,QUICK,https://quickswap.exchange/,https://info.quickswap.exchange/#/home,https://github.com/QuickSwap/quickswap-core,y,,QuickSwap/quickswap-core,github
+12387,453,Ribbon Finance,RBN,https://www.ribbon.finance/,,https://github.com/ribbon-finance/ribbon-v2,y,,ribbon-finance/ribbon-v2,github
+3930,454,ThunderCore,TT,https://www.thundercore.com,,https://github.com/thundercore/thundercore-localchain,y,,thundercore/thundercore-localchain,github
+8827,455,Boson Protocol,BOSON,http://bosonprotocol.io,,https://github.com/bosonprotocol/contracts,y,,bosonprotocol/contracts,github
+7102,456,Linear,LINA,https://linear.finance,,https://github.com/Linear-finance/linear,y,,Linear-finance/linear,github
+5354,457,PEAKDEFI,PEAK,http://peakdefi.com/,https://app.peakdefi.com/,https://github.com/PeakDeFi/contracts,y,,PeakDeFi/contracts,github
+1993,458,Kin,KIN,https://www.kin.org/,,https://github.com/kinecosystem/kin-node,y,,kinecosystem/kin-node,github
+6841,459,Phala Network,PHA,https://phala.network/,,https://github.com/Phala-Network/phala-blockchain,y,,Phala-Network/phala-blockchain,github
+5279,460,Sologenic,SOLO,https://www.sologenic.com/,,https://github.com/sologenic/sologenic-xrpl-stream-js,y,,sologenic/sologenic-xrpl-stream-js,github
+2610,461,PECULIUM (old),PCL,http://peculium.io,https://saieve.io/,https://github.com/Peculium-Dev/PCLToken,y,,Peculium-Dev/PCLToken,github
+11294,462,SuperRare,RARE,https://superrare.com/,,private,y,,,
+4036,463,Contentos,COS,https://www.contentos.io/,,https://github.com/coschain/contentos-go,y,,coschain/contentos-go,github
 4950,464,LCX,LCX,https://www.lcx.com,http://t.me/LCXNews,,n,,,
 7242,465,cVault.finance,CORE,https://cvault.finance/,,,n,,,
-10188,466,Automata Network,ATA,https://ata.network,,https://git.io/Jsbrp,n,,git.io/Jsbrp,
-2492,467,Elastos,ELA,https://elastos.info,https://elastos.org,https://github.com/elastos,n,,elastos,github
-8707,468,Alpaca Finance,ALPACA,https://www.alpacafinance.org/,,https://github.com/alpaca-finance,n,,alpaca-finance,github
-8107,469,Cobak Token,CBK,https://cobak.co.kr/,,https://github.com/cobak-dev/token-profile,n,,cobak-dev/token-profile,github
-7460,470,Alpha Quark Token,AQT,https://alphaquark.io/,,https://github.com/alphaquark,n,,alphaquark,github
-1521,471,Komodo,KMD,https://komodoplatform.com/,,https://github.com/KomodoPlatform,n,,KomodoPlatform,github
-3714,472,LTO Network,LTO,https://www.ltonetwork.com/,,https://github.com/ltonetwork,n,,ltonetwork,github
+10188,466,Automata Network,ATA,https://ata.network,,https://github.com/automata-network/automata,y,,automata-network/automata,github
+2492,467,Elastos,ELA,https://elastos.info,https://elastos.org,https://github.com/elastos/Elastos,y,,elastos/Elastos,github
+8707,468,Alpaca Finance,ALPACA,https://www.alpacafinance.org/,,https://github.com/alpaca-finance/bsc-alpaca-contract,y,,alpaca-finance/bsc-alpaca-contract,github
+8107,469,Cobak Token,CBK,https://cobak.co.kr/,,https://github.com/cobak-dev/token-profile,y,,cobak-dev/token-profile,github
+7460,470,Alpha Quark Token,AQT,https://alphaquark.io/,,https://github.com/alphaquark/defi-contracts,y,,alphaquark/defi-contracts,github
+1521,471,Komodo,KMD,https://komodoplatform.com/,,https://github.com/KomodoPlatform/atomicDEX-Desktop,y,,KomodoPlatform/atomicDEX-Desktop,github
+3714,472,LTO Network,LTO,https://www.ltonetwork.com/,,https://github.com/ltonetwork/lto-public-chain,y,,ltonetwork/lto-public-chain,github
 463,473,BitShares,BTS,https://bitshares.org,,https://github.com/bitshares/bitshares-core,y,,bitshares/bitshares-core,github
-4441,474,Vectorspace AI,VXV,https://vectorspace.ai,,https://gist.github.com/Vectorspace-API,n,,.com/Vectorspace-API,github
-4191,475,Syntropy,NOIA,http://syntropynet.com/,,https://github.com/SyntropyNet,n,,SyntropyNet,github
+4441,474,Vectorspace AI,VXV,https://vectorspace.ai,,exclude,y,,,
+4191,475,Syntropy,NOIA,http://syntropynet.com/,,https://github.com/SyntropyNet/syntropy-agent,y,,SyntropyNet/syntropy-agent,github
 7150,476,Flamingo,FLM,https://flamingo.finance/,,,n,,,
-5266,477,MiL.k,MLK,http://milkalliance.io/,,https://github.com/key-inside,n,,key-inside,github
+5266,477,MiL.k,MLK,http://milkalliance.io/,,private,y,,,
 2319,478,Qcash,QC,https://quickcash.com/,https://www.zb.cn,,n,,,
-15257,481,EverRise,RISE,https://www.everrise.com/,,https://github.com/everrise-ecosystem,n,,everrise-ecosystem,github
-5049,479,VerusCoin,VRSC,http://www.veruscoin.io,,https://github.com/veruscoin/veruscoin,n,,veruscoin/veruscoin,github
-213,482,MonaCoin,MONA,http://monacoin.org,,https://github.com/monacoinproject/monacoin,n,,monacoinproject/monacoin,github
-6138,484,DIA,DIA,https://diadata.org/,,https://github.com/diadata-org,n,,diadata-org,github
-8034,480,BioPassport Token,BIOT,https://biopassport.io,,https://github.com/biopassport/contract,n,,biopassport/contract,github
-10180,485,GMT Token,GMT,https://gmt.io/,,https://github.com/gomining-token/smart,n,,gomining-token/smart,github
+5049,479,VerusCoin,VRSC,http://www.veruscoin.io,,https://github.com/veruscoin/veruscoin,y,,veruscoin/veruscoin,github
+8034,480,BioPassport Token,BIOT,https://biopassport.io,,https://github.com/biopassport/contract,y,,biopassport/contract,github
+15257,481,EverRise,RISE,https://www.everrise.com/,,https://github.com/everrise-ecosystem/contracts-public,y,,everrise-ecosystem/contracts-public,github
+213,482,MonaCoin,MONA,http://monacoin.org,,https://github.com/monacoinproject/monacoin,y,,monacoinproject/monacoin,github
 7206,483,TitanSwap,TITAN,https://titanswap.org/,,,n,,,
-7654,486,RFOX,RFOX,https://rfox.com,https://rfoxvalt.com/,https://etherscan.io/token/0xa1d6df714f91debf4e0802a542e13067f31b8262#readContract,n,,etherscan.io/token/0xa1d6df714f91debf4e0802a542e13067f31b8262#readContract,
-4862,487,DAD,DAD,https://dad.one/,,https://github.com/DAD-Chain,n,,DAD-Chain,github
+6138,484,DIA,DIA,https://diadata.org/,,https://github.com/diadata-org/diadata,y,,diadata-org/diadata,github
+10180,485,GMT Token,GMT,https://gmt.io/,,https://github.com/gomining-token/smart,y,,gomining-token/smart,github
+7654,486,RFOX,RFOX,https://rfox.com,https://rfoxvalt.com/,exclude,y,,,
+4862,487,DAD,DAD,https://dad.one/,,https://github.com/DAD-Chain/dad-go,y,,DAD-Chain/dad-go,github
 9868,488,XCAD Network,XCAD,https://xcademytoken.com/,,,n,,,
-11562,489,Kava Swap,SWP,https://www.kava.io/swap,https://app.kava.io/swap/pools,https://github.com/kava-labs,n,,kava-labs,github
+11562,489,Kava Swap,SWP,https://www.kava.io/swap,https://app.kava.io/swap/pools,exclude,y,double of KAVA,,
 17145,490,League of Kingdoms Arena,LOKA,https://www.leagueofkingdoms.com/,https://play.leagueofkingdoms.com/,,n,,,
 5614,491,Zelwin,ZLW,https://zelwin.com/,,,n,,,
-3914,493,GlitzKoin,GTN,https://www.glitzkoin.com/,,,n,,,
 6069,492,Assemble Protocol,ASM,http://assembleprotocol.io/,,,n,,,
-2134,494,Grid+,GRID,http://gridplus.io/,,https://github.com/gridplus,n,,gridplus,github
-10293,495,Swarm,BZZ,https://www.ethswarm.org/,,https://github.com/ethersphere,n,,ethersphere,github
-2915,496,Moss Coin,MOC,https://moss.land,,https://github.com/mossland,n,,mossland,github
-2630,497,PolySwarm,NCT,https://polyswarm.io/,,https://github.com/polyswarm,n,,polyswarm,github
-10974,498,Tranchess,CHESS,https://tranchess.com/,,https://github.com/tranchess/contract-core,n,,tranchess/contract-core,github
+3914,493,GlitzKoin,GTN,https://www.glitzkoin.com/,,,n,,,
+2134,494,Grid+,GRID,http://gridplus.io/,,https://github.com/GridPlus/gridplus-sdk,y,,GridPlus/gridplus-sdk,github
+10293,495,Swarm,BZZ,https://www.ethswarm.org/,,https://github.com/ethersphere/bee,y,,ethersphere/bee,github
+2915,496,Moss Coin,MOC,https://moss.land,,exclude,y,,,
+2630,497,PolySwarm,NCT,https://polyswarm.io/,,https://github.com/polyswarm/polyswarm-cli,y,,polyswarm/polyswarm-cli,github
+10974,498,Tranchess,CHESS,https://tranchess.com/,,https://github.com/tranchess/contract-core,y,,tranchess/contract-core,github
 3695,499,Hyperion,HYN,https://www.hyn.space/,,,n,,,
-3481,501,Peony,PNY,https://peony.net/,,https://github.com/decenomy/PNY,n,,decenomy/PNY,github
-10223,500,Vega Protocol,VEGA,https://vega.xyz,https://fairground.wtf,https://github.com/vegaprotocol,n,,vegaprotocol,github
+10223,500,Vega Protocol,VEGA,https://vega.xyz,https://fairground.wtf,https://github.com/vegaprotocol/vegawallet,y,,vegaprotocol/vegawallet,github
+3481,501,Peony,PNY,https://peony.net/,,https://github.com/decenomy/PNY,y,,decenomy/PNY,github
 3968,502,Elitium,EUM,https://www.elitium.io,https://app.elitium.io/,,n,,,
 8660,503,BSCPAD,BSCPAD,https://bscpad.com/,,,n,,,
 8258,504,CUDOS,CUDOS,https://www.cudos.org/,,,n,,,
-2143,505,Streamr,DATA,https://streamr.network,,https://github.com/streamr-dev,n,,streamr-dev,github
+2143,505,Streamr,DATA,https://streamr.network,,https://github.com/streamr-dev/network-monorepo,y,,streamr-dev/network-monorepo,github
 7959,506,Venus BUSD,vBUSD,https://app.venus.io/dashboard,,,n,,,
-1768,507,Ambire AdEx,ADX,https://www.adex.network/,,https://github.com/AmbireTech,n,,AmbireTech,github
-1556,508,Chrono.tech,TIME,https://chrono.tech/,,https://github.com/Chrono-Tech,n,,Chrono-Tech,github
-5821,510,Aleph.im,ALEPH,https://aleph.im/,,https://github.com/aleph-im,n,,aleph-im,github
+1768,507,Ambire AdEx,ADX,https://www.adex.network/,,https://github.com/AmbireTech/adex-protocol-eth,y,,AmbireTech/adex-protocol-eth,github
+1556,508,Chrono.tech,TIME,https://chrono.tech/,,https://github.com/Chrono-Tech/ChronoMint,y,,Chrono-Tech/ChronoMint,github
 10744,509,DeRace,DERC,https://www.derace.com,,,n,,,
+5821,510,Aleph.im,ALEPH,https://aleph.im/,,https://github.com/aleph-im/pyaleph,y,,aleph-im/pyaleph,github
 10641,511,RichQUACK.com,QUACK,https://www.richquack.com,,,n,,,
-8669,512,Sovryn,SOV,https://sovryn.app/,https://live.sovryn.app/,https://github.com/DistributedCollective,n,,DistributedCollective,github
-9461,513,X World Games,XWG,https://xwg.games/,https://www.xwggame.com/,https://github.com/XWorldGames,n,,XWorldGames,github
-1414,514,Firo,FIRO,https://firo.org/,,https://github.com/firoorg,n,,firoorg,github
+8669,512,Sovryn,SOV,https://sovryn.app/,https://live.sovryn.app/,https://github.com/DistributedCollective/Sovryn-smart-contracts,y,,DistributedCollective/Sovryn-smart-contracts,github
+9461,513,X World Games,XWG,https://xwg.games/,https://www.xwggame.com/,https://github.com/XWorldGames/XWG-contracts,y,,XWorldGames/XWG-contracts,github
+1414,514,Firo,FIRO,https://firo.org/,,https://github.com/firoorg/firo,y,,firoorg/firo,github
 7228,515,DerivaDAO,DDX,https://derivadex.com/,,,n,,,
 5622,516,Darma Cash,DMCH,https://www.darmacash.com/,,,n,,,
 11212,517,Star Atlas,ATLAS,https://staratlas.com,https://play.staratlas.com,,n,,,
-11035,518,Splintershards,SPS,https://splinterlands.com,,https://github.com/steem-monsters,n,,steem-monsters,github
+11035,518,Splintershards,SPS,https://splinterlands.com,,https://github.com/steem-monsters/splinterlands-js,y,,steem-monsters/splinterlands-js,github
 9721,519,Samoyedcoin,SAMO,https://samoyedcoin.com/,,,n,,,
 4366,520,MixMarvel,MIX,https://www.mixmarvel.com/,,,n,,,
 5829,521,TrustSwap,SWAP,https://trustswap.org/,,https://github.com/trustswap/swap-contracts,y,,trustswap/swap-contracts,github
 2933,522,BitMart Token,BMX,https://www.bitmart.com/,,,n,,,
-6216,523,AXEL,AXEL,https://www.axel.org/,https://www.axel.org/axel-network/,https://github.com/axelnetwork,n,,axelnetwork,github
+6216,523,AXEL,AXEL,https://www.axel.org/,https://www.axel.org/axel-network/,https://github.com/axelnetwork/AXEL,y,,axelnetwork/AXEL,github
 2273,524,Uquid Coin,UQC,https://uquidcoin.com,https://uquid.com,,n,,,
-6957,525,AllianceBlock,ALBT,https://allianceblock.io/,,https://github.com/Stichting-AllianceBlock-Foundation,n,,Stichting-AllianceBlock-Foundation,github
+6957,525,AllianceBlock,ALBT,https://allianceblock.io/,,https://github.com/Stichting-AllianceBlock-Foundation/AllianceBlock-Contracts,y,,Stichting-AllianceBlock-Foundation/AllianceBlock-Contracts,github
+9638,526,SingularityDAO,SDAO,https://www.singularitydao.ai/,,exclude,y,,,
 2866,527,Sentinel Protocol,UPP,https://sentinelprotocol.io,,,n,,,
-9638,526,SingularityDAO,SDAO,https://www.singularitydao.ai/,,https://github.com/singularitydao,n,,singularitydao,github
-3581,528,Kleros,PNK,https://kleros.io/,,https://github.com/kleros,n,,kleros,github
-11234,529,Position Exchange,POSI,https://position.exchange/,,https://github.com/PositionExchange/position-token,n,,PositionExchange/position-token,github
-4275,530,Cocos-BCX,COCOS,https://www.cocosbcx.io/,,https://github.com/cocos-bcx,n,,cocos-bcx,github
-7824,531,Vai,VAI,https://venus.io,,https://github.com/SwipeWallet/Venus-Protocol,n,,SwipeWallet/Venus-Protocol,github
-5299,532,HyperDAO,HDAO,http://www.hyperdao.com,,https://github.com/hyperdao,n,,hyperdao,github
-5947,533,TokenPocket,TPT,https://www.tokenpocket.pro/,,https://github.com/TP-Lab,n,,TP-Lab,github
-7509,534,BoringDAO,BOR,https://www.boringdao.com/,,https://github.com/BoringDAO,n,,BoringDAO,github
-6830,535,KILT Protocol,KILT,https://kilt.io/,,https://github.com/KILTprotocol,n,,KILTprotocol,github
-2763,536,Morpheus.Network,MNW,https://morpheus.network/,,https://github.com/MorpheusNetwork,n,,MorpheusNetwork,github
-2021,538,RChain,REV,https://www.rchain.coop/,,https://github.com/rchain,n,,rchain,github
-7440,537,BarnBridge,BOND,https://barnbridge.com/,,https://github.com/BarnBridge,n,,BarnBridge,github
-3175,539,Maro,MARO,https://ma.ro/#/,,https://github.com/TTCECO/gttc,n,,TTCECO/gttc,github
-5060,540,XeniosCoin,XNC,https://xenioscoin.com,,https://github.com/xeniosproject/xenioscoin,n,,xeniosproject/xenioscoin,github
+3581,528,Kleros,PNK,https://kleros.io/,,https://github.com/kleros/kleros,y,,kleros/kleros,github
+11234,529,Position Exchange,POSI,https://position.exchange/,,https://github.com/PositionExchange/position-token,y,,PositionExchange/position-token,github
+4275,530,Cocos-BCX,COCOS,https://www.cocosbcx.io/,,https://github.com/Cocos-BCX/cocos-mainnet,y,,Cocos-BCX/cocos-mainnet,github
+7824,531,Vai,VAI,https://venus.io,,https://github.com/SwipeWallet/Venus-Protocol,y,,SwipeWallet/Venus-Protocol,github
+5299,532,HyperDAO,HDAO,http://www.hyperdao.com,,https://github.com/hyperdao/hdd,y,,hyperdao/hdd,github
+5947,533,TokenPocket,TPT,https://www.tokenpocket.pro/,,https://github.com/TP-Lab/tp-js-sdk,y,,TP-Lab/tp-js-sdk,github
+7509,534,BoringDAO,BOR,https://www.boringdao.com/,,https://github.com/BoringDAO/boringDAO-contract,y,,BoringDAO/boringDAO-contract,github
+6830,535,KILT Protocol,KILT,https://kilt.io/,,https://github.com/KILTprotocol/kilt-node,y,,KILTprotocol/kilt-node,github
+2763,536,Morpheus.Network,MNW,https://morpheus.network/,,private,y,,,
+7440,537,BarnBridge,BOND,https://barnbridge.com/,,https://github.com/BarnBridge/BarnBridge-SmartYieldBonds,y,,BarnBridge/BarnBridge-SmartYieldBonds,github
+2021,538,RChain,REV,https://www.rchain.coop/,,https://github.com/rchain/rchain,y,,rchain/rchain,github
+3175,539,Maro,MARO,https://ma.ro/#/,,https://github.com/TTCECO/gttc,y,,TTCECO/gttc,github
+5060,540,XeniosCoin,XNC,https://xenioscoin.com,,https://github.com/xeniosproject/xenioscoin,y,,xeniosproject/xenioscoin,github
 2553,541,Refereum,RFR,https://refereum.com/,,,n,,,
 2490,542,CargoX,CXO,https://cargox.io/,https://www.cxo-token.io/,,n,,,
 5939,543,Wrapped NXM,WNXM,https://nexusmutual.io/,,,n,,,
-8049,545,Tornado Cash,TORN,https://app.tornado.cash/,,https://github.com/tornadocash,n,,tornadocash,github
 2505,544,Bluzelle,BLZ,https://bluzelle.com/,,,n,,,
+8049,545,Tornado Cash,TORN,https://app.tornado.cash/,,https://github.com/tornadocash/tornado-core,y,,tornadocash/tornado-core,github
+258,546,Groestlcoin,GRS,http://www.groestlcoin.org/,,https://github.com/Groestlcoin/groestlcoin,y,,Groestlcoin/groestlcoin,github
 7576,547,Kava Lend,HARD,https://kava.io/lend,https://app.kava.io/lend,,n,,,
-258,546,Groestlcoin,GRS,http://www.groestlcoin.org/,,https://github.com/Groestlcoin,n,,Groestlcoin,github
-2638,548,Cortex,CTXC,http://www.cortexlabs.ai/,,https://github.com/CortexFoundation,n,,CortexFoundation,github
+2638,548,Cortex,CTXC,http://www.cortexlabs.ai/,,https://github.com/CortexFoundation/CortexTheseus,y,,CortexFoundation/CortexTheseus,github
 1785,549,Gas,GAS,https://neo.org/,,,n,,,
+5893,550,Frontier,FRONT,https://frontier.xyz/,https://frontier.xyz/front/,https://github.com/frontierdotxyz/brand-assets,y,,frontierdotxyz/brand-assets,github
 10049,551,Manchester City Fan Token,CITY,https://www.socios.com,https://www.chiliz.com,,n,,,
-5893,550,Frontier,FRONT,https://frontier.xyz/,https://frontier.xyz/front/,https://github.com/frontierdotxyz,n,,frontierdotxyz,github
 7224,552,DODO,DODO,https://dodoex.io/,,https://github.com/DODOEX/contractV2,y,,DODOEX/contractV2,github
-1312,553,Steem Dollars,SBD,https://steem.io/,,https://github.com/steemit/steem,n,,steemit/steem,github
+1312,553,Steem Dollars,SBD,https://steem.io/,,exclude,y,double of STEEM (id 1230),,
 5877,554,Rarible,RARI,https://app.rarible.com/rari,,,n,,,
-4944,557,Tellor,TRB,https://tellor.io/,,https://github.com/tellor-io,n,,tellor-io,github
+12506,555,NFTY Network,NFTY,https://nftynetwork.io,https://nftylabs.org,https://github.com/nftylabs/token,y,,nftylabs/token,github
 11461,556,Marinade Staked SOL,MSOL,https://marinade.finance/,,,n,,,
-12506,555,NFTY Network,NFTY,https://nftynetwork.io,https://nftylabs.org,https://github.com/nftylabs/token,n,,nftylabs/token,github
-7429,558,Liquity,LQTY,https://www.liquity.org/,,https://github.com/liquity/dev,n,,liquity/dev,github
-9201,560,StackOs,STACK,https://www.stackos.io/,,,n,,,
+4944,557,Tellor,TRB,https://tellor.io/,,https://github.com/tellor-io/telliot-core,y,,tellor-io/telliot-core,github
+7429,558,Liquity,LQTY,https://www.liquity.org/,,https://github.com/liquity/dev,y,,liquity/dev,github
 8166,559,MAPS,MAPS,https://maps.me/token/,,,n,,,
-1856,563,district0x,DNT,https://district0x.io/,,https://github.com/district0x,n,,district0x,github
-6833,562,Litentry,LIT,https://www.litentry.com/,,https://github.com/litentry,n,,litentry,github
+9201,560,StackOs,STACK,https://www.stackos.io/,,,n,,,
 6679,561,WHALE,WHALE,https://whale.me/,https://app.tryroll.com/token/WHALE,,n,,,
-4134,564,Akropolis,AKRO,https://akropolis.io/,,https://github.com/akropolisio,n,,akropolisio,github
-2062,565,Aion,AION,https://theoan.com/,https://aion.network/,https://github.com/aionnetwork,n,,aionnetwork,github
-16434,566,Ooki Protocol,OOKI,https://hello.ooki.com,https://ooki.com,https://github.com/OokiOfficial,n,,OokiOfficial,github
-4268,567,NewYork Exchange,NYE,https://www.nyecoin.io/,,https://github.com/nyecoin/NYE,n,,nyecoin/NYE,github
-5865,569,FIO Protocol,FIO,https://fioprotocol.io/,https://kb.fioprotocol.io/,https://github.com/fioprotocol,n,,fioprotocol,github
-8992,568,Cellframe,CELL,https://cellframe.net/,,https://github.com/demlabs-cellframe,n,,demlabs-cellframe,github
+6833,562,Litentry,LIT,https://www.litentry.com/,,https://github.com/litentry/litentry-parachain,y,,litentry/litentry-parachain,github
+1856,563,district0x,DNT,https://district0x.io/,,https://github.com/district0x/district0x-network-token,y,,district0x/district0x-network-token,github
+4134,564,Akropolis,AKRO,https://akropolis.io/,,https://github.com/akropolisio/AkropolisToken,y,,akropolisio/AkropolisToken,github
+2062,565,Aion,AION,https://theoan.com/,https://aion.network/,https://github.com/aionnetwork/aion,y,,aionnetwork/aion,github
+16434,566,Ooki Protocol,OOKI,https://hello.ooki.com,https://ooki.com,private,y,,,
+4268,567,NewYork Exchange,NYE,https://www.nyecoin.io/,,https://github.com/nyecoin/NYE,y,,nyecoin/NYE,github
+8992,568,Cellframe,CELL,https://cellframe.net/,,https://github.com/demlabs-cellframe/cellframe-node,y,,demlabs-cellframe/cellframe-node,github
+5865,569,FIO Protocol,FIO,https://fioprotocol.io/,https://kb.fioprotocol.io/,https://github.com/fioprotocol/fio,y,,fioprotocol/fio,github
 4090,570,Wirex Token,WXT,https://wirexapp.com/,,,n,,,
 2941,571,CoinEx Token,CET,https://www.coinex.org/,https://www.coinex.com/,,n,,,
-10334,572,BabySwap,BABY,https://home.babyswap.finance/,,https://github.com/babyswap,n,,babyswap,github
-8083,573,Tokenlon Network Token,LON,https://tokenlon.im/lon,,https://github.com/consenlabs,n,,consenlabs,github
+10334,572,BabySwap,BABY,https://home.babyswap.finance/,,https://github.com/babyswap/baby-swap-contract,y,,babyswap/baby-swap-contract,github
+8083,573,Tokenlon Network Token,LON,https://tokenlon.im/lon,,https://github.com/consenlabs/token-core,y,,consenlabs/token-core,github
 7960,574,Venus XVS,vXVS,https://app.venus.io/dashboard,,,n,,,
-5401,575,CoinLoan,CLT,https://coinloan.io/,,https://github.com/coinloan/CoinLoanToken,n,,coinloan/CoinLoanToken,github
+5401,575,CoinLoan,CLT,https://coinloan.io/,,https://github.com/coinloan/CoinLoanToken,y,,coinloan/CoinLoanToken,github
 9277,576,Revolution Populi,RVP,https://revolutionpopuli.com/,,,n,,,
-9741,577,Solanium,SLIM,https://www.solanium.io/,,https://github.com/solanium-io,n,,solanium-io,github
+9741,577,Solanium,SLIM,https://www.solanium.io/,,https://github.com/solanium-io/aws-solana-validator,y,,solanium-io/aws-solana-validator,github
 5747,578,mStable USD,MUSD,https://mstable.org/,,,n,,,
-8024,579,Mirrored iShares Gold Trust,mIAU,https://mirror.finance,,https://github.com/mirror-protocol,n,,mirror-protocol,github
-4103,580,FLETA,FLETA,https://fleta.io/,,https://github.com/fletaio,n,,fletaio,github
-2092,581,NULS,NULS,https://nuls.io/,,https://github.com/nuls-io/nuls-v2,n,,nuls-io/nuls-v2,github
+8024,579,Mirrored iShares Gold Trust,mIAU,https://mirror.finance,,https://github.com/Mirror-Protocol/mirror.js,y,,Mirror-Protocol/mirror.js,github
+4103,580,FLETA,FLETA,https://fleta.io/,,private,y,,,
+2092,581,NULS,NULS,https://nuls.io/,,https://github.com/nuls-io/nuls-v2,y,,nuls-io/nuls-v2,github
 6928,582,Bella Protocol,BEL,https://bella.fi/,,,n,,,
 10805,583,Throne,THN,https://www.thr.one/,,,n,,,
-3702,584,Beam,BEAM,https://www.beam.mw/,,https://github.com/BeamMW/beam,n,,BeamMW/beam,github
-4956,585,MAP Protocol,MAP,https://www.maplabs.io/,,https://github.com/mapprotocol,n,,mapprotocol,github
-5435,586,Epic Cash,EPIC,https://linktr.ee/epiccash,,https://github.com/EpicCash,n,,EpicCash,github
+3702,584,Beam,BEAM,https://www.beam.mw/,,https://github.com/BeamMW/beam,y,,BeamMW/beam,github
+4956,585,MAP Protocol,MAP,https://www.maplabs.io/,,https://github.com/mapprotocol/atlas,y,,mapprotocol/atlas,github
+5435,586,Epic Cash,EPIC,https://linktr.ee/epiccash,,https://github.com/EpicCash/epic,y,,EpicCash/epic,github
 5226,587,Paris Saint-Germain Fan Token,PSG,https://www.socios.com/paris-saint-germain/,,,n,,,
+1229,588,DigixDAO,DGD,https://digix.global/dgd/,https://community.digix.global/,https://github.com/DigixGlobal/dijix,y,,DigixGlobal/dijix,github
 5410,589,PARSIQ,PRQ,https://parsiq.net,,,n,,,
-1229,588,DigixDAO,DGD,https://digix.global/dgd/,https://community.digix.global/,https://github.com/digixglobal,n,,digixglobal,github
-5882,592,StaFi,FIS,https://www.stafi.io/,,https://github.com/stafiprotocol,n,,stafiprotocol,github
-8509,591,XMON,XMON,https://0xmons.xyz/,,https://github.com/0xmons/0xmons-contracts-new,n,,0xmons/0xmons-contracts-new,github
 3422,590,SHPING,SHPING,https://shping.com/coin,,,n,,,
-11451,593,Shiden Network,SDN,https://shiden.astar.network/,,https://github.com/AstarNetwork,n,,AstarNetwork,github
-8497,594,ApeSwap Finance,BANANA,https://apeswap.finance,,https://github.com/apeswapfinance,n,,apeswapfinance,github
-10042,595,Karura,KAR,http://karura.network,,https://github.com/AcalaNetwork,n,,AcalaNetwork,github
-2398,596,SelfKey,KEY,https://selfkey.org/,,https://github.com/SelfKeyFoundation,n,,SelfKeyFoundation,github
-2090,597,LATOKEN,LA,https://latoken.com/,,https://github.com/ElKornacio/contracts-early,n,,ElKornacio/contracts-early,github
-8028,598,Mirrored ProShares VIX,mVIXY,https://mirror.finance,,https://github.com/mirror-protocol,n,,mirror-protocol,github
-1866,600,Bytom,BTM,http://bytom.io/,,https://github.com/Bytom/bytom,n,,Bytom/bytom,github
+8509,591,XMON,XMON,https://0xmons.xyz/,,https://github.com/0xmons/0xmons-contracts-new,y,,0xmons/0xmons-contracts-new,github
+5882,592,StaFi,FIS,https://www.stafi.io/,,https://github.com/stafiprotocol/stafi-node,y,,stafiprotocol/stafi-node,github
+11451,593,Shiden Network,SDN,https://shiden.astar.network/,,exclude,y,double of ASTAR,,
+8497,594,ApeSwap Finance,BANANA,https://apeswap.finance,,https://github.com/ApeSwapFinance/apeswap-swap-core,y,,ApeSwapFinance/apeswap-swap-core,github
+10042,595,Karura,KAR,http://karura.network,,exclude,y,double of ACALA,,
+2398,596,SelfKey,KEY,https://selfkey.org/,,https://github.com/SelfKeyFoundation/Identity-Wallet,y,,SelfKeyFoundation/Identity-Wallet,github
+2090,597,LATOKEN,LA,https://latoken.com/,,https://github.com/ElKornacio/contracts-early,y,,ElKornacio/contracts-early,github
+8028,598,Mirrored ProShares VIX,mVIXY,https://mirror.finance,,exclude,y,double of mirror mIAU,,
+1866,600,Bytom,BTM,http://bytom.io/,,https://github.com/Bytom/bytom,y,,Bytom/bytom,github
 1925,601,Waltonchain,WTC,http://www.waltonchain.org/,,,n,,,
