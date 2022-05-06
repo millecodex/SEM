@@ -1,54 +1,102 @@
 # -----------------------------------------------
 # EFA
 # -----------------------------------------------
+# sessionInfo()
+# 
+# R version 4.0.2 (2020-06-22)
+# Platform: x86_64-w64-mingw32/x64 (64-bit)
+# Running under: Windows 10 x64 (build 19041)
+# 
+# other attached packages:
+# [1] semPlot_1.1.2        lavaan_0.6-8         forcats_0.5.1        stringr_1.4.0        purrr_0.3.4         
+# [6] readr_2.1.2          tidyr_1.2.0          tibble_3.1.6         ggplot2_3.3.5        tidyverse_1.3.1     
+#[11] GPArotation_2022.4-1 psych_2.2.3          dplyr_1.0.8     
 
-library(dplyr)
+# package installation
+install.packages(c("summarytools"))
+
+# -----------------------------------------------
+# load data
+# -----------------------------------------------
+# select data (after cleaning)
+f <- file.choose()
+data <- read.csv(f)
+
 # -----------------------------------------------
 # build dataframe
 # -----------------------------------------------
+library(dplyr)
 df <- data.frame(data$commits_ma3,
                  data$comments_ma3,
                  data$PR_open_ma3,
                  data$authors_ma3,
-                 data$contributor_count.,
-                 data$updated_since.,
-                 data$forks,
-                 data$stars)
+                 data$auth_tot,
+                 data$days_inactive,
+                 data$stars_tot,
+                 data$forks_tot)
+                 
 
-df = rename(df, commits = data.commits_ma3,
+df = rename(df, 
+            commits  = data.commits_ma3,
             comments = data.comments_ma3,
-            PR = data.PR_open_ma3,
-            authors = data.authors_ma3,
-            contributors = data.contributor_count.,
-            updated = data.updated_since.,
-            forks = data.forks,
-            stars = data.stars)
+            PR       = data.PR_open_ma3,
+            authors  = data.authors_ma3,
+            authorsT = data.auth_tot,
+            forks    = data.forks_tot,
+            stars    = data.stars_tot,
+            inactive = data.days_inactive)
 
-df_noUpdated = subset(df, select=-c(updated))
-df_noContributors = subset(df, select=-c(contributors))
-df_noSF = subset(df, select=-c(stars,forks))
 
-df_eng <- data.frame(data$commits_ma3,
-                 data$comments_ma3,
-                 data$PR_open_ma3,
-                 data$authors_ma3
-                 )
 
-df_eng = rename(df_NF, commits = data.commits_ma3,
-            comments = data.comments_ma3,
-            PR = data.PR_open_ma3,
-            authors = data.authors_ma3)
+# recode the Inactive Since (days) column to have the high metric
+# representative as positive and the lower as negative
+library(epmr)
+updated_inactive <- rescore(df$inactive)
+# change df['updated'] to updated_r and redo results
+df$inactive <- updated_inactive
+
+# df_noUpdated = subset(df, select=-c(updated))
+# df_noContributors = subset(df, select=-c(contributors))
+# df_noSF = subset(df, select=-c(stars,forks))
+# 
+# df_eng <- data.frame(data$commits_ma3,
+#                      data$comments_ma3,
+#                      data$PR_open_ma3,
+#                      data$authors_ma3
+# )
+# 
+# df_eng = rename(df_NF, commits = data.commits_ma3,
+#                 comments = data.comments_ma3,
+#                 PR = data.PR_open_ma3,
+#                 authors = data.authors_ma3)
+
+# -----------------------------------------------
+# Descriptive stats
+# -----------------------------------------------
+# library(knitr)
+# dat_des <- data.frame(describe(data))
+# dat.df <- t(dat_des)
+# kable(dat.df)
+# 
+# library(psych)
+# describe(data, mat=T)
+# 
+# library(Hmisc)
+# Hmisc::describe(data)
+
+# see link for summaryTools options
+# https://mran.microsoft.com/snapshot/2018-06-19/web/packages/summarytools/vignettes/Introduction.html 
+library(summarytools)
+mydata <- summarytools::descr(df,round.digits = 1)
+print(mydata)
+
 
 # -----------------------------------------------
 # correlation matrix plot
 # -----------------------------------------------
-library(psych)
-plot<-cor.plot(df,numbers=TRUE,main="Indicator Correlation Matrix")
-# to output the matrix to the console
-print(plot)
-
 # this one looks better
 # https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html 
+library(psych)
 library(corrplot)
 corrplot(cor(df), method="shade", tl.col="black", addCoef.col = 'black', diag=F,type='lower', order='FPC')
 
@@ -57,8 +105,8 @@ corrplot(cor(df), method="shade", tl.col="black", addCoef.col = 'black', diag=F,
 # https://personality-project.org/r/html/cortest.bartlett.html
 # https://www.statology.org/bartletts-test-of-sphericity/
 # -----------------------------------------------
-cortest.bartlett(cor(df), 211, diag=TRUE)
-cortest.bartlett(cor(fa_model$residual),211, diag=TRUE)
+cortest.bartlett(cor(df), 393, diag=TRUE)
+cortest.bartlett(cor(fa_model$residual), 393, diag=TRUE)
 
 # -----------------------------------------------
 # MSO (KMO) Test Measure of Sampling Adequacy (MSA) 
@@ -160,47 +208,48 @@ summary(efa_f3, fit.measures = TRUE)
 # p.18 for factor methods
 # -----------------------------------------------
 library(psych)
-# install.packages(c("GPArotation"))
 library(GPArotation)
-fa_model = fa(df,2,fm="ml",rotate="varimax")
-fa_model = fa(df_noUpdated,2,fm="ml",rotate="quartimax")
-fa_model = fa(df_noSF,2,fm="pa",rotate="oblimin")
-fa_model = fa(df2,2,fm="pa",rotate="oblimin")
-fa_model = fa(df_noContributors,2,fm="ml")
-fa_model = fa(df_eng,1,fm="pa",rotate="oblimin")
-fa_model = fa(df_eng,1,fm="mr")
+df_noAuthors = subset(df, select=-c(authors))
+df_noInactive = subset(df, select=-c(inactive))
+df_noAuth_noIn = subset(df_noInactive, select=-c(authors))
+df_noAuthorsT = subset(df, select=-c(authorsT))
+df_noSt_Fk = subset(df, select=-c(stars, forks))
+df_noSt_Fk_AuT = subset(df, select=-c(stars, forks, authorsT))
+
+fa_model = fa(df,2,fm="pa",rotate="oblimin")
+fa_model = fa(df_noAuth_noIn,2,fm="pa",rotate="oblimin")
+fa_model = fa(df_noInactive,2,fm="pa",rotate="oblimin")
+fa_model = fa(df_noAuthorsT,2,fm="pa",rotate="oblimin")
+fa_model = fa(df_noSt_Fk,2,fm="pa",rotate="oblimin")
+
+fa_model1 = fa(df,2,fm="ml",rotate="varimax")
+fa_model2 = fa(df_noAuth_noIn,2,fm="ml",rotate="varimax")
+fa_model3 = fa(df_noInactive,2,fm="ml",rotate="varimax")
+fa_model4 = fa(df_noAuthorsT,2,fm="ml",rotate="varimax")
+fa_model5 = fa(df_noAuthors,2,fm="ml",rotate="varimax")
+fa_model6 = fa(df_noSt_Fk_AuT,2,fm="ml",rotate="varimax")
+
+
+fa_model1 = fa(df,2,fm="pa",rotate="oblimin")
+fa_model2 = fa(df,2,fm="ml",rotate="quartimax")
+fa_model3 = fa(df,2,fm="ml",rotate="varimax") # best fit
+fa_model4 = fa(df,2,fm="mr")
+
+fa_model1$TLI
+fa_model2$TLI
+fa_model3$TLI
+fa_model4$STATISTIC
+fa_model5$STATISTIC
+fa_model6$STATISTIC
+
 
 print(fa_model,cut=0,digits=3)
-fa_model
+fa_model1
+plot(fa_model)
 
-df2 <- data.frame(data$commits_ma3,
-                 data$comments_ma3,
-                 data$PR_open_ma3,
-                 data$authors_ma3,
-                 data$contributor_count.,
-                 data$updated_since.,
-                 data$forks,
-                 data$stars,
-                 data$criticality_score.,
-                 data$alexa_rank,
-                 data$med_resp_time_days,
-                 data$avg_longevity_days)
-
-df2 = rename(df2, commits = data.commits_ma3,
-            comments = data.comments_ma3,
-            PR = data.PR_open_ma3,
-            authors = data.authors_ma3,
-            contributors = data.contributor_count.,
-            updated = data.updated_since.,
-            forks = data.forks,
-            stars = data.stars,
-            crit = data.criticality_score.,
-            rank = data.alexa_rank,
-            resp = data.med_resp_time_days,
-            long = data.avg_longevity_days)
-
-
-
+# test for the number of factors in your data using parallel analysis
+fa.parallel(df)
+vss(df)
 
 # to report on the structural coefficients (for oblique rotation methods)
 # if the factor correlation matrix is close to 0, then
