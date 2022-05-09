@@ -230,26 +230,32 @@ fa_model5 = fa(df_noAuthors,2,fm="ml",rotate="varimax")
 fa_model6 = fa(df_noSt_Fk_AuT,2,fm="ml",rotate="varimax")
 
 
-fa_model1 = fa(df,2,fm="pa",rotate="oblimin")
-fa_model2 = fa(df,2,fm="ml",rotate="quartimax")
-fa_model3 = fa(df,2,fm="ml",rotate="varimax") # best fit
-fa_model4 = fa(df,2,fm="mr")
+fa_model1 = fa(df_noAuthors,2,fm="pa",rotate="oblimin")
+fa_model = fa(df_noSt_Fk_out,2,fm="ml",rotate="quartimax") ## BEST FIT STARS AND FORKS REMOVED
+fa_model3 = fa(df,2,fm="ml",rotate="varimax")
+fa_model4 = fa(df_noAuthors,2,fm="mr")
+
+
+
 
 fa_model1$TLI
 fa_model2$TLI
 fa_model3$TLI
-fa_model4$STATISTIC
-fa_model5$STATISTIC
-fa_model6$STATISTIC
+fa_model4$TLI
+
+fa_model1$RMSEA
+fa_model2$RMSEA
+fa_model3$STATISTIC
+fa_model4$RMSEA
 
 
 print(fa_model,cut=0,digits=3)
-fa_model1
+fa_model
 plot(fa_model)
 
 # test for the number of factors in your data using parallel analysis
-fa.parallel(df)
-vss(df)
+fa.parallel(df_noSt_Fk)
+vss(df_noSt_Fk)
 
 # to report on the structural coefficients (for oblique rotation methods)
 # if the factor correlation matrix is close to 0, then
@@ -269,7 +275,7 @@ fa_model$Structure
 
 
 # diagrams/plots
-fa.diagram(fa_model)
+fa.diagram(fa_model, digits=2)
 plot(fa_model)
 
 # info
@@ -277,6 +283,36 @@ print(fa_model$residual)
 corrplot(cor(fa_model$residual), method="shade", tl.col="black", addCoef.col = 'black', diag=T,type='lower')
 
 print(fa_model,cut=0,digits=3)
+
+# -----------------------------------------------
+# Remove top 2 stars & forks entries as outliers
+# -----------------------------------------------
+head(df)
+df_no_out <- df[-c(1,17),]
+df_no_out
+df_noSt_Fk_out = subset(df_no_out, select=-c(stars, forks))
+
+# -----------------------------------------------
+# split the dataset for cross validation
+# -----------------------------------------------
+require(caTools)
+set.seed(42) 
+sample = sample.split(df_noSt_Fk_out, SplitRatio = 0.7)
+train = subset(df_noSt_Fk_out, sample == TRUE)
+test  = subset(df_noSt_Fk_out, sample == FALSE)
+# -----------------------------------------------
+# FA on train for cross validation
+# -----------------------------------------------
+fa_model_train = fa(train,2,fm="ml",rotate="quartimax")
+fa_model_test = fa(test,2,fm="ml",rotate="quartimax")
+# -----------------------------------------------
+# compare to FA on test for cross validation
+# -----------------------------------------------
+fa.diagram(fa_model_train, digits=2)
+fa.diagram(fa_model_test, digits=2)
+fa_model_train
+fa_model_test
+
 
 
 # -----------------------------------------------
@@ -355,3 +391,6 @@ semPaths(cfa1.fit,
          style="Lisrel",
          fade=T,
          edge.label.position=0.55)
+
+
+
