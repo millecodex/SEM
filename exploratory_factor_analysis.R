@@ -87,9 +87,35 @@ df$inactive <- updated_inactive
 # see link for summaryTools options
 # https://mran.microsoft.com/snapshot/2018-06-19/web/packages/summarytools/vignettes/Introduction.html 
 library(summarytools)
-mydata <- summarytools::descr(df,round.digits = 1)
-print(mydata)
+mydata393 <- summarytools::descr(df,round.digits = 1,stats = c("mean", "sd", "min", "med", "max"),transpose=T)
+print(mydata393)
+# full data / all columns
+mydata390 <- summarytools::descr(df_no_out,round.digits = 1)
+# subset for paper
+mydata390 <- summarytools::descr(df_no_out,round.digits = 1,stats = c("mean", "sd", "min", "med", "max"),transpose=T)
+print(mydata390)
 
+
+dataStFk <- df[,c(7:8)]
+dataStFk_noBTC <- df_no_out[,c(7:8)]
+dataPRcomments <- df[,c(2:3)]
+dataPRcomments_noOUT <- df_no_out[,c(2:3)]
+# corr matrix with histogram, scatter, etc.
+pairs.panels(dataPRcomments_noOUT,
+             smooth = TRUE,      # If TRUE, draws loess smooths
+             scale = F,      # If TRUE, scales the correlation text font
+             density = TRUE,     # If TRUE, adds density plots and histograms
+             ellipses = TRUE,    # If TRUE, draws ellipses
+             method = "pearson", # Correlation method (also "spearman" or "kendall")
+             pch = 21,           # pch symbol
+             bg=c("yellow"),
+             lm = T,         # If TRUE, plots linear fit rather than the LOESS (smoothed) fit
+             cor = TRUE,         # If TRUE, reports correlations
+             jiggle = FALSE,     # If TRUE, data points are jittered
+             factor = 2,         # Jittering factor
+             hist.col = 4,       # Histograms color
+             stars = TRUE,       # If TRUE, adds significance level with stars
+             ci = TRUE)          # If TRUE, adds confidence intervals
 
 # -----------------------------------------------
 # correlation matrix plot
@@ -98,7 +124,8 @@ print(mydata)
 # https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html 
 library(psych)
 library(corrplot)
-corrplot(cor(df), method="shade", tl.col="black", addCoef.col = 'black', diag=F,type='lower', order='FPC')
+# Pearson is the default correlation method in cor(df)
+corrplot(cor(df), method="shade", tl.col="black", addCoef.col = 'black', diag=F,type='lower', order='AOE')
 
 # -----------------------------------------------
 # Bartlett's test
@@ -215,6 +242,8 @@ df_noAuth_noIn = subset(df_noInactive, select=-c(authors))
 df_noAuthorsT = subset(df, select=-c(authorsT))
 df_noSt_Fk = subset(df, select=-c(stars, forks))
 df_noSt_Fk_AuT = subset(df, select=-c(stars, forks, authorsT))
+df_noSt_Fk_out = subset(df_no_out, select=-c(stars,forks))
+df_noSt_Fk_AuT_out = subset(df_no_out,select=-c(stars, forks, authorsT))
 
 fa_model = fa(df,2,fm="pa",rotate="oblimin")
 fa_model = fa(df_noAuth_noIn,2,fm="pa",rotate="oblimin")
@@ -235,8 +264,18 @@ fa_model = fa(df_noSt_Fk_out,2,fm="ml",rotate="quartimax") ## BEST FIT STARS AND
 fa_model3 = fa(df,2,fm="ml",rotate="varimax")
 fa_model4 = fa(df_noAuthors,2,fm="mr")
 
+# compare with and without top 3 influential observations
+# (393 of 6) no stars/forks
+df_noSt_Fk 
+# (390 of 6) no stars/forks
+df_noSt_Fk_out
+# (390 of 5) no stars/forks/authorsT
+df_noSt_Fk_AuT_out
 
-
+fa_393=fa(df_noSt_Fk,2,fm="ml",rotate="quartimax")
+fa_390=fa(df_noSt_Fk_AuT_out,2,fm="ml",rotate="quartimax")
+fa_393
+fa_390
 
 fa_model1$TLI
 fa_model2$TLI
@@ -284,22 +323,45 @@ corrplot(cor(fa_model$residual), method="shade", tl.col="black", addCoef.col = '
 
 print(fa_model,cut=0,digits=3)
 
+
 # -----------------------------------------------
-# Remove top 2 stars & forks entries as outliers
+# .	Find mahalanobis distance
+# -----------------------------------------------
+outlier(df, plot=T, bad=3, na.rm=F, cex=0.9)
+out<-outlier(df)
+out.d2 <-data.frame(df,out)
+pairs.panels(out.d2,bg=c("yellow","blue")[(out > 250)+1],pch=21)
+out
+
+# -----------------------------------------------
+# Remove outliers via D^2
 # -----------------------------------------------
 head(df)
-df_no_out <- df[-c(1,17),]
+# 1::BTC, 17::ETH, 210::SOL
+df_no_out <- df[-c(1,17,210),]
 df_no_out
 df_noSt_Fk_out = subset(df_no_out, select=-c(stars, forks))
+
+# full df (8 variables) excluding 3 influential observations
+# (390 of 8)
+df_no_out
+
+# (393 of 6)
+df_noSt_Fk 
+
+# subset df (6 variables) excluding stars and forks
+# (390 of 6)
+df_noSt_Fk_out
 
 # -----------------------------------------------
 # split the dataset for cross validation
 # -----------------------------------------------
 require(caTools)
 set.seed(42) 
-sample = sample.split(df_noSt_Fk_out, SplitRatio = 0.7)
+sample = sample.split(df_noSt_Fk_out, SplitRatio = 0.5)
 train = subset(df_noSt_Fk_out, sample == TRUE)
 test  = subset(df_noSt_Fk_out, sample == FALSE)
+
 # -----------------------------------------------
 # FA on train for cross validation
 # -----------------------------------------------
@@ -313,7 +375,27 @@ fa.diagram(fa_model_test, digits=2)
 fa_model_train
 fa_model_test
 
-
+#
+#
+#
+##
+#
+##
+#
+##
+#
+##
+#
+##
+#
+##
+#
+##
+#
+##
+#
+##
+#
 
 # -----------------------------------------------
 # Factor analysis with EPMR
