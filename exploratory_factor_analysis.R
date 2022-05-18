@@ -87,7 +87,7 @@ df$inactive <- updated_inactive
 # see link for summaryTools options
 # https://mran.microsoft.com/snapshot/2018-06-19/web/packages/summarytools/vignettes/Introduction.html 
 library(summarytools)
-mydata393 <- summarytools::descr(df,round.digits = 1,stats = c("mean", "sd", "min", "med", "max"),transpose=T)
+mydata393 <- summarytools::descr(df,round.digits = 3,stats = c("mean", "sd", "min", "med", "max"),transpose=T)
 print(mydata393)
 # full data / all columns
 mydata390 <- summarytools::descr(df_no_out,round.digits = 1)
@@ -117,6 +117,19 @@ pairs.panels(dataPRcomments_noOUT,
              stars = TRUE,       # If TRUE, adds significance level with stars
              ci = TRUE)          # If TRUE, adds confidence intervals
 
+
+# -----------------------------------------------
+# Cullen and Frey
+# -----------------------------------------------
+# What dist does my data follow?
+# https://stats.stackexchange.com/questions/58220/what-distribution-does-my-data-follow
+#
+library(fitdistrplus)
+descdist(df$PR, discrete=FALSE)
+f1 <- fitdist(scaled_commits_ma3,"beta",method="mme")
+
+
+
 # -----------------------------------------------
 # correlation matrix plot
 # -----------------------------------------------
@@ -125,8 +138,25 @@ pairs.panels(dataPRcomments_noOUT,
 library(psych)
 library(corrplot)
 # Pearson is the default correlation method in cor(df)
-corrplot(cor(df), method="shade", tl.col="black", addCoef.col = 'black', diag=F,type='lower', order='AOE')
-
+corrplot(cor(df),
+         method="shade", 
+         tl.col="black", 
+         addCoef.col = 'black', 
+         diag=F, 
+         type='lower')
+last_plot()
+library(ggplot2)
+ggsave("corrMatrix1.png")
+ggsave(
+  filename = "corrMatrix1.png",
+  plot = last_plot(),
+  #path = C:\Users\jnijsse\OneDrive - AUT University\PhD\Engagement Paper\hicss_latex_format_specifications\images,
+  scale = 1,
+  dpi = 600,
+  limitsize = TRUE,
+  bg = NULL,
+)
+#, order='FPC'
 # -----------------------------------------------
 # Bartlett's test
 # https://personality-project.org/r/html/cortest.bartlett.html
@@ -245,24 +275,23 @@ df_noSt_Fk_AuT = subset(df, select=-c(stars, forks, authorsT))
 df_noSt_Fk_out = subset(df_no_out, select=-c(stars,forks))
 df_noSt_Fk_AuT_out = subset(df_no_out,select=-c(stars, forks, authorsT))
 
-fa_model = fa(df,2,fm="pa",rotate="oblimin")
-fa_model = fa(df_noAuth_noIn,2,fm="pa",rotate="oblimin")
-fa_model = fa(df_noInactive,2,fm="pa",rotate="oblimin")
-fa_model = fa(df_noAuthorsT,2,fm="pa",rotate="oblimin")
-fa_model = fa(df_noSt_Fk,2,fm="pa",rotate="oblimin")
+df_devEng = subset(df_noSt_Fk, select=-c(authorsT,inactive))
 
 fa_model1 = fa(df,2,fm="ml",rotate="varimax")
-fa_model2 = fa(df_noAuth_noIn,2,fm="ml",rotate="varimax")
-fa_model3 = fa(df_noInactive,2,fm="ml",rotate="varimax")
-fa_model4 = fa(df_noAuthorsT,2,fm="ml",rotate="varimax")
-fa_model5 = fa(df_noAuthors,2,fm="ml",rotate="varimax")
-fa_model6 = fa(df_noSt_Fk_AuT,2,fm="ml",rotate="varimax")
+fa_model2 = fa(df,2,fm="ml",rotate="quartimax")
+fa_model2b =fa(df_noSt_Fk,2,fm="ml",rotate="quartimax")
+fa_model2c =fa(df,1,fm="ml",rotate="quartimax")
 
+fa_model3 = fa(df,2,fm="mr",rotate="varimax")
+fa_model4 = fa(df,2,fm="mr",rotate="quartimax")
+fa_model5 = fa(df,2,fm="pa",rotate="oblimin")
+fa_model6 = fa(df,2,fm="pa",rotate="oblimin")
+fa_model2
+fa_model6
 
-fa_model1 = fa(df_noAuthors,2,fm="pa",rotate="oblimin")
-fa_model = fa(df_noSt_Fk_out,2,fm="ml",rotate="quartimax") ## BEST FIT STARS AND FORKS REMOVED
-fa_model3 = fa(df,2,fm="ml",rotate="varimax")
-fa_model4 = fa(df_noAuthors,2,fm="mr")
+fa_model3 = fa(df_noSt_Fk_out,2,fm="ml",rotate="quartimax") ## BEST FIT STARS AND FORKS REMOVED
+fa_model4 = fa(df,2,fm="ml",rotate="varimax")
+
 
 # compare with and without top 3 influential observations
 # (393 of 6) no stars/forks
@@ -291,10 +320,14 @@ fa_model4$RMSEA
 print(fa_model,cut=0,digits=3)
 fa_model
 plot(fa_model)
-
+ggsave("model.png")
 # test for the number of factors in your data using parallel analysis
-fa.parallel(df_noSt_Fk)
+fa.parallel(df,fa="fa")
+PAout<-fa.parallel(df,fa="fa")
+
+# VSS looks inconclusive
 vss(df_noSt_Fk)
+vss(df)
 
 # to report on the structural coefficients (for oblique rotation methods)
 # if the factor correlation matrix is close to 0, then
@@ -318,7 +351,7 @@ fa.diagram(fa_model, digits=2)
 plot(fa_model)
 
 # info
-print(fa_model$residual)
+print(fa_model2b$residual)
 corrplot(cor(fa_model$residual), method="shade", tl.col="black", addCoef.col = 'black', diag=T,type='lower')
 
 print(fa_model,cut=0,digits=3)
@@ -405,7 +438,7 @@ devtools::install_github("talbano/epmr")
 library(epmr)
 library(base)
 library("ggplot2")
-em_fit <- fastudy(df, factors = 2)
+em_fit <- fastudy(df_devEng, factors = 1)
 print(em_fit, digits = 3)
 print(em_fit, digits = 2, cutoff = 0.3)
 
