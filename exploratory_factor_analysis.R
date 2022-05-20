@@ -88,6 +88,7 @@ df$inactive <- updated_inactive
 # https://mran.microsoft.com/snapshot/2018-06-19/web/packages/summarytools/vignettes/Introduction.html 
 library(summarytools)
 mydata393 <- summarytools::descr(df,round.digits = 3,stats = c("mean", "sd", "min", "med", "max"),transpose=T)
+mydata393 <- summarytools::descr(df,round.digits = 3,transpose=T)
 print(mydata393)
 # full data / all columns
 mydata390 <- summarytools::descr(df_no_out,round.digits = 1)
