@@ -39,9 +39,9 @@ df <- data.frame(data$commits_ma3,
 df = rename(df, 
             commits  = data.commits_ma3,
             comments = data.comments_ma3,
-            PR       = data.PR_open_ma3,
+            PRs      = data.PR_open_ma3,
             authors  = data.authors_ma3,
-            authorsT = data.auth_tot,
+            contrib  = data.auth_tot,
             forks    = data.forks_tot,
             stars    = data.stars_tot,
             inactive = data.days_inactive)
@@ -73,28 +73,24 @@ df$inactive <- updated_inactive
 # -----------------------------------------------
 # Descriptive stats
 # -----------------------------------------------
-# library(knitr)
-# dat_des <- data.frame(describe(data))
-# dat.df <- t(dat_des)
-# kable(dat.df)
-# 
-# library(psych)
-# describe(data, mat=T)
-# 
-# library(Hmisc)
-# Hmisc::describe(data)
-
 # see link for summaryTools options
 # https://mran.microsoft.com/snapshot/2018-06-19/web/packages/summarytools/vignettes/Introduction.html 
 library(summarytools)
-mydata393 <- summarytools::descr(df,round.digits = 3,stats = c("mean", "sd", "min", "med", "max"),transpose=T)
-mydata393 <- summarytools::descr(df,round.digits = 3,transpose=T)
-print(mydata393)
+mydata <- summarytools::descr(df,round.digits = 3,stats = c("mean", "sd", "min", "med", "max"),transpose=T)
+mydata <- summarytools::descr(df,round.digits = 1,transpose=T)
+print(mydata)
+
+# check rescored column
+# rescore_inactive <- summarytools::descr(updated_inactive, transpose=T)
+# print(rescore_inactive)
+
+
+
 # full data / all columns
-mydata390 <- summarytools::descr(df_no_out,round.digits = 1)
+mydata <- summarytools::descr(df_no_out,round.digits = 1)
 # subset for paper
-mydata390 <- summarytools::descr(df_no_out,round.digits = 1,stats = c("mean", "sd", "min", "med", "max"),transpose=T)
-print(mydata390)
+mydata <- summarytools::descr(df_no_out,round.digits = 1,stats = c("mean", "sd", "min", "med", "max"),transpose=T)
+print(mydata)
 
 
 dataStFk <- df[,c(7:8)]
@@ -138,6 +134,16 @@ f1 <- fitdist(scaled_commits_ma3,"beta",method="mme")
 # https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html 
 library(psych)
 library(corrplot)
+
+# open PDF for writing
+pdf(file = "/Users/jnijsse/Desktop/Rplots/corrMatrix.pdf", 
+      width = 5, 
+      height = 5)
+
+# check sizes
+# dev.size('in')
+# par('din')
+
 # Pearson is the default correlation method in cor(df)
 corrplot(cor(df),
          method="shade", 
@@ -145,19 +151,16 @@ corrplot(cor(df),
          addCoef.col = 'black', 
          diag=F, 
          type='lower')
-last_plot()
-library(ggplot2)
-ggsave("corrMatrix1.png")
-ggsave(
-  filename = "corrMatrix1.png",
-  plot = last_plot(),
-  #path = C:\Users\jnijsse\OneDrive - AUT University\PhD\Engagement Paper\hicss_latex_format_specifications\images,
-  scale = 1,
-  dpi = 600,
-  limitsize = TRUE,
-  bg = NULL,
-)
-#, order='FPC'
+
+# to write the image
+dev.off()
+
+# another method for saving plots
+#last_plot()
+#library(ggplot2)
+#ggsave("corrMatrix1.png")
+
+
 # -----------------------------------------------
 # Bartlett's test
 # https://personality-project.org/r/html/cortest.bartlett.html
@@ -189,75 +192,6 @@ scree(df,factors=TRUE,pc=TRUE,main="Scree plot",hline=NULL,add=FALSE)
 VSS.scree(df, main = "scree plot")
 # see the eigenvalues
 print(scree(df))
-
-# -----------------------------------------------
-# Factor analysis with LAVAAN 
-# -----------------------------------------------
-library(tidyverse)
-library(lavaan)
-
-# Supported rotation methods are: 
-# varimax, quartimax, orthomax, cf, oblimin, quartimin,
-# geomin, entropy, mccammon, infomax,tandem1, tandem2, oblimax,
-# bentler, simplimax, target, pst, crawford-ferguson, cf-quartimax,
-# cf-varimax, cf-equamax, cf-parsimax, cf-facparsim
-
-# single factor model syntax
-f1 <- '
-efa("efa")*f1 =~ commits + comments + PR + authors + contributors + updated + forks
-'
-
-# two-factor model syntax
-f2 <- '
-efa("efa")*f1 +
-efa("efa")*f2 =~ commits + comments + PR + authors + contributors + updated + forks
-'
-
-# three-factor model syntax
-f3 <- '
-efa("efa")*f1 +
-efa("efa")*f2 +
-efa("efa")*f3 =~ commits + comments + PR + authors + contributors + updated + forks
-'
-
-efa_f1 <- 
-  cfa(model = f1,
-      data = df_scale,
-      rotation = "none",
-      estimator = "MLM",
-      ordered=FALSE)
-
-summary(efa_f1, fit.measures = TRUE)
-
-efa_f2 <- 
-  cfa(model = f2,
-      data = df_scale,
-      rotation = "oblimin",
-      estimator = "MLM",
-      ordered = FALSE)
-
-summary(efa_f2, fit.measures = TRUE, standardized=TRUE)
-
-
-summary(efa_f2vm, fit.measures = TRUE)
-
-# Scale the whole data.frame
-df_scale <- apply(df,  2, scale)
-
-efa_f2qm <- 
-  cfa(model = f1,
-      data = df_scale,
-      rotation = "quartimax"
-      )
-
-summary(efa_f2qm, fit.measures = TRUE)
-
-efa_f3 <- 
-  cfa(model = f3,
-      data = df_scale,
-      rotation = "none",
-      estimator = "MLM")
-summary(efa_f3, fit.measures = TRUE)
 
 
 # -----------------------------------------------
@@ -322,9 +256,53 @@ print(fa_model,cut=0,digits=3)
 fa_model
 plot(fa_model)
 ggsave("model.png")
+
+# -----------------------------------------------
+# Parallel Analysis
+# -----------------------------------------------
 # test for the number of factors in your data using parallel analysis
-fa.parallel(df,fa="fa")
+fa.parallel(df,fa="fa",ylabel="eigen values of factors",show.legend=F)
 PAout<-fa.parallel(df,fa="fa")
+
+# store the parallel analysis values
+pa_actual<-PAout[["fa.values"]]
+pa_sim<-PAout[["fa.sim"]]
+pa_resample<-PAout[["fa.simr"]]
+
+# plot the PA values
+# but first, some colors
+# color palette as a vector:
+palette.col <- c(
+  rgb(55, 131, 187, maxColorValue = 255),    # blue
+  rgb(196, 60, 60, maxColorValue = 255),    # maroon
+  rgb(127, 127, 127, maxColorValue = 255))    # grey
+
+#palette.col
+#palette.col[1]
+
+plot(1:8, pa_sim, col=palette.col[2],type="b", 
+     pch=19, lty=2, cex.axis=0.9,
+     xlab = "",
+     ylab = "",
+     ylim=c(-0.6,5))
+title(xlab = "number of factors", mgp=c(2,1,0), cex.lab=0.9)
+title(ylab = "eigen values of factors", mgp=c(2,1,0), cex.lab=0.9)
+title("Parallel Analysis of Scree Plots", cex.main=0.9, line=0.5)
+lines(pa_actual,col=palette.col[1],type="b",pch=15)
+abline(h=1, 
+       col=palette.col[3], 
+       lty="dashed", 
+       lwd=2.0)
+legend("topright",
+       inset=0.02,
+       legend = c("actual","simulated"),
+       col = palette.col[c(1,2)],
+       pch = c(15, 19), 
+       cex=1,
+       text.font=3,
+       box.lty = 0)
+
+
 
 # VSS looks inconclusive
 vss(df_noSt_Fk)
@@ -359,7 +337,7 @@ print(fa_model,cut=0,digits=3)
 
 
 # -----------------------------------------------
-# .	Find mahalanobis distance
+# Find mahalanobis distance
 # -----------------------------------------------
 outlier(df, plot=T, bad=3, na.rm=F, cex=0.9)
 out<-outlier(df)
@@ -401,6 +379,7 @@ test  = subset(df_noSt_Fk_out, sample == FALSE)
 # -----------------------------------------------
 fa_model_train = fa(train,2,fm="ml",rotate="quartimax")
 fa_model_test = fa(test,2,fm="ml",rotate="quartimax")
+
 # -----------------------------------------------
 # compare to FA on test for cross validation
 # -----------------------------------------------
@@ -508,5 +487,73 @@ semPaths(cfa1.fit,
          fade=T,
          edge.label.position=0.55)
 
+# -----------------------------------------------
+# Factor analysis with LAVAAN 
+# -----------------------------------------------
+library(tidyverse)
+library(lavaan)
+
+# Supported rotation methods are: 
+# varimax, quartimax, orthomax, cf, oblimin, quartimin,
+# geomin, entropy, mccammon, infomax,tandem1, tandem2, oblimax,
+# bentler, simplimax, target, pst, crawford-ferguson, cf-quartimax,
+# cf-varimax, cf-equamax, cf-parsimax, cf-facparsim
+
+# single factor model syntax
+f1 <- '
+efa("efa")*f1 =~ commits + comments + PR + authors + contributors + updated + forks
+'
+
+# two-factor model syntax
+f2 <- '
+efa("efa")*f1 +
+efa("efa")*f2 =~ commits + comments + PR + authors + contributors + updated + forks
+'
+
+# three-factor model syntax
+f3 <- '
+efa("efa")*f1 +
+efa("efa")*f2 +
+efa("efa")*f3 =~ commits + comments + PR + authors + contributors + updated + forks
+'
+
+efa_f1 <- 
+  cfa(model = f1,
+      data = df_scale,
+      rotation = "none",
+      estimator = "MLM",
+      ordered=FALSE)
+
+summary(efa_f1, fit.measures = TRUE)
+
+efa_f2 <- 
+  cfa(model = f2,
+      data = df_scale,
+      rotation = "oblimin",
+      estimator = "MLM",
+      ordered = FALSE)
+
+summary(efa_f2, fit.measures = TRUE, standardized=TRUE)
+
+
+summary(efa_f2vm, fit.measures = TRUE)
+
+# Scale the whole data.frame
+df_scale <- apply(df,  2, scale)
+
+efa_f2qm <- 
+  cfa(model = f1,
+      data = df_scale,
+      rotation = "quartimax"
+  )
+
+summary(efa_f2qm, fit.measures = TRUE)
+
+efa_f3 <- 
+  cfa(model = f3,
+      data = df_scale,
+      rotation = "none",
+      estimator = "MLM")
+summary(efa_f3, fit.measures = TRUE)
 
 
