@@ -4,7 +4,11 @@
 # lets get this done!
 #
 install.packages(c("epmr"))
-
+install.packages("devtools")
+install.packages("devtools", type = "win.binary")
+library(devtools)
+devtools::install_github("talbano/epmr")
+library(epmr)
 # -----------------------------------------------
 # load data
 # -----------------------------------------------
@@ -64,7 +68,10 @@ dfl = rename(dfl,
 # set them to 0.5 *before* rescoring
 dfl["updated"][dfl["updated"] == 0] <- 0.5
 
-# rescore for lavaan
+# -----------------------------------------------
+# rescore data for valence
+# -----------------------------------------------
+# 
 geo_r        <- rescore(dfl$geo)
 updated_r    <- rescore(dfl$updated)
 rank_r       <- rescore(dfl$rank)
@@ -72,41 +79,10 @@ dfl$geo      <- geo_r
 dfl$updated  <- updated_r 
 dfl$rank     <- rank_r 
 
+# -----------------------------------------------
 mydata <- summarytools::descr(updated_since._r,round.digits = 1)
 mydata2 <- summarytools::descr(df$data.updated_since.,round.digits = 1)
 
-# -----------------------------------------------
-# rescore data
-# -----------------------------------------------
-# some data is represented as lower=better:
-# days_inactive
-# alexa_rank
-# geo_mae
-# geo_rmse
-# updated_since.
-# med_resp_time
-# avg_resp_time
-
-# install from github
-library(devtools)
-install_github("talbano/epmr")
-library(epmr)
-updated_since._r <- rescore(df$data.updated_since.)
-geo_mae_r        <- rescore(df$data.geo_mae)
-#geo_rmse_r       <- rescore(df$data.geo_rmse)
-alexa_rank_r     <- rescore(df$data.alexa_rank)
-#days_inactive_r  <- rescore(df$data.days_inactive)
-#med_resp_time_r  <- rescore(df$data.med_resp_time)
-#avg_resp_time_r  <- rescore(df$data.avg_resp_time)
-
-# change df['updated'] to updated_r and redo results
-df$data.updated_since. <- updated_since._r
-df$data.geo_mae        <- geo_mae_r 
-#df$data.geo_rmse       <- geo_rmse_r 
-df$data.alexa_rank     <- alexa_rank_r 
-#df$data.days_inactive  <- days_inactive_r 
-#df$data.med_resp_time  <- med_resp_time_r 
-#df$data.avg_resp_time  <- avg_resp_time_r 
 
 # -----------------------------------------------
 # correlation matrix plot
@@ -167,29 +143,47 @@ ggsave("fa1.png")
 #
 # Model 1: Regression model with manifest variables only
 #------------------------------------
-factors <- c("inter", "robust", "engage")
+library(lavaan)
+factors <- c("interest", "robustness", "engagement")
 # Model specification (using lavaan syntax)
-sem1 <- '
+sem <- '
 # latent factors
   interest =~   stars + forks + dependents + rank
   robustness =~ crit + geo + long + updated
   engagement =~ auth + commits + comments + prs 
+--------
+interest =~ prs
+interest =~    commits
 
 # regressions
-  robustness ~ engagement
-  engagement ~ interest
+robustness ~ engagement + interest
+engagement ~ interest
 '
+
 # model estimate
 # least convergence issues from SEM functions
 
 # Scale the whole data.frame
 dfl_scaled <- apply(dfl, 2, scale)
 
-fit <- cfa(sem1, data = dfl_scaled, estimator = "MLM")
+fit <- sem(sem, data = dfl_scaled, estimator = "MLM")
 summary(fit,
         rsquare = TRUE,
         standardized = TRUE,
         fit.measures = TRUE)
 
 fitMeasures(fit, c("cfi","rmsea","srmr"))
-semPaths(fit, whatLabels = "std", edge.label.cex = .5, layout = "tree2", rotation = 2, style = "lisrel", intercepts = FALSE, residuals = TRUE, curve = 1, curvature = 3, nCharNodes = 8, sizeMan = 6, sizeMan2 = 3, optimizeLatRes = TRUE, edge.color = "#000000")
+install.packages("Rtools")
+library(semPlot)
+semPaths(fit2.a, whatLabels = "std", edge.label.cex = .5, layout = "tree2", rotation = 2, style = "lisrel", intercepts = FALSE, residuals = TRUE, curve = 1, curvature = 3, nCharNodes = 8, sizeMan = 6, sizeMan2 = 3, optimizeLatRes = TRUE, edge.color = "#000000")
+semPaths(fit2.a, what = "est", layout = "tree", title = TRUE, style = "LISREL")
+
+library(dplyr)
+modificationindices(fit, sort = TRUE)
+modificationindices(fit2) %>%
+  as_data_frame() %>%
+  arrange(-mi) %>%
+  filter(mi > 11) %>%
+  select(lhs, op, rhs, mi, epc)
+
+  #pander(caption="Largest MI values for hz.fit")
