@@ -4,7 +4,7 @@
 # lets get this done!
 #
 install.packages(c("epmr"))
-install.packages("semTools")
+install.packages("autoSEM")
 install.packages("devtools", type = "win.binary")
 devtools::install_github("talbano/epmr")
 #
@@ -173,90 +173,84 @@ ggsave("fa1.png")
 #------------------------------------
 factors <- c("interest", "robustness", "engagement")
 # Model specification (using lavaan syntax)
-sem <- '
-# latent factors
-  interest =~ stars + forks + dependents + rank
-  robustness =~ updated + long + geo + crit
-  engagement =~ auth + commits + comments + prs
-'
-
-sem2 <- '
+m1 <- '
 # latent factors
   interest =~ stars + dependents + forks
   robustness =~ cmc + geo + crit
-  engagement =~ auth + commits +  prs + comments
-  
-# correlation  
-  commits ~~ prs
-  
-# structure
-  health =~ interest + robustness + engagement
-'
-sem3b <- '
-# latent factors
-  interest =~ forks  + stars + dependents + comments
-  robustness =~ updated + geo + rank
-  engagement =~ commits + prs + auth + comments
-  
-# correlation  
-  stars ~~ forks
-
-# structure
-  health =~ robustness + engagement + interest
+  engagement =~ auth + prs + comments + commits
 '
 
 # scaling
 dfl_scaled <- apply(dfl, 2, scale)
-
+describe(dfl_scaled)
 # MLR estimator uses robust standard errors to mitigate non-normality
 # ML is the default and assumes normality
-fit <- cfa(sem2, data = dfl_scaled, estimator = "MLR")
-fit <- cfa(sem, data = dfl_scaled, estimator = "MLM")
-fit3b <- cfa(sem3b, data = dfl_scaled, estimator = "ML")
-fit3bR <- cfa(sem3b, data = dfl_scaled, estimator = "MLR")
-fit4 <- sem(sem4, data = dfl_scaled, estimator = "MLM")
-
-
+fit <- cfa(m1, data = dfl_scaled, estimator = "MLR")
 
 summary(fit,
         standardized = TRUE,
         fit.measures = TRUE)
 
 fitMeasures(fit, c("tli", "cfi", "rmsea", "srmr"))
-fitMeasures(fit3bR, c("tli", "cfi", "rmsea", "srmr"))
-reliability(fit3bR)
 
-# from datacamp
+# residuals to check the discrepancy between the two covariance matrices
+# residuals of zero show the model is perfectly identified
+resid(fit,type = "cor")
+corPlot(resDat, scale=F, upper=FALSE, diag=T, main="Residuals Data")
+resDat
+resDat <- lavResiduals(fit, add.class = TRUE, type = "cor")
+
+reliability(fit)
 
 semPaths(object = fit,
          layout = "tree",
          rotation = 1,
          whatLabels = "std",
          edge.label.cex = 0.75,
-         what = "std",
-         edge.color = "black")
+         #what = "std",
+         edge.color = "black",
+         residuals = T)
 
 anova(fit2, fit3)
 ?fitMeasures
 # dfl_scaled is an atomic vector; turn into a dataframe
 dfl_scaled_df <- data.frame(dfl_scaled)
+describe(dfl_scaled)
 # calculate variance
 var(dfl_scaled_df$long)
 
 
 semPaths(fit, whatLabels = "std", edge.label.cex = .5, layout = "tree2", 
-         rotation = 2, style = "lisrel", intercepts = FALSE, residuals = TRUE, 
+         rotation = 2, style = "lisrel", intercepts = FALSE, residuals = T, 
          curve = 1, curvature = 3, nCharNodes = 8, sizeMan = 6, sizeMan2 = 3, 
          optimizeLatRes = TRUE, edge.color = "#000000")
 semPaths(fit2.a, what = "est", layout = "tree", title = TRUE, style = "LISREL")
 
-
-
 modificationindices(fit, sort = TRUE)
-modificationindices(fit2) %>%
-  as_data_frame() %>%
-  arrange(-mi) %>%
-  filter(mi > 11) %>%
-  select(lhs, op, rhs, mi, epc)
 
-  #pander(caption="Largest MI values for hz.fit")
+#------------------------------------
+# autoSEM
+#------------------------------------
+devtools::install_github("RJacobucci/autoSEM")
+library(autoSEM)
+
+f1.vars <- c("stars","forks","cmc","dependents","auth","commits","prs","comments","geo","crit")
+out = autoSEM(method="GA", data=dfl_all_df, nfac=3,
+              varList=list(f1.vars), CV=F, std.lv=TRUE,
+              criterion="BIC",minInd=2,niter=15)
+
+
+f1.vars <- c("x1","x2","x3","x4","x5","x6","x7","x8","x9")
+out = autoSEM(method="GA",data=myData,nfac=3,
+              varList=list(f1.vars),CV=FALSE,
+              criterion="RMSEA",minInd=3,niter=3)
+
+facs <- 1:4
+out = multFac(facList=facs,parallel="no",method="GA",
+              data=myData,orth=FALSE,CV=FALSE,std.lv=TRUE,
+              varList=list(f1.vars),criterion="RMSEA",niter="default")
+
+summary(out)
+out$solution
+out$bestSol
+summary.autoSEM
